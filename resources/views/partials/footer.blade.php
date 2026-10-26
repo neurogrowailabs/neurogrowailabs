@@ -27,6 +27,7 @@
                     <a href="#about">Metodología DoE</a>
                     <a href="#features">Servicios</a>
                     <a href="#portfolio">Ecosistema Labs</a>
+                    <a href="#compliance">Cumplimiento Legal (6 Módulos)</a>
                 </div>
                 <div class="footer-col">
                     <h4>ECOSISTEMA</h4>

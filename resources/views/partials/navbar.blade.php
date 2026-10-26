@@ -26,6 +26,15 @@
                 <li><a href="#about">RStudio & Diseño Experimental</a></li>
             </ul>
         </div>
+        <div>
+            <div class="nav-col-title" style="color: #3ad389;">
+                <i class="fa-solid fa-shield-halved" style="font-size:9px; margin-right:4px;"></i> Cumplimiento Legal
+            </div>
+            <ul class="nav-col-links">
+                <li><a href="#compliance">Marco & 6 Módulos</a></li>
+                <li><a href="{{ route('legal.terminos') }}">Términos MSA & LOPDP</a></li>
+            </ul>
+        </div>
     </div>
     <div class="nav-actions">
         <a href="#portfolio" class="nav-cta nav-cta-ghost" title="Acceder a los productos y laboratorios">
@@ -60,7 +69,10 @@
     <a href="#portfolio" class="rail-dot" data-target="portfolio" title="06. Ecosistema Labs">
         <span class="rail-tooltip">06. ECOSISTEMA LABS</span>
     </a>
-    <a href="#contact" class="rail-dot" data-target="contact" title="07. Contacto">
-        <span class="rail-tooltip">07. CONTACTO</span>
+    <a href="#compliance" class="rail-dot" data-target="compliance" title="07. Cumplimiento Legal">
+        <span class="rail-tooltip">07. COMPLIANCE</span>
+    </a>
+    <a href="#contact" class="rail-dot" data-target="contact" title="08. Contacto">
+        <span class="rail-tooltip">08. CONTACTO</span>
     </a>
 </nav>
