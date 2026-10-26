@@ -1,0 +1,9 @@
+.git
+.github
+.agents
+.cursor
+.temp-antislop
+.temp-plugins
+vendor
+node_modules
+storage/logs/*.log
