@@ -4,38 +4,38 @@
         <span class="nav-logo-dot"></span>
         <span>BIOCOREXSTACK</span>
     </a>
+
     <div class="nav-columns">
-        <div>
+        <div class="nav-col">
             <div class="nav-col-title">Desarrollo & Cloud</div>
             <ul class="nav-col-links">
                 <li><a href="#features">Webs & Apps (PWA)</a></li>
                 <li><a href="#about">Bases de Datos SQL & NoSQL</a></li>
             </ul>
         </div>
-        <div>
+        <div class="nav-col">
             <div class="nav-col-title">Inteligencia Artificial</div>
             <ul class="nav-col-links">
                 <li><a href="{{ route('labs') }}">Soluciones IA Certificadas</a></li>
                 <li><a href="#pipeline">Pipeline IA en Vivo</a></li>
             </ul>
         </div>
-        <div>
+        <div class="nav-col">
             <div class="nav-col-title">Data & Estadística</div>
             <ul class="nav-col-links">
                 <li><a href="#finder">Cotizador de Arquitectura</a></li>
                 <li><a href="#about">RStudio & Diseño Experimental</a></li>
             </ul>
         </div>
-        <div style="display: flex; align-items: center;">
-            <a href="{{ route('legal.compliance') }}" class="nav-compliance-btn" title="Ir a Cumplimiento Legal">
-                <i class="fa-solid fa-shield-halved" style="font-size: 11px; color: #ffffff;" aria-hidden="true"></i>
-                <span>CUMPLIMIENTO LEGAL</span>
-            </a>
-        </div>
     </div>
+
     <div class="nav-actions">
+        <a href="{{ route('legal.compliance') }}" class="nav-cta nav-cta-ghost nav-cta-compliance" title="Marco de Cumplimiento Legal y Normativa LOPDP">
+            <i class="fa-solid fa-shield-halved" style="font-size: 11px; color: #ffffff;" aria-hidden="true"></i>
+            <span>CUMPLIMIENTO LEGAL</span>
+        </a>
         <a href="#portfolio" class="nav-cta nav-cta-ghost" title="Acceder a los productos y laboratorios">
-            <i class="fa-solid fa-flask" style="color: var(--color-iris-violet);"></i>
+            <i class="fa-solid fa-flask" style="color: var(--color-iris-violet); font-size: 11px;"></i>
             <span>LABS</span>
         </a>
         <a href="{{ $whatsappConsultar }}" target="_blank" rel="noopener" class="nav-cta nav-cta-primary" title="Consultar por WhatsApp con un Ingeniero">

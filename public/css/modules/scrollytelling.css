@@ -79,7 +79,8 @@
   position: relative;
   z-index: 3;
   text-align: center;
-  padding: 0 24px;
+  padding: 0 16px;
+  max-width: 100%;
 }
 
 .hero-eyebrow {
@@ -94,12 +95,25 @@
 
 .hero-headline {
   font-family: var(--font-condensed);
-  font-size: clamp(36px, 5.2vw, 76px);
+  font-size: clamp(22px, 5.2vw, 76px);
   font-weight: 700;
-  line-height: 0.95;
+  line-height: 0.98;
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: var(--texto-blanco);
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  .hero-headline {
+    font-size: clamp(20px, 6.2vw, 34px);
+    line-height: 1.12;
+  }
+  .hero-headline .italic-word {
+    display: inline;
+    margin: 0 3px;
+  }
 }
 
 .hero-headline .italic-word {
@@ -109,7 +123,7 @@
   text-transform: lowercase;
   font-size: 0.55em;
   letter-spacing: -0.02em;
-  margin: 0 10px;
+  margin: 0 6px;
   vertical-align: middle;
 }
 

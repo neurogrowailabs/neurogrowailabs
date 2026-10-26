@@ -119,12 +119,13 @@
 .hero-title {
   font-family: var(--font-condensed);
   text-transform: uppercase;
-  font-size: clamp(3.8rem, 9.5vw, 8rem);
+  font-size: clamp(2.4rem, 9.5vw, 8rem);
   font-weight: 700;
   line-height: 0.88;
   letter-spacing: -0.02em;
   color: var(--color-cloud-white);
   margin-bottom: 6px;
+  overflow-wrap: break-word;
 }
 
 .highlight {
