@@ -128,14 +128,7 @@
     <div class="legal-container">
 
         <header class="legal-header">
-            <div class="legal-top-nav">
-                <a href="{{ route('home') }}" class="legal-back-btn" aria-label="Volver al inicio de BioCoreXStack">
-                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Volver a Inicio
-                </a>
-                <button type="button" onclick="window.print()" class="legal-action-btn" aria-label="Imprimir o guardar este documento en PDF">
-                    <i class="fa-solid fa-print" aria-hidden="true"></i> Imprimir / Guardar PDF
-                </button>
-            </div>
+            @include('partials.legal-nav')
             <h1 class="legal-title">POLÍTICA DE PRIVACIDAD & ACUERDO DE CONFIDENCIALIDAD (NDA)</h1>
             <div class="legal-meta">
                 <span><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Compliance: LOPDP Ecuador</span>

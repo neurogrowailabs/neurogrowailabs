@@ -140,14 +140,7 @@
     <div class="legal-container">
 
         <header class="legal-header">
-            <div class="legal-top-nav">
-                <a href="{{ route('home') }}" class="legal-back-btn" aria-label="Volver al inicio de BioCoreXStack">
-                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Volver a Inicio
-                </a>
-                <button type="button" onclick="window.print()" class="legal-action-btn" aria-label="Imprimir o guardar este documento en PDF">
-                    <i class="fa-solid fa-print" aria-hidden="true"></i> Imprimir / Guardar PDF
-                </button>
-            </div>
+            @include('partials.legal-nav')
             <h1 class="legal-title">TÉRMINOS DE USO & CONTRATO MARCO DE SERVICIOS (MSA)</h1>
             <div class="legal-meta">
                 <span><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Versión: {{ $legalVersion }}</span>
@@ -205,6 +198,34 @@
             <p>
                 Los presentes Términos se rigen e interpretan con arreglo a las leyes de la <strong>República del Ecuador</strong>. Para cualquier divergencia derivada de la interpretación o ejecución de este contrato marco, las partes acuerdan privilegiar el diálogo directo y, en su defecto, someterse a la mediación en un Centro de Arbitraje y Mediación acreditado en la ciudad de Quito o Guayaquil, Ecuador.
             </p>
+
+            <h2 id="consentimiento">7. Consentimiento Libre, Informado y Regla de Doble Casilla Separada</h2>
+            <p>
+                De rigurosa conformidad con los Artículos 12, 14 y 15 de la <strong>Ley Orgánica de Protección de Datos Personales (LOPDP)</strong> de la República del Ecuador:
+            </p>
+            <ul>
+                <li><strong>Prohibición de Casillas Premarcadas:</strong> Todo consentimiento otorgado en los canales digitales de BioCoreXStack (incluyendo el Diagnóstico Inteligente con IA y formularios de contacto) exige una acción afirmativa y consciente del usuario. Queda terminantemente prohibido el uso de casillas preseleccionadas o casillas únicas que agrupen finalidades heterogéneas.</li>
+                <li><strong>Doble Casilla Independiente:</strong> El usuario debe validar por separado: (a) La aceptación contractual de este Contrato Marco (MSA); y (b) La Política de Privacidad, Tratamiento de Datos Personales y Acuerdo de Confidencialidad (NDA). La omisión de cualquiera de las dos casillas impedirá automáticamente el envío del requerimiento técnico.</li>
+            </ul>
+
+            <h2 id="auditoria">8. Protocolo de Trazabilidad, Registro Probatorio y Fe Digital</h2>
+            <p>
+                Al amparo de los Artículos 2, 45 y 47 de la <strong>Ley de Comercio Electrónico, Firmas Electrónicas y Mensajes de Datos</strong> del Ecuador:
+            </p>
+            <ul>
+                <li><strong>Registro Inmutable:</strong> Cada manifestación de consentimiento y aceptación contractual electrónica se asocia a un registro probatorio inmutable en base de datos (<code>b2b_consent_logs</code>), que captura la dirección IP pública real del solicitante, encabezado User-Agent, sello de tiempo en estándar UTC exacto y la versión vigente de los términos aceptados.</li>
+                <li><strong>Referencia Forense y No Repudio:</strong> Al generarse una consulta técnica o cotización, el sistema genera un identificador único de trazabilidad (ej. <code>BCXS-LEGAL-XXXXXX</code>) que acompaña las comunicaciones oficiales vía WhatsApp o correo electrónico, constituyendo prueba documental válida de la manifestación de voluntad de las partes.</li>
+            </ul>
+
+            <h2 id="seguridad">9. Estándares de Seguridad de la Información, SLA y Blindaje Técnico</h2>
+            <p>
+                En cumplimiento del deber de seguridad técnica y organizativa estipulado en el Artículo 37 de la LOPDP:
+            </p>
+            <ul>
+                <li><strong>Mitigación de Abusos y Rate Limiting:</strong> Los endpoints de la plataforma y del motor de diagnóstico cuentan con limitación de tasa estricta (15 peticiones por minuto por dirección IP) para mitigar vectores de denegación de servicio (DoS), ataques de fuerza bruta y raspado de datos (scraping) no autorizado.</li>
+                <li><strong>Cifrado y Sanitización:</strong> Todo el tráfico de datos se canaliza a través de protocolos seguros con cifrado TLS 1.3 de extremo a extremo. Los datos ingresados son sometidos a validación y sanitización estricta para neutralizar inyecciones de código o sobrecarga de búferes.</li>
+                <li><strong>Accesibilidad Universal (WCAG 2.1 AA):</strong> La arquitectura de interfaz garantiza navegación accesible mediante teclado, contraste visual normalizado y cumplimiento de estándares para personas con capacidades diversas.</li>
+            </ul>
 
             <div class="legal-footer-box">
                 <div>

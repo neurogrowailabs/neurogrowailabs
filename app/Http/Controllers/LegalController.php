@@ -50,10 +50,14 @@ class LegalController extends Controller
      */
     public function compliance(): View
     {
+        $whatsappNumber = env('WHATSAPP_NUMBER', '593987654321');
+        $whatsappGlobal = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola BioCoreXStack, deseo consultar sobre un requerimiento legal o NDA corporativo.');
+
         return view('legal.compliance', [
-            'pageTitle' => 'Cumplimiento Legal, Trazabilidad LOPDP & 6 Módulos — BioCoreXStack Software Labs',
+            'pageTitle' => 'Gobernanza & Marco de Cumplimiento Legal — BioCoreXStack Software Labs',
             'legalVersion' => 'v1.0-biocorexstack-2026-10',
             'lastUpdated' => '26 de Octubre de 2026',
+            'whatsappGlobal' => $whatsappGlobal,
         ]);
     }
 
