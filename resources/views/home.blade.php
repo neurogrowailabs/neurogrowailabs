@@ -43,5 +43,5 @@
         window.VALIDATOR_DATABASE = @json($databaseValidation);
         window.MARQUEE_ITEMS = @json($partners);
     </script>
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}?v={{ file_exists(public_path('js/script.js')) ? filemtime(public_path('js/script.js')) : time() }}"></script>
 @endpush

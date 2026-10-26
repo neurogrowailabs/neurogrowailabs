@@ -46,6 +46,18 @@ class LegalController extends Controller
     }
 
     /**
+     * Renderiza el apartado dedicado de Cumplimiento Legal con los 6 módulos y verificación cloud.
+     */
+    public function compliance(): View
+    {
+        return view('legal.compliance', [
+            'pageTitle' => 'Cumplimiento Legal, Trazabilidad LOPDP & 6 Módulos — BioCoreXStack Software Labs',
+            'legalVersion' => 'v1.0-biocorexstack-2026-10',
+            'lastUpdated' => '26 de Octubre de 2026',
+        ]);
+    }
+
+    /**
      * Registro inmutable de trazabilidad de consentimiento legal B2B.
      */
     public function logConsent(Request $request): JsonResponse

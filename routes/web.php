@@ -9,6 +9,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/laboratorio', [HomeController::class, 'labs'])->name('labs');
 
 // Páginas de Cumplimiento Legal (LOPDP Ecuador / MSA)
+Route::get('/cumplimiento-legal', [LegalController::class, 'compliance'])->name('legal.compliance');
+Route::redirect('/cumplimiento', '/cumplimiento-legal');
+Route::redirect('/compliance', '/cumplimiento-legal');
+Route::redirect('/legal', '/cumplimiento-legal');
 Route::get('/terminos-msa', [LegalController::class, 'terminos'])->name('legal.terminos');
 Route::get('/privacidad', [LegalController::class, 'privacidad'])->name('legal.privacidad');
 Route::get('/cookies', [LegalController::class, 'cookies'])->name('legal.cookies');

@@ -31,7 +31,7 @@
                 <i class="fa-solid fa-shield-halved" style="font-size:9px; margin-right:4px;"></i> Cumplimiento Legal
             </div>
             <ul class="nav-col-links">
-                <li><a href="#compliance">Marco & 6 Módulos</a></li>
+                <li><a href="{{ route('legal.compliance') }}">Apartado Legal & 6 Módulos</a></li>
                 <li><a href="{{ route('legal.terminos') }}">Términos MSA & LOPDP</a></li>
             </ul>
         </div>
