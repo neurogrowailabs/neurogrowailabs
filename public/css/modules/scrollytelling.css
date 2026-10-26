@@ -1,0 +1,367 @@
+/* ==========================================================================
+   BIOCOREXSTACK SOFTWARE LABS — MÓDULO 02: SCROLLYTELLING & ESCENARIO MAESTRO
+   Thermos Compliant: < 1,000 líneas
+   ========================================================================== */
+
+/* 3. ESCENARIO MAESTRO (Contiene del 0:00 al 0:17 fijado en pantalla) */
+.master-stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-principal);
+}
+
+/* --- CAPA 1: HERO Y FIGURAS GEOMÉTRICAS (0:00 - 0:03) --- */
+.hero-layer {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+/* Figuras geométricas del fondo (0:00 - 0:03) */
+.bg-shapes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shape-arrow {
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 420px;
+  height: 420px;
+  fill: var(--bg-figuras-fondo);
+}
+
+.shape-cross {
+  position: absolute;
+  bottom: -8%;
+  left: 33%;
+  width: 340px;
+  height: 340px;
+  fill: var(--bg-figuras-fondo);
+  transform-origin: center;
+}
+
+.shape-bars {
+  position: absolute;
+  bottom: 8%;
+  right: -2%;
+  width: 360px;
+  height: 300px;
+  stroke: var(--bg-figuras-fondo);
+  stroke-width: 14;
+}
+
+/* Círculo interactivo Morado (Accent Dot) */
+.red-dot {
+  position: absolute;
+  bottom: 4%;
+  left: 55%;
+  width: 68px;
+  height: 68px;
+  background-color: var(--color-acento);
+  box-shadow: 0 0 28px rgba(146, 129, 247, 0.6);
+  border-radius: 50%;
+  z-index: 2;
+  will-change: transform;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--texto-gris-nav);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.hero-headline {
+  font-family: var(--font-condensed);
+  font-size: clamp(36px, 5.2vw, 76px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--texto-blanco);
+}
+
+.hero-headline .italic-word {
+  font-family: var(--font-inter);
+  font-weight: 500;
+  font-style: italic;
+  text-transform: lowercase;
+  font-size: 0.55em;
+  letter-spacing: -0.02em;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+.hero-bottom-label {
+  position: absolute;
+  bottom: 28px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--texto-blanco);
+  z-index: 3;
+}
+
+/* --- CAPA 2: CORTINA TRANSPARENTE "SOFTWARE BLINDADO" (0:03 - 0:06) --- */
+.portal-layer {
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-glass-portal);
+  backdrop-filter: blur(var(--blur-portal));
+  -webkit-backdrop-filter: blur(var(--blur-portal));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  transform-origin: 50% 56%;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.portal-text-wrapper {
+  text-align: center;
+  color: var(--texto-portal);
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 0.85;
+}
+
+.portal-line-top {
+  font-size: clamp(34px, 8.8vw, 126px);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.portal-line-bottom {
+  font-size: clamp(32px, 8.2vw, 118px);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* La letra central estilizada que sirve de túnel negro */
+.portal-glyph {
+  font-family: var(--font-serif-italica);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.25em;
+  text-transform: lowercase;
+  margin: 0 0.02em;
+  display: inline-block;
+}
+
+/* --- CAPA 3: PÁRRAFO DECONSTRUCTIVO Y PALABRAS MORADAS (0:06 - 0:17) --- */
+.manifesto-layer {
+  position: absolute;
+  inset: 0;
+  background-color: var(--bg-negro-profundo);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.manifesto-text {
+  font-family: var(--font-condensed);
+  max-width: 860px;
+  font-size: clamp(16px, 2.1vw, 30px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 5;
+}
+
+.manifesto-text .white-word {
+  display: inline-block;
+  color: var(--texto-blanco);
+  will-change: opacity;
+}
+
+.manifesto-text .red-word {
+  display: inline-block;
+  color: var(--color-iris-violet);
+  text-shadow: 0 0 24px rgba(146, 129, 247, 0.45);
+  font-weight: 700;
+  will-change: transform;
+}
+
+/* Tarjetas flotantes laterales que suben mientras haces scroll (0:06 - 0:15) */
+.floating-cards-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.float-card {
+  position: absolute;
+  width: 280px;
+  height: 170px;
+  background-color: var(--bg-tarjetas);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.float-card-left {
+  left: 4%;
+  top: 110%;
+}
+
+.float-card-right {
+  right: 4%;
+  top: 140%;
+  background-color: #6c636b;
+  color: #080808;
+}
+
+.float-card-header {
+  font-family: var(--font-mono);
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.float-card-title {
+  font-family: var(--font-condensed);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Botón final (0:16 - 0:17) */
+.final-cta-btn {
+  font-family: var(--font-mono);
+  margin-top: clamp(115px, 15vh, 145px);
+  padding: 12px 26px;
+  border: 1px solid rgba(212, 210, 210, 0.45);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--texto-blanco);
+  font-size: 10px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(15px);
+  z-index: 6;
+  pointer-events: auto;
+  transition: all 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .final-cta-btn {
+    margin-top: clamp(55px, 9vh, 75px);
+  }
+}
+
+.final-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+}
+
+/* ==================== MERCURY SCROLL-DRIVEN HERO & VIDEO SCRUB ==================== */
+.scroll-explore-capsule {
+  position: absolute;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-explore-capsule span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-fog-text);
+}
+
+.capsule-pill {
+  width: 20px;
+  height: 34px;
+  border-radius: 20px;
+  border: 1px solid var(--color-border-smoke);
+  background: rgba(23, 23, 33, 0.4);
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+}
+
+.capsule-thumb {
+  width: 6px;
+  height: 8px;
+  border-radius: 6px;
+  background: var(--color-cobalt);
+  box-shadow: 0 0 8px var(--color-cobalt);
+  animation: scrollThumbPulse 2s infinite ease-in-out;
+}
+
+@keyframes scrollThumbPulse {
+  0% { transform: translateY(0); opacity: 0.9; }
+  50% { transform: translateY(14px); opacity: 0.3; }
+  100% { transform: translateY(0); opacity: 0.9; }
+}
+
+/* Scroll Revelations */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+[data-reveal].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}

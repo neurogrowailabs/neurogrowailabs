@@ -100,8 +100,8 @@ class HomeController extends Controller
                 'badge' => 'CERTIFIED AI',
                 'title' => 'Inteligencia Artificial Aplicada & Automatización',
                 'checks' => [
-                    'Implementación certificada de Inteligencia Artificial y modelos LLM (Google Gemini y ecosistemas IA) en cualquier ámbito.',
-                    'Asistentes inteligentes, automatización de atención al cliente y digitalización asistida por IA.',
+                    'Implementación de modelos LLM (Google Gemini con RAG) en entornos transaccionales y de analítica empresarial.',
+                    'Agentes autónomos, automatización de atención omnicanal y procesamiento de lenguaje natural en tiempo real.',
                     'Integración de flujos inteligentes con herramientas empresariales, webs y bases de datos en tiempo real.'
                 ],
                 'cta' => 'Implementar IA',

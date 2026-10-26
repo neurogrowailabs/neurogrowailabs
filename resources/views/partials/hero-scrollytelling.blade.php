@@ -73,19 +73,19 @@
 
         <!-- Párrafo principal con 6 palabras clave destacadas en morado -->
         <div class="manifesto-text" id="manifestoParagraph">
-            TRANSFORMAMOS IDEAS EN TECNOLOGÍA REAL A TRAVÉS DE LA 
+            INGENIERÍA DE SOFTWARE RIGUROSA CONDUCIDA POR LA 
             <span class="red-word">INTELIGENCIA</span> 
-            ARTIFICIAL Y LA CIENCIA DE DATOS. MEDIANTE EL 
+            ARTIFICIAL Y EL PROCESAMIENTO DISTRIBUIDO DE DATOS. MEDIANTE EL 
             <span class="red-word">DESARROLLO</span> 
-            DE PÁGINAS WEB MODERNAS Y 
+            FULL-STACK DE APLICACIONES WEB REACTIVAS Y 
             <span class="red-word">SISTEMAS</span> 
-            EN LA NUBE, LLEVAMOS TU NEGOCIO AL SIGUIENTE NIVEL. CREAMOS APLICACIONES RÁPIDAS Y ESCALABLES QUE CONECTAN CON TUS CLIENTES EN TIEMPO REAL. EL 
+            CLOUD DE ALTA DISPONIBILIDAD, GARANTIZAMOS LATENCIAS MÍNIMAS Y ESCALABILIDAD HORIZONTAL. EL 
             <span class="red-word">DISEÑO</span> 
-            INTERACTIVO ES NUESTRO SELLO, DANDO VIDA A EXPERIENCIAS DIGITALES QUE CONVIERTEN. APLICAMOS 
+            TÉCNICO MODULAR OPTIMIZA EL RENDIMIENTO Y LA ACCESIBILIDAD DIGITAL. APLICAMOS 
             <span class="red-word">ESTADÍSTICA</span> 
-            AVANZADA PARA VALIDAR CADA ESTRATEGIA CON PRECISIÓN CIENTÍFICA, IMPULSANDO UN 
+            EXPERIMENTAL (DoE) PARA VALIDAR HIPÓTESIS CON RIGOR MATEMÁTICO, CONSOLIDANDO UN 
             <span class="red-word">CRECIMIENTO</span> 
-            SÓLIDO, AUTOMATIZADO Y MEDIBLE PARA TU MARCA.
+            SÓLIDO, DETERMINISTA Y MEDIBLE PARA TU ORGANIZACIÓN.
         </div>
 
         <button class="final-cta-btn" id="finalCta">VER NUESTRAS CAPACIDADES</button>

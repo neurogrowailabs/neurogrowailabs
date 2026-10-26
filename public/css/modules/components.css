@@ -1,0 +1,854 @@
+/* ==========================================================================
+   BIOCOREXSTACK SOFTWARE LABS — MÓDULO 04: COMPONENTES & RESPONSIVE
+   Thermos Compliant: < 1,000 líneas
+   ========================================================================== */
+
+/* 2. NAVEGACIÓN SUPERIOR FIJA (Estilo Top Navigation) */
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 22px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  pointer-events: none;
+  transition: background-color 0.3s ease, padding 0.3s ease, border-bottom 0.3s ease;
+}
+
+.top-nav.scrolled {
+  background: rgba(0, 0, 0, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 14px 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--texto-blanco);
+  pointer-events: auto;
+  font-family: var(--font-condensed);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+}
+
+.nav-logo-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-iris-violet);
+  box-shadow: 0 0 10px var(--color-iris-violet);
+  display: inline-block;
+  animation: navLogoDotPulse 2.4s infinite ease-in-out;
+}
+
+@keyframes navLogoDotPulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); box-shadow: 0 0 10px var(--color-iris-violet); }
+  50% { opacity: 1; transform: scale(1.3); box-shadow: 0 0 16px #c4b5fd; }
+}
+
+.nav-columns {
+  display: flex;
+  gap: 28px;
+  pointer-events: auto;
+}
+
+.nav-compliance-btn {
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-compliance-btn:hover {
+  opacity: 0.75;
+  transform: translateY(-1px);
+}
+
+.nav-col-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--color-iris-violet);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.nav-col-links {
+  list-style: none;
+  font-family: var(--font-inter);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--texto-gris-nav);
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-col-links a {
+  color: var(--texto-gris-nav);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-col-links a:hover {
+  color: #ffffff;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.nav-cta {
+  pointer-events: auto;
+  font-family: var(--font-mono);
+  border: 1px solid rgba(212, 210, 210, 0.4);
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--texto-blanco);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+}
+
+.nav-cta:hover {
+  border-color: var(--color-iris-violet);
+  background: rgba(146, 129, 247, 0.12);
+  color: #ffffff;
+}
+
+.nav-cta-primary {
+  background: var(--color-iris-violet) !important;
+  border-color: var(--color-iris-violet) !important;
+  color: #080808 !important;
+  font-weight: 700 !important;
+}
+
+.nav-cta-primary:hover {
+  background: #a395f8 !important;
+  border-color: #a395f8 !important;
+  color: #000000 !important;
+  box-shadow: 0 0 16px rgba(146, 129, 247, 0.45);
+}
+
+.nav-cta-ghost {
+  background: rgba(146, 129, 247, 0.08);
+  border-color: rgba(146, 129, 247, 0.35);
+}
+
+.nav-cta-ghost:hover {
+  border-color: var(--color-iris-violet);
+  background: rgba(146, 129, 247, 0.2);
+  color: #ffffff;
+}
+
+/* ==================== 1. HEADER (n8n MIDNIGHT CAPSULE) ==================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 20px 0;
+  transition: all 0.25s var(--ease);
+  background: transparent;
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav.scrolled {
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border-smoke);
+}
+
+.brand {
+  font-family: var(--font-inter);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--color-cloud-white);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+}
+
+.brand span.accent-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fd8925;
+  box-shadow: 0 0 12px #fd8925, 0 0 20px rgba(255, 12, 0, 0.6);
+  display: inline-block;
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-size: 14px;
+  color: var(--color-fog-text);
+  transition: color 0.15s ease;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: var(--color-cloud-white);
+}
+
+.nav-burger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-cloud-white);
+  cursor: pointer;
+}
+
+/* ==================== 9. CTA FINAL & FOOTER MEGA-NAV ==================== */
+.cta-final {
+  padding: 112px 0;
+  background: var(--color-void-base);
+  border-top: 1px solid var(--color-border-smoke);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Halo de calor inferior característico de n8n */
+.cta-final::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(253, 137, 37, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cta-final h2 {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-final p {
+  color: var(--color-ash-text);
+  margin: 18px auto 36px;
+  max-width: 520px;
+  font-size: 1.15rem;
+  position: relative;
+  z-index: 1;
+}
+
+.footer {
+  background: var(--color-void-base);
+  border-top: 1px solid var(--color-border-smoke);
+  padding: 76px 0 32px;
+  color: var(--color-fog-text);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+
+.footer-col h4 {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-cloud-white);
+  margin-bottom: 16px;
+}
+
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  color: var(--color-fog-text);
+  margin-bottom: 10px;
+  transition: color 0.15s ease;
+}
+
+.footer-col a:hover {
+  color: var(--color-cloud-white);
+}
+
+.footer-bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border-smoke);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-iron);
+}
+
+.footer-giant-watermark-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 56px;
+  padding: 40px 0 20px;
+  width: 100%;
+  min-height: 250px;
+  overflow: visible;
+}
+
+/* Sombra tipográfica monumental con réplica exacta de la cortina (Inter 900 + Playfair en 'a') */
+.footer-portal-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 0.85;
+  color: rgba(255, 255, 255, 0.032);
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.footer-portal-line-top {
+  font-family: var(--font-principal);
+  font-size: clamp(34px, 8.8vw, 130px);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.footer-portal-line-bottom {
+  font-family: var(--font-principal);
+  font-size: clamp(32px, 8.2vw, 122px);
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.footer-portal-glyph {
+  font-family: var(--font-serif-italica);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.25em;
+  text-transform: lowercase;
+  margin: 0 0.02em;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   Overlay Central de Contacto y Botones de Redes Sociales (Uiverse.io by elisapi)
+   ========================================================================== */
+.footer-center-overlay {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  width: 100%;
+  pointer-events: auto;
+}
+
+.footer-contact-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-contact-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-acento);
+  background: rgba(146, 129, 247, 0.1);
+  border: 1px solid rgba(146, 129, 247, 0.28);
+  padding: 3px 14px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.footer-contact-brand {
+  font-family: var(--font-principal);
+  font-size: clamp(17px, 2.2vw, 22px);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 2px 0;
+}
+
+.footer-contact-location {
+  font-size: 13px;
+  color: var(--color-fog-text);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.location-dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-pulse-green);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 10px rgba(58, 211, 137, 0.85);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.card {
+  width: fit-content;
+  max-width: 100%;
+  height: fit-content;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-center-overlay .card {
+  position: relative;
+  z-index: 6;
+  margin-top: 2px;
+}
+
+.socialContainer {
+  width: 52px;
+  height: 52px;
+  background-color: rgb(65, 29, 131);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.socialContainer:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.containerOne:hover {
+  background-color: #d62976;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+
+.containerTwo:hover {
+  background-color: #00acee;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+
+.containerThree:hover {
+  background-color: #0072b1;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+
+.containerFour:hover {
+  background-color: #128c7e;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+
+.socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+
+.socialSvg {
+  width: 17px;
+}
+
+.socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+
+.socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Botón Flotante con pulso */
+.float-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gradient-ember-cta);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 99;
+  font-size: 18px;
+  box-shadow: 0 0 24px rgba(253, 137, 37, 0.5);
+  transition: transform 0.15s ease;
+}
+
+.float-btn:hover {
+  transform: scale(1.08);
+}
+
+.float-ping {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #fd8925;
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  z-index: -1;
+}
+
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+/* WhatsApp Floating Button & Tooltip */
+.float-whatsapp-btn {
+  background: linear-gradient(135deg, #25D366, #128C7E) !important;
+  box-shadow: 0 0 24px rgba(37, 211, 102, 0.55) !important;
+}
+
+.float-whatsapp-btn .float-ping {
+  background: #25D366 !important;
+}
+
+.float-whatsapp-btn i {
+  font-size: 26px !important;
+}
+
+.float-whatsapp-btn .float-tooltip {
+  position: absolute;
+  right: 64px;
+  background: rgba(0, 0, 0, 0.95);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(37, 211, 102, 0.4);
+  font-size: 11.5px;
+  font-family: var(--font-inter);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.float-whatsapp-btn:hover .float-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.btn-whatsapp-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 16px;
+  padding: 13px 20px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-family: var(--font-inter);
+  font-size: 13px;
+  border-radius: var(--radius-buttons);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+  cursor: pointer;
+}
+
+.btn-whatsapp-action:hover {
+  background: linear-gradient(135deg, #2ae771, #16a392);
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.55);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+/* ==================== 10. MERCURY OBSERVATORY SCROLL RAIL ==================== */
+.scroll-rail {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  z-index: 95;
+  padding: 14px 8px;
+  background: rgba(23, 23, 33, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-mist-border);
+  border-radius: 40px;
+}
+
+.rail-line {
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--color-cobalt) 0%, rgba(255, 255, 255, 0.1) 50%, #fd8925 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.rail-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-deep-panel);
+  border: 1px solid var(--color-border-smoke);
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.rail-dot:hover {
+  transform: scale(1.35);
+  border-color: var(--color-cobalt);
+  background: var(--color-cobalt);
+  box-shadow: 0 0 12px var(--color-cobalt-glow);
+}
+
+.rail-dot.active {
+  transform: scale(1.5);
+  background: var(--color-cobalt);
+  border-color: #ffffff;
+  box-shadow: 0 0 16px rgba(82, 102, 235, 0.8), 0 0 6px #ffffff;
+}
+
+.rail-tooltip {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: var(--color-graphite-card);
+  border: 1px solid var(--color-mist-border);
+  color: var(--color-ivory-text);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 5px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.rail-dot:hover .rail-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ==================== 11. CONTACT SNAP (CTA + FOOTER FINALE) ==================== */
+.contact-snap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--color-void-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-snap .cta-final {
+  border-top: none;
+  padding: 90px 0 40px;
+}
+
+.contact-snap .footer {
+  border-top: 1px solid var(--color-border-smoke);
+  padding: 48px 0 24px;
+}
+
+/* ==================== GLOBAL LEGAL TOP NAVIGATION ==================== */
+.legal-top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+  gap: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 20px;
+}
+
+.legal-nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.legal-nav-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.legal-nav-pill {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--color-fog-text, #9d9797);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.legal-nav-pill:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.legal-nav-pill.active {
+  color: #3ad389;
+  border-color: rgba(58, 211, 137, 0.45);
+  background: rgba(58, 211, 137, 0.09);
+  font-weight: 600;
+}
+
+.legal-back-btn, .legal-action-btn {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-fog-text, #9d9797);
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.legal-back-btn:hover, .legal-action-btn:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 992px) {
+  .nav-columns { display: none; }
+  .top-nav { padding: 18px 24px; }
+  .nodes-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-burger { display: block; }
+  .top-nav { padding: 14px 18px; }
+  .nav-logo { font-size: 20px; }
+  .sticky-layout { grid-template-columns: 1fr; gap: 40px; }
+  .sticky-copy { position: relative; top: 0; }
+  .finder-inputs { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .nodes-grid { grid-template-columns: 1fr; }
+  .hero-title { line-height: 0.92; }
+}
+
+@media (max-width: 480px) {
+  .nav-cta-ghost { display: none; }
+  .top-nav { padding: 12px 14px; }
+  .nav-logo { font-size: 18px; }
+}

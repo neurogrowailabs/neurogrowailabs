@@ -79,10 +79,14 @@ class LegalController extends Controller
             ? trim(explode(',', $request->header('X-Forwarded-For'))[0]) 
             : $request->ip();
 
+        $leadName = isset($validated['lead_name']) ? trim(strip_tags((string) $validated['lead_name'])) : null;
+        $businessName = isset($validated['business_name']) ? trim(strip_tags((string) $validated['business_name'])) : null;
+        $contactInfo = isset($validated['contact_info']) ? trim(strip_tags((string) $validated['contact_info'])) : null;
+
         $log = ConsentLog::create([
-            'lead_name' => $validated['lead_name'] ?? null,
-            'business_name' => $validated['business_name'] ?? null,
-            'contact_info' => $validated['contact_info'] ?? null,
+            'lead_name' => $leadName,
+            'business_name' => $businessName,
+            'contact_info' => $contactInfo,
             'origin' => $validated['origin'] ?? 'web_diagnostico_ia',
             'ip_address' => $ipAddress ?: '0.0.0.0',
             'user_agent' => substr((string) $request->userAgent(), 0, 500),
