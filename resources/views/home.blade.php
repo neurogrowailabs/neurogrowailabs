@@ -24,9 +24,6 @@
     {{-- Ecosistema Labs: Casos de éxito en producción (MiVeci & RStudio) --}}
     @include('partials.portfolio')
 
-    {{-- Marco de Cumplimiento Legal, Trazabilidad LOPDP & 6 Módulos --}}
-    @include('partials.compliance')
-
     {{-- CTA final, navegación de pie de página y botones sociales --}}
     @include('partials.footer')
 

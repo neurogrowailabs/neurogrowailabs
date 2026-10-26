@@ -27,7 +27,6 @@
                     <a href="#about">Metodología DoE</a>
                     <a href="#features">Servicios</a>
                     <a href="#portfolio">Ecosistema Labs</a>
-                    <a href="#compliance">Cumplimiento Legal (6 Módulos)</a>
                 </div>
                 <div class="footer-col">
                     <h4>ECOSISTEMA</h4>
@@ -38,7 +37,7 @@
                 </div>
                 <div class="footer-col">
                     <h4>LEGAL & COMPLIANCE</h4>
-                    <a href="{{ route('legal.compliance') }}" style="color:#3ad389; font-weight:600;"><i class="fa-solid fa-shield-halved" style="font-size:10px; margin-right:4px;"></i> Apartado Legal (6 Módulos)</a>
+                    <a href="{{ route('legal.compliance') }}" style="color:#3ad389; font-weight:600;"><i class="fa-solid fa-shield-halved" style="font-size:10px; margin-right:4px;"></i> Cumplimiento Legal</a>
                     <a href="{{ route('legal.terminos') }}">Términos y Condiciones (MSA)</a>
                     <a href="{{ route('legal.privacidad') }}">Política de Privacidad & NDA</a>
                     <a href="{{ route('legal.cookies') }}">Política de Cookies</a>

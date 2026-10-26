@@ -28,11 +28,11 @@
         </div>
         <div>
             <div class="nav-col-title" style="color: #3ad389;">
-                <i class="fa-solid fa-shield-halved" style="font-size:9px; margin-right:4px;"></i> Cumplimiento Legal
+                <i class="fa-solid fa-shield-halved" style="font-size:9px; margin-right:4px;"></i> Gobernanza & LOPDP
             </div>
             <ul class="nav-col-links">
-                <li><a href="{{ route('legal.compliance') }}">Apartado Legal & 6 Módulos</a></li>
-                <li><a href="{{ route('legal.terminos') }}">Términos MSA & LOPDP</a></li>
+                <li><a href="{{ route('legal.compliance') }}" style="color: #ffffff; font-weight: 600;">Cumplimiento Legal</a></li>
+                <li><a href="{{ route('legal.terminos') }}">Términos MSA & Contratos</a></li>
             </ul>
         </div>
     </div>
@@ -69,10 +69,7 @@
     <a href="#portfolio" class="rail-dot" data-target="portfolio" title="06. Ecosistema Labs">
         <span class="rail-tooltip">06. ECOSISTEMA LABS</span>
     </a>
-    <a href="#compliance" class="rail-dot" data-target="compliance" title="07. Cumplimiento Legal">
-        <span class="rail-tooltip">07. COMPLIANCE</span>
-    </a>
-    <a href="#contact" class="rail-dot" data-target="contact" title="08. Contacto">
-        <span class="rail-tooltip">08. CONTACTO</span>
+    <a href="#contact" class="rail-dot" data-target="contact" title="07. Contacto">
+        <span class="rail-tooltip">07. CONTACTO</span>
     </a>
 </nav>
