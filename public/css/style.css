@@ -209,6 +209,26 @@ a {
   pointer-events: auto;
 }
 
+.nav-compliance-btn {
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-compliance-btn:hover {
+  opacity: 0.75;
+  transform: translateY(-1px);
+}
+
 .nav-col-title {
   font-family: var(--font-mono);
   font-size: 10px;

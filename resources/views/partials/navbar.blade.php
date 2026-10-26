@@ -26,14 +26,11 @@
                 <li><a href="#about">RStudio & Diseño Experimental</a></li>
             </ul>
         </div>
-        <div>
-            <div class="nav-col-title" style="color: #3ad389;">
-                <i class="fa-solid fa-shield-halved" style="font-size:9px; margin-right:4px;"></i> Gobernanza & LOPDP
-            </div>
-            <ul class="nav-col-links">
-                <li><a href="{{ route('legal.compliance') }}" style="color: #ffffff; font-weight: 600;">Cumplimiento Legal</a></li>
-                <li><a href="{{ route('legal.terminos') }}">Términos MSA & Contratos</a></li>
-            </ul>
+        <div style="display: flex; align-items: center;">
+            <a href="{{ route('legal.compliance') }}" class="nav-compliance-btn" title="Ir a Cumplimiento Legal">
+                <i class="fa-solid fa-shield-halved" style="font-size: 11px; color: #ffffff;" aria-hidden="true"></i>
+                <span>CUMPLIMIENTO LEGAL</span>
+            </a>
         </div>
     </div>
     <div class="nav-actions">
