@@ -56,8 +56,8 @@
                     <span>WHATSAPP API</span>
                 </div>
                 <div class="portfolio-card-footer">
-                    <a href="https://miveci-app.onrender.com" target="_blank" rel="noopener" class="btn btn-accent" style="width:100%; justify-content:center; gap:8px;">
-                        <i class="fa-solid fa-comment-dots"></i> Ver Demo / Caso de Estudio MiVeci ↗
+                    <a href="https://miveci-app.onrender.com" target="_blank" rel="noopener" class="btn btn-accent" aria-label="Ver demo y caso de estudio de MiVeci en Render" style="width:100%; justify-content:center; gap:8px;">
+                        <i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Ver Demo / Caso de Estudio MiVeci ↗
                     </a>
                 </div>
             </article>

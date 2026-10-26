@@ -35,10 +35,19 @@
                     <a href="#portfolio">RStudio & Data Lab</a>
                     <a href="https://github.com/ricardodevcorex99" target="_blank" rel="noopener">GitHub Repositories</a>
                 </div>
+                <div class="footer-col">
+                    <h4>LEGAL & COMPLIANCE</h4>
+                    <a href="{{ route('legal.terminos') }}">Términos y Condiciones (MSA)</a>
+                    <a href="{{ route('legal.privacidad') }}">Política de Privacidad & NDA</a>
+                    <a href="{{ route('legal.cookies') }}">Política de Cookies</a>
+                    <div style="font-family:var(--font-mono); font-size:10px; color:#3ad389; display:inline-flex; align-items:center; gap:6px; margin-top:10px; padding:4px 8px; border-radius:6px; background:rgba(58,211,137,0.08); border:1px solid rgba(58,211,137,0.2);">
+                        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i> LOPDP Ecuador · Ley de Comercio Electrónico
+                    </div>
+                </div>
             </div>
             <div class="footer-bottom">
                 <span>© {{ date('Y') }} {{ strtoupper($siteName) }}. ALL RIGHTS RESERVED.</span>
-                <span>AI & DATA-DRIVEN ENGINEERING</span>
+                <span>LOPDP ECUADOR · AI & DATA-DRIVEN SOFTWARE LABS</span>
             </div>
             <div class="footer-giant-watermark-wrap">
                 <!-- Sombra tipográfica gigante réplica exacta de la cortina portal -->

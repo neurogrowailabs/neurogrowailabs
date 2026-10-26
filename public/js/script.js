@@ -215,6 +215,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const category = inputPrimary.value.trim();
     const specification = inputSecondary ? inputSecondary.value.trim() : "";
 
+    // Validación Estricta de Doble Consentimiento Legal (LOPDP / MSA Ecuador)
+    const chkTermsMsa = document.getElementById("chkTermsMsa");
+    const chkPrivacyNda = document.getElementById("chkPrivacyNda");
+    const finderConsentBox = document.getElementById("finderConsentBox");
+    const legalConsentAlert = document.getElementById("legalConsentAlert");
+
+    const termsAccepted = chkTermsMsa ? chkTermsMsa.checked : false;
+    const privacyAccepted = chkPrivacyNda ? chkPrivacyNda.checked : false;
+
+    if (!termsAccepted || !privacyAccepted) {
+      if (finderConsentBox) finderConsentBox.classList.add("has-error");
+      if (legalConsentAlert) legalConsentAlert.style.display = "flex";
+      if (!termsAccepted && chkTermsMsa) {
+        chkTermsMsa.focus();
+      } else if (!privacyAccepted && chkPrivacyNda) {
+        chkPrivacyNda.focus();
+      }
+      return;
+    }
+
+    if (finderConsentBox) finderConsentBox.classList.remove("has-error");
+    if (legalConsentAlert) legalConsentAlert.style.display = "none";
+
     if (!category) {
       finderResult.innerHTML = `
         <div class="result-box" style="border-color:#fd8925; background:rgba(253,137,37,0.08); color:#ffffff;">
@@ -237,6 +260,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
 
     try {
+      // 1. Registro inmutable de trazabilidad de consentimiento legal B2B
+      fetch('/api/consent-log', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': csrfToken
+        },
+        body: JSON.stringify({
+          origin: 'web_diagnostico_ia',
+          accepted_terms_msa: true,
+          accepted_privacy_nda_whatsapp: true,
+          lead_name: category,
+          business_name: specification || 'Diagnóstico Web',
+          contact_info: 'Canal WhatsApp'
+        })
+      }).catch(err => console.warn('Audit Consent Log:', err));
+
       const response = await fetch('/api/diagnostico', {
         method: 'POST',
         headers: {
@@ -252,6 +293,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!response.ok || data.status !== 'success') {
         throw new Error(data.message || 'No se pudo generar el diagnóstico.');
       }
+
+      // 2. Anexo legal de consentimiento fechado para el chat de WhatsApp
+      const nowUtc = new Date().toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+      const legalRefStamp = `\n\n[Ref. Legal: Términos MSA y Privacidad aceptados el ${nowUtc}]`;
+      const finalWhatsappUrl = data.whatsapp_url ? (data.whatsapp_url + encodeURIComponent(legalRefStamp)) : '#';
 
       finderResult.innerHTML = `
         <div class="result-box" style="border-color:var(--color-iris-violet); background:rgba(23, 19, 36, 0.95); box-shadow:0 12px 36px rgba(0,0,0,0.4); border-radius:14px; padding:24px; text-align:left;">
@@ -293,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           </div>
 
-          <a href="${data.whatsapp_url}" target="_blank" rel="noopener" class="btn-whatsapp-action">
+          <a href="${finalWhatsappUrl}" target="_blank" rel="noopener" class="btn-whatsapp-action">
             <i class="fa-brands fa-whatsapp" style="font-size:18px;"></i>
             <span>Enviar este diagnóstico a un Ingeniero por WhatsApp ↗</span>
           </a>
@@ -310,6 +356,20 @@ document.addEventListener("DOMContentLoaded", () => {
       btnValidate.innerHTML = originalBtnHtml;
     }
   }
+
+  // Desbloquear estado visual cuando el usuario marca ambas casillas
+  const chkTerms = document.getElementById("chkTermsMsa");
+  const chkPriv = document.getElementById("chkPrivacyNda");
+  function clearLegalErrorOnInput() {
+    const finderConsentBox = document.getElementById("finderConsentBox");
+    const legalConsentAlert = document.getElementById("legalConsentAlert");
+    if (chkTerms && chkPriv && chkTerms.checked && chkPriv.checked) {
+      if (finderConsentBox) finderConsentBox.classList.remove("has-error");
+      if (legalConsentAlert) legalConsentAlert.style.display = "none";
+    }
+  }
+  if (chkTerms) chkTerms.addEventListener("change", clearLegalErrorOnInput);
+  if (chkPriv) chkPriv.addEventListener("change", clearLegalErrorOnInput);
 
   if (btnValidate) btnValidate.addEventListener("click", ejecutarDiagnostico);
   if (inputPrimary) {

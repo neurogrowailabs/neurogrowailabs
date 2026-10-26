@@ -51,6 +51,8 @@
 
     @yield('content')
 
+    @include('partials.cookie-banner')
+
     @stack('scripts')
 </body>
 </html>
