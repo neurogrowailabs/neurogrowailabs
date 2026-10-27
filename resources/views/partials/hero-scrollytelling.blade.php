@@ -30,7 +30,7 @@
         <div class="hero-content" id="heroContent">
             <span class="hero-eyebrow">BIOCOREXSTACK SOFTWARE LABS – EST. 2026</span>
             <h1 class="hero-headline">
-                <span class="italic-word">creando</span> ECOSISTEMAS INTELIGENTES <span class="italic-word">para las</span><br>
+                <span class="italic-word">creando</span> ECOSISTEMAS INTELIGENTES <span class="italic-word">para las</span><br class="hero-desktop-br">
                 EMPRESAS DEL MAÑANA
             </h1>
         </div>

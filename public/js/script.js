@@ -50,12 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const portalOrigin = "50% 56%";
 
     // 2. Coordenadas dinámicas exactas para alinear las palabras moradas al centro en columna
-    function getRedWordsTargetOffsets() {
+    function getRedWordsTargetOffsets(isMobile = false) {
       if (!paragraph || redWords.length === 0) return [];
       const pRect = paragraph.getBoundingClientRect();
       const centerX = pRect.left + pRect.width / 2;
       const centerY = pRect.top + pRect.height / 2;
-      const verticalGap = window.innerWidth < 768 ? 36 : 52;
+      const verticalGap = isMobile ? 32 : (window.innerWidth < 768 ? 36 : 52);
       const totalHeight = (redWords.length - 1) * verticalGap;
       const startY = centerY - totalHeight / 2;
 
@@ -74,86 +74,158 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Estado inicial en reposo al cargar: cortina abajo (100% fuera de pantalla) y escala normal
-    gsap.set("#portalLayer", { 
-      yPercent: 100,
-      scale: 1,
-      opacity: 1,
-      transformOrigin: portalOrigin
+    // Inicialización adaptativa con GSAP MatchMedia (Cinemática completa en PC, agilidad táctil en Móvil)
+    const mm = gsap.matchMedia();
+
+    // ================= DESKTOP & TABLETS LIGERAS (>= 769px) =================
+    mm.add("(min-width: 769px)", () => {
+      gsap.set("#portalLayer", { 
+        yPercent: 100,
+        scale: 1,
+        opacity: 1,
+        transformOrigin: portalOrigin
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#masterStage",
+          start: "top top",
+          end: "+=5500",
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true
+        }
+      });
+
+      // FASE 1 (0:00 - 0:03): Figuras de fondo y círculo morado
+      tl.to("#shapeCross", { rotation: 65, duration: 1.5, ease: "none" }, 0)
+        .to("#redDot", { y: -280, x: -40, scale: 0.85, duration: 1.5, ease: "power1.inOut" }, 0)
+        .to("#heroContent", { y: -50, duration: 1.5, ease: "none" }, 0)
+
+      // FASE 2 (0:03 - 0:04): Sube la cortina portal
+        .fromTo("#portalLayer", 
+          { yPercent: 100, scale: 1, opacity: 1, transformOrigin: portalOrigin }, 
+          { yPercent: 0, scale: 1, opacity: 1, transformOrigin: portalOrigin, duration: 1.2, ease: "power2.out" }, 
+          0.4
+        )
+
+      // FASE 3 (0:04 - 0:06): Zoom monumental a través de la 'a'
+        .to("#portalLayer", {
+          scale: 55,
+          transformOrigin: portalOrigin,
+          duration: 2.2,
+          ease: "power3.in"
+        })
+        .to("#manifestoLayer", {
+          opacity: 1,
+          duration: 0.4
+        }, "-=0.55")
+        .to("#portalLayer", {
+          opacity: 0,
+          duration: 0.2
+        })
+
+      // FASE 4 (0:06 - 0:12): Tarjetas laterales cruzadas y desvanecimiento
+        .to("#cardLeft", { y: "-190vh", duration: 3.5, ease: "none" }, "-=0.2")
+        .to("#cardRight", { y: "-210vh", duration: 3.5, ease: "none" }, "<0.4")
+        .to(whiteWords, {
+          opacity: 0,
+          stagger: 0.025,
+          duration: 2.5,
+          ease: "none"
+        }, "<0.2")
+
+      // FASE 5 (0:12 - 0:16): Alineación central de las 6 palabras moradas
+        .to(redWords, {
+          x: (i) => {
+            const offsets = getRedWordsTargetOffsets(false);
+            return offsets[i] ? offsets[i].x : 0;
+          },
+          y: (i) => {
+            const offsets = getRedWordsTargetOffsets(false);
+            return offsets[i] ? offsets[i].y : 0;
+          },
+          scale: 1.4,
+          duration: 2.2,
+          ease: "power2.inOut"
+        }, "-=0.8")
+
+      // FASE 6 (0:16 - 0:17): Botón de navegación final
+        .to("#finalCta", {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out"
+        }, "-=0.3");
     });
 
-    // Línea de tiempo maestra GSAP (0:00 a 0:17)
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#masterStage",
-        start: "top top",
-        end: "+=5500", // Controla la duración del scrub cinemático
-        pin: true,
-        scrub: 1,
-        invalidateOnRefresh: true
-      }
+    // ================= MOBILE EXPERT TOUCH (<= 768px) =================
+    // Recorrido táctil rápido y ágil: sin trabar el dedo, sin tarjetas cruzadas tapando texto
+    mm.add("(max-width: 768px)", () => {
+      gsap.set("#portalLayer", { 
+        yPercent: 100,
+        scale: 1,
+        opacity: 1,
+        transformOrigin: portalOrigin
+      });
+
+      const tlMobile = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#masterStage",
+          start: "top top",
+          end: "+=1700", // Scrub ágil de apenas 2 swipes suaves en móvil
+          pin: true,
+          scrub: 0.6,
+          invalidateOnRefresh: true
+        }
+      });
+
+      tlMobile.to("#heroContent", { y: -30, opacity: 0.25, duration: 1, ease: "none" }, 0)
+        .fromTo("#portalLayer", 
+          { yPercent: 100, scale: 1, opacity: 1, transformOrigin: portalOrigin }, 
+          { yPercent: 0, scale: 1, opacity: 1, transformOrigin: portalOrigin, duration: 1, ease: "power2.out" }, 
+          0.3
+        )
+        .to("#portalLayer", {
+          scale: 32,
+          transformOrigin: portalOrigin,
+          duration: 1.5,
+          ease: "power2.in"
+        })
+        .to("#manifestoLayer", {
+          opacity: 1,
+          duration: 0.35
+        }, "-=0.4")
+        .to("#portalLayer", {
+          opacity: 0,
+          duration: 0.15
+        })
+        .to(whiteWords, {
+          opacity: 0,
+          stagger: 0.015,
+          duration: 1.6,
+          ease: "none"
+        }, "-=0.2")
+        .to(redWords, {
+          x: (i) => {
+            const offsets = getRedWordsTargetOffsets(true);
+            return offsets[i] ? offsets[i].x : 0;
+          },
+          y: (i) => {
+            const offsets = getRedWordsTargetOffsets(true);
+            return offsets[i] ? offsets[i].y : 0;
+          },
+          scale: 1.15,
+          duration: 1.5,
+          ease: "power2.inOut"
+        }, "-=0.6")
+        .to("#finalCta", {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power2.out"
+        }, "-=0.2");
     });
-
-    // FASE 1 (0:00 - 0:03): Se mueven las figuras del fondo y el círculo rojo sube
-    tl.to("#shapeCross", { rotation: 65, duration: 1.5, ease: "none" }, 0)
-      .to("#redDot", { y: -280, x: -40, scale: 0.85, duration: 1.5, ease: "power1.inOut" }, 0)
-      .to("#heroContent", { y: -50, duration: 1.5, ease: "none" }, 0)
-
-    // FASE 2 (0:03 - 0:04): Sube la cortina transparente con "BIOCOREXSTACK SOFTWARE LABS"
-      .fromTo("#portalLayer", 
-        { yPercent: 100, scale: 1, opacity: 1, transformOrigin: portalOrigin }, 
-        { yPercent: 0, scale: 1, opacity: 1, transformOrigin: portalOrigin, duration: 1.2, ease: "power2.out" }, 
-        0.4
-      )
-
-    // FASE 3 (0:04 - 0:06): Zoom masivo atravesando la letra 'a' de SOFTWaRE
-      .to("#portalLayer", {
-        scale: 55,
-        transformOrigin: portalOrigin,
-        duration: 2.2,
-        ease: "power3.in"
-      })
-      .to("#manifestoLayer", {
-        opacity: 1,
-        duration: 0.4
-      }, "-=0.55")
-      .to("#portalLayer", {
-        opacity: 0,
-        duration: 0.2
-      })
-
-    // FASE 4 (0:06 - 0:12): Las palabras blancas van desapareciendo y las tarjetas suben
-      .to("#cardLeft", { y: "-190vh", duration: 3.5, ease: "none" }, "-=0.2")
-      .to("#cardRight", { y: "-210vh", duration: 3.5, ease: "none" }, "<0.4")
-      .to(whiteWords, {
-        opacity: 0,
-        stagger: 0.025,
-        duration: 2.5,
-        ease: "none"
-      }, "<0.2")
-
-    // FASE 5 (0:12 - 0:16): Las palabras moradas se juntan en el centro formando la lista vertical limpia
-      .to(redWords, {
-        x: (i) => {
-          const offsets = getRedWordsTargetOffsets();
-          return offsets[i] ? offsets[i].x : 0;
-        },
-        y: (i) => {
-          const offsets = getRedWordsTargetOffsets();
-          return offsets[i] ? offsets[i].y : 0;
-        },
-        scale: 1.4,
-        duration: 2.2,
-        ease: "power2.inOut"
-      }, "-=0.8")
-
-    // FASE 6 (0:16 - 0:17): Aparece el botón inferior y termina el recorrido
-      .to("#finalCta", {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.3");
 
     // Sincronizar coordenadas exactas al terminar de cargar las tipografías web
     if (document.fonts && document.fonts.ready) {

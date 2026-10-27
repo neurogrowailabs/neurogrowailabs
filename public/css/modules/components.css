@@ -343,8 +343,9 @@
   margin-top: 56px;
   padding: 40px 0 20px;
   width: 100%;
+  max-width: 100vw;
   min-height: 250px;
-  overflow: visible;
+  overflow: hidden;
 }
 
 /* Sombra tipográfica monumental con réplica exacta de la cortina (Inter 900 + Playfair en 'a') */

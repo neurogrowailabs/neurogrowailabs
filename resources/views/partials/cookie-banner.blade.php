@@ -243,6 +243,56 @@
 .switch-ui input:checked + .slider-ui:before {
     transform: translateX(16px);
 }
+
+@media (max-width: 640px) {
+    .cookie-banner-wrapper {
+        bottom: 12px;
+        width: calc(100% - 20px);
+    }
+    .cookie-banner-box {
+        padding: 14px 16px;
+        border-radius: 12px;
+    }
+    .cookie-banner-header {
+        gap: 10px;
+    }
+    .cookie-icon-wrapper {
+        width: 32px;
+        height: 32px;
+        font-size: 15px;
+    }
+    .cookie-banner-heading {
+        font-size: 15px;
+        margin-bottom: 3px;
+    }
+    .cookie-banner-text {
+        font-size: 11.5px;
+        line-height: 1.4;
+    }
+    .cookie-banner-actions {
+        margin-top: 12px;
+        gap: 8px;
+    }
+    .cookie-more-link {
+        font-size: 10px;
+    }
+    .cookie-buttons-group {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+    }
+    .cookie-buttons-group .btn-cookie-primary {
+        grid-column: span 2;
+        padding: 9px 12px;
+        font-size: 11px;
+    }
+    .cookie-buttons-group .btn-cookie-ghost {
+        padding: 7px 8px;
+        font-size: 9.5px;
+        text-align: center;
+    }
+}
 </style>
 
 <script>

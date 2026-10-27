@@ -16,6 +16,8 @@
 .hero-layer {
   position: absolute;
   inset: 0;
+  max-width: 100vw;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,6 +29,7 @@
 .bg-shapes {
   position: absolute;
   inset: 0;
+  max-width: 100vw;
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
@@ -142,6 +145,8 @@
 .portal-layer {
   position: absolute;
   inset: 0;
+  max-width: 100vw;
+  overflow: hidden;
   background-color: var(--bg-glass-portal);
   backdrop-filter: blur(var(--blur-portal));
   -webkit-backdrop-filter: blur(var(--blur-portal));
@@ -162,6 +167,7 @@
   flex-direction: column;
   align-items: center;
   line-height: 0.85;
+  max-width: 100%;
 }
 
 .portal-line-top {
@@ -198,6 +204,8 @@
 .manifesto-layer {
   position: absolute;
   inset: 0;
+  max-width: 100vw;
+  overflow: hidden;
   background-color: var(--bg-negro-profundo);
   display: flex;
   flex-direction: column;
@@ -378,4 +386,88 @@
 [data-reveal].in-view {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ==================== RESPONSIVE SCROLLYTELLING MOBILE (<= 768px) ==================== */
+@media (max-width: 768px) {
+  .hero-desktop-br {
+    display: none;
+  }
+  .hero-headline {
+    font-size: clamp(22px, 6.8vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .hero-headline .italic-word {
+    font-size: 0.6em;
+    margin: 0 4px;
+    vertical-align: baseline;
+  }
+  .hero-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.6px;
+    margin-bottom: 12px;
+  }
+  .hero-bottom-label {
+    bottom: 18px;
+    font-size: 9px;
+  }
+
+  /* Geometrías sutiles en mobile para que no choquen con el texto */
+  .shape-arrow {
+    width: 200px;
+    height: 200px;
+    bottom: -6%;
+    left: -12%;
+    opacity: 0.35;
+  }
+  .shape-cross {
+    width: 170px;
+    height: 170px;
+    bottom: -5%;
+    left: 22%;
+    opacity: 0.3;
+  }
+  .shape-bars {
+    width: 170px;
+    height: 150px;
+    bottom: 4%;
+    right: -12%;
+    opacity: 0.3;
+  }
+  .red-dot {
+    width: 42px;
+    height: 42px;
+    bottom: 5%;
+    left: 48%;
+  }
+
+  /* Portal Layer en mobile */
+  .portal-line-top {
+    font-size: clamp(20px, 6.2vw, 56px);
+    letter-spacing: -0.04em;
+  }
+  .portal-line-bottom {
+    font-size: clamp(19px, 5.8vw, 52px);
+    letter-spacing: -0.04em;
+  }
+
+  /* Manifiesto y Palabras Moradas en Mobile */
+  .manifesto-layer {
+    padding: 24px 18px;
+  }
+  .manifesto-text {
+    font-size: clamp(16px, 4.4vw, 24px);
+    line-height: 1.35;
+    max-width: 100%;
+  }
+
+  /* Ocultar tarjetas flotantes colisionantes en el scrub del manifiesto en móvil */
+  .floating-cards-container {
+    display: none !important;
+  }
+
+  .scroll-explore-capsule {
+    bottom: 32px;
+  }
 }
