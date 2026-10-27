@@ -97,10 +97,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // FASE 1 (0:00 - 0:03): Figuras de fondo y círculo morado
-      tl.to("#shapeCross", { rotation: 65, duration: 1.5, ease: "none" }, 0)
-        .to("#redDot", { y: -280, x: -40, scale: 0.85, duration: 1.5, ease: "power1.inOut" }, 0)
-        .to("#heroContent", { y: -50, duration: 1.5, ease: "none" }, 0)
+      // FASE 1 (0:00 - 0:03): Desvanecimiento suave del Hero Content y Scroll Cue
+      tl.to("#heroContent", { y: -60, opacity: 0, duration: 1.2, ease: "power2.inOut" }, 0)
+        .to("#heroScrollCue", { opacity: 0, duration: 0.5, ease: "none" }, 0)
 
       // FASE 2 (0:03 - 0:04): Sube la cortina portal
         .fromTo("#portalLayer", 
@@ -180,7 +179,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      tlMobile.to("#heroContent", { y: -30, opacity: 0.25, duration: 1, ease: "none" }, 0)
+      tlMobile.to("#heroContent", { y: -40, opacity: 0, duration: 0.8, ease: "power2.inOut" }, 0)
+        .to("#heroScrollCue", { opacity: 0, duration: 0.3, ease: "none" }, 0)
         .fromTo("#portalLayer", 
           { yPercent: 100, scale: 1, opacity: 1, transformOrigin: portalOrigin }, 
           { yPercent: 0, scale: 1, opacity: 1, transformOrigin: portalOrigin, duration: 1, ease: "power2.out" }, 
