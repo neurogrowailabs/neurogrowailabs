@@ -38,8 +38,8 @@
       "@@type": "ProfessionalService",
       "name": "BioCoreXStack Software Labs",
       "alternateName": "BioCoreXStack",
-      "url": "https://biocorexstack.onrender.com",
-      "logo": "https://biocorexstack.onrender.com/favicon.svg",
+      "url": "{{ url('/') }}",
+      "logo": "{{ asset('favicon.svg') }}",
       "description": "Estudio de ingeniería de software Full-Stack, arquitecturas Cloud, Inteligencia Artificial Certificada (Google Gemini) y Ciencia de Datos con RStudio & DoE.",
       "address": {
         "@@type": "PostalAddress",
