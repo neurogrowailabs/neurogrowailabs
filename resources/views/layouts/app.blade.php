@@ -27,8 +27,32 @@
     <meta name="twitter:description" content="Ingeniería Full-Stack, Inteligencia Artificial Certificada y Ciencia de Datos con RStudio.">
     <meta name="twitter:image" content="{{ asset('favicon.ico') }}">
 
-    <!-- Favicon -->
+    <!-- Favicon (SVG Moderno + Fallback ICO) -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
+    <!-- Datos Estructurados Schema.org (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "ProfessionalService",
+      "name": "BioCoreXStack Software Labs",
+      "alternateName": "BioCoreXStack",
+      "url": "https://biocorexstack.onrender.com",
+      "logo": "https://biocorexstack.onrender.com/favicon.svg",
+      "description": "Estudio de ingeniería de software Full-Stack, arquitecturas Cloud, Inteligencia Artificial Certificada (Google Gemini) y Ciencia de Datos con RStudio & DoE.",
+      "address": {
+        "@@type": "PostalAddress",
+        "addressCountry": "EC"
+      },
+      "sameAs": [
+        "https://github.com/ricardodevcorex99",
+        "https://x.com/biocorexstack",
+        "https://instagram.com/biocorexstack"
+      ],
+      "priceRange": "$$"
+    }
+    </script>
 
     <!-- Google Fonts: Inter + Playfair Display (Scrollytelling) + Bebas Neue / Barlow Condensed + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
