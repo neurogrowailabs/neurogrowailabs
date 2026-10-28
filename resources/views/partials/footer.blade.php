@@ -67,6 +67,9 @@
                         <p class="footer-contact-location">
                             <span class="location-dot"></span> Ecuador · Remoto Global
                         </p>
+                        <a href="{{ $whatsappGlobal }}" target="_blank" rel="noopener" class="footer-contact-wa" style="display:inline-flex; align-items:center; gap:7px; color:#25d366; font-family:var(--font-mono); font-size:12px; margin-top:8px; text-decoration:none; padding:4px 10px; border-radius:6px; background:rgba(37,211,102,0.08); border:1px solid rgba(37,211,102,0.25); transition:background-color 0.2s ease;">
+                            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> +593 98 326 7552
+                        </a>
                     </div>
 
                     <!-- Botones Sociales Interactivos (Uiverse.io by elisapi) con accesibilidad WCAG --> 

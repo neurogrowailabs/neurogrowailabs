@@ -56,7 +56,7 @@ class ArchitectureDiagnosticService
         $selectedArchetype = $this->resolveArchetype($catLower);
 
         $specText = !empty($cleanSpecification) ? $cleanSpecification : 'Evaluación general del proyecto';
-        $whatsappNumber = env('WHATSAPP_NUMBER', '593987654321');
+        $whatsappNumber = env('WHATSAPP_NUMBER', '593983267552');
 
         $waMessage = "Hola BioCoreXStack, realicé un Diagnóstico Técnico en su web:\n\n"
             . "📌 *Área / Enfoque:* {$cleanCategory}\n"

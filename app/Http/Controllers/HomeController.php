@@ -12,7 +12,7 @@ class HomeController extends Controller
         $siteName = 'BioCoreXStack Software Labs';
         $siteInitials = 'BCXS';
         $pageTitle = 'BioCoreXStack Software Labs — Software, IA & Ciencia de Datos';
-        $whatsappNumber = env('WHATSAPP_NUMBER', '593987654321');
+        $whatsappNumber = env('WHATSAPP_NUMBER', '593983267552');
 
         $whatsappGlobal = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola BioCoreXStack, quiero consultar sobre sus servicios de Software, IA y Datos.');
         $whatsappConsultar = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola BioCoreXStack, quiero consultar sobre un proyecto técnico.');

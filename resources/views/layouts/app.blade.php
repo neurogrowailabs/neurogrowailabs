@@ -43,6 +43,7 @@
       "alternateName": "BioCoreXStack",
       "url": "{{ url('/') }}",
       "logo": "{{ asset('favicon.svg') }}",
+      "telephone": "+593983267552",
       "description": "Estudio de ingeniería de software Full-Stack, arquitecturas Cloud, Inteligencia Artificial Certificada (Google Gemini) y Ciencia de Datos con RStudio & DoE.",
       "address": {
         "@@type": "PostalAddress",
