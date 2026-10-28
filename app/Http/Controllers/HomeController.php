@@ -193,7 +193,7 @@ class HomeController extends Controller
                 'title' => 'RStudio & Data Science Laboratory',
                 'badge' => 'DATA SCIENCE & DoE',
                 'desc' => 'Laboratorio de modelado estadístico, Diseño de Experimentos (DoE) y analítica predictiva aplicada al crecimiento digital, validación de hipótesis y optimización matemática de conversiones.',
-                'repo' => 'https://github.com/ricardodevcorex99',
+                'repo' => 'https://github.com/neurogrowailabs',
                 'metrics' => [
                     'Entorno' => 'RStudio & R 4.4 / Excel',
                     'Metodología' => 'DoE Multifactorial & A/B Test',

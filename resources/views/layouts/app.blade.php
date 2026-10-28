@@ -47,7 +47,7 @@
         "addressCountry": "EC"
       },
       "sameAs": [
-        "https://github.com/ricardodevcorex99"
+        "https://github.com/neurogrowailabs"
       ],
       "priceRange": "$$"
     }

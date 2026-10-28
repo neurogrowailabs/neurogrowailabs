@@ -17,7 +17,7 @@
             <a href="{{ route('home') }}" class="btn btn-secondary" style="padding:6px 16px; font-size:12px; border-radius:32px;">
                 <i class="fa-solid fa-arrow-left"></i> Volver al Inicio
             </a>
-            <a href="https://github.com/ricardodevcorex99" target="_blank" rel="noopener" class="btn btn-cobalt" style="padding:6px 18px; font-size:12px; border-radius:32px;">
+            <a href="https://github.com/neurogrowailabs" target="_blank" rel="noopener" class="btn btn-cobalt" style="padding:6px 18px; font-size:12px; border-radius:32px;">
                 <i class="fa-brands fa-github"></i> Repositorios
             </a>
         </div>

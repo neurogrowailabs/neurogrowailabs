@@ -8,7 +8,7 @@
                 <a class="btn btn-accent btn-lg" href="{{ $whatsappConversar }}" target="_blank" rel="noopener" style="gap:8px;">
                     <i class="fa-brands fa-whatsapp" style="font-size:18px;"></i> Iniciar Conversación <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i>
                 </a>
-                <a class="btn btn-cobalt btn-lg" href="https://github.com/ricardodevcorex99" target="_blank" rel="noopener" style="gap:8px;">
+                <a class="btn btn-cobalt btn-lg" href="https://github.com/neurogrowailabs" target="_blank" rel="noopener" style="gap:8px;">
                     <i class="fa-brands fa-github"></i> Explorar Repositorios
                 </a>
             </div>
@@ -33,7 +33,7 @@
                     <a href="{{ route('labs') }}">NeuroGrow AI Engine</a>
                     <a href="#portfolio">MiVeci PWA & AI</a>
                     <a href="#portfolio">RStudio & Data Lab</a>
-                    <a href="https://github.com/ricardodevcorex99" target="_blank" rel="noopener">GitHub Repositories</a>
+                    <a href="https://github.com/neurogrowailabs" target="_blank" rel="noopener">GitHub Repositories</a>
                 </div>
                 <div class="footer-col">
                     <h4>LEGAL & COMPLIANCE</h4>
