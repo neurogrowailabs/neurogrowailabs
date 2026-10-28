@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://ricardodevcorex99.website/sitemap.xml
+Sitemap: https://biocorexstack.onrender.com/sitemap.xml

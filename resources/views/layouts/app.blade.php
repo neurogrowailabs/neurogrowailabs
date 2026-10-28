@@ -13,9 +13,6 @@
     <meta name="author" content="BioCoreXStack Software Labs">
     <meta name="theme-color" content="#000000">
 
-    <!-- Verificación Google Search Console -->
-    <meta name="google-site-verification" content="Rj19-3UBQ3B77QdPxQ8E1INvPtiPy6R1NibhpBmLPOM">
-
     <!-- Open Graph / WhatsApp / Instagram / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
