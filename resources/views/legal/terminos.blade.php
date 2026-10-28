@@ -151,12 +151,12 @@
 
         <article class="legal-content">
             <p>
-                El presente documento establece las condiciones vinculantes de acceso y uso del portal web <strong>BioCoreXStack Software Labs</strong>, así como los términos marco que rigen la contratación de servicios de desarrollo de software, Inteligencia Artificial aplicada y consultoría técnica prestados por el laboratorio.
+                El presente documento establece las condiciones vinculantes de acceso y uso del portal web <strong>NeuroGrow AI Labs</strong>, así como los términos marco que rigen la contratación de servicios de desarrollo de software, Inteligencia Artificial aplicada y consultoría técnica prestados por el laboratorio.
             </p>
 
-            <h2>1. Naturaleza Jurídica y Objeto de BioCoreXStack Software Labs</h2>
+            <h2>1. Naturaleza Jurídica y Objeto de NeuroGrow AI Labs</h2>
             <p>
-                <strong>BioCoreXStack Software Labs</strong> (en adelante, "BioCoreXStack") opera como un estudio especializado de ingeniería de software, arquitectura web y móvil Full-Stack, implementación de modelos de Inteligencia Artificial (LLMs y visión computacional), ciencia de datos experimental (DoE y bioestadística) y es la entidad desarrolladora y titular del ecosistema propietario hiperlocal <strong>MiVeci</strong>.
+                <strong>NeuroGrow AI Labs</strong> (en adelante, "NeuroGrow AI Labs") opera como un estudio especializado de ingeniería de software, arquitectura web y móvil Full-Stack, implementación de modelos de Inteligencia Artificial (LLMs y visión computacional), ciencia de datos experimental (DoE y bioestadística) y es la entidad desarrolladora y titular del ecosistema propietario hiperlocal <strong>MiVeci</strong>.
             </p>
 
             <h2>2. Uso del Módulo de "Diagnóstico Inteligente con IA"</h2>
@@ -171,7 +171,7 @@
             <h2>3. Propiedad Intelectual y Titularidad de Entregables</h2>
             <ol>
                 <li><strong>Entregables del Cliente:</strong> Una vez liquidado el cien por ciento (100%) del valor pactado en la orden de servicio correspondiente, el Cliente adquirirá la titularidad plena o licencia perpetua intransferible sobre la interfaz frontal, personalizaciones específicas y el código fuente a medida desarrollado exclusivamente para su proyecto.</li>
-                <li><strong>Activos Preexistentes de BioCoreXStack:</strong> BioCoreXStack conserva la propiedad intelectual exclusiva e inalienable sobre sus motores base, agentes autónomos, frameworks internos, metodologías DoE, librerías utilitarias, prompts propietarios y arquitecturas modulares preexistentes, otorgando al Cliente únicamente una licencia de uso no exclusiva para la operación de su solución.</li>
+                <li><strong>Activos Preexistentes de NeuroGrow AI Labs:</strong> NeuroGrow AI Labs conserva la propiedad intelectual exclusiva e inalienable sobre sus motores base, agentes autónomos, frameworks internos, metodologías DoE, librerías utilitarias, prompts propietarios y arquitecturas modulares preexistentes, otorgando al Cliente únicamente una licencia de uso no exclusiva para la operación de su solución.</li>
             </ol>
 
             <h2>4. Política Comercial, Anticipos y Derecho de Retracto Legal</h2>
@@ -186,7 +186,7 @@
 
             <div class="liability-callout" role="alert">
                 <strong>⚠️ CLÁUSULA DE LIMITACIÓN DE RESPONSABILIDAD:</strong>
-                BioCoreXStack Software Labs no se hace responsable por caídas de proveedores externos (AWS, Google Cloud, Cloudflare, Render, APIs de terceros o pasarelas de pago), mal uso de las credenciales por parte del cliente, ni por lucro cesante. En cualquier escenario, la responsabilidad máxima total de BioCoreXStack estará limitada estrictamente al monto efectivamente pagado por el Cliente por el servicio específico durante los últimos tres (3) meses.
+                NeuroGrow AI Labs no se hace responsable por caídas de proveedores externos (AWS, Google Cloud, Cloudflare, Render, APIs de terceros o pasarelas de pago), mal uso de las credenciales por parte del cliente, ni por lucro cesante. En cualquier escenario, la responsabilidad máxima total de NeuroGrow AI Labs estará limitada estrictamente al monto efectivamente pagado por el Cliente por el servicio específico durante los últimos tres (3) meses.
             </div>
 
             <h2>5. SLA, Garantía Funcional y Mantenimiento</h2>
@@ -204,7 +204,7 @@
                 De rigurosa conformidad con los Artículos 12, 14 y 15 de la <strong>Ley Orgánica de Protección de Datos Personales (LOPDP)</strong> de la República del Ecuador:
             </p>
             <ul>
-                <li><strong>Prohibición de Casillas Premarcadas:</strong> Todo consentimiento otorgado en los canales digitales de BioCoreXStack (incluyendo el Diagnóstico Inteligente con IA y formularios de contacto) exige una acción afirmativa y consciente del usuario. Queda terminantemente prohibido el uso de casillas preseleccionadas o casillas únicas que agrupen finalidades heterogéneas.</li>
+                <li><strong>Prohibición de Casillas Premarcadas:</strong> Todo consentimiento otorgado en los canales digitales de NeuroGrow AI Labs (incluyendo el Diagnóstico Inteligente con IA y formularios de contacto) exige una acción afirmativa y consciente del usuario. Queda terminantemente prohibido el uso de casillas preseleccionadas o casillas únicas que agrupen finalidades heterogéneas.</li>
                 <li><strong>Doble Casilla Independiente:</strong> El usuario debe validar por separado: (a) La aceptación contractual de este Contrato Marco (MSA); y (b) La Política de Privacidad, Tratamiento de Datos Personales y Acuerdo de Confidencialidad (NDA). La omisión de cualquiera de las dos casillas impedirá automáticamente el envío del requerimiento técnico.</li>
             </ul>
 
@@ -214,7 +214,7 @@
             </p>
             <ul>
                 <li><strong>Registro Inmutable:</strong> Cada manifestación de consentimiento y aceptación contractual electrónica se asocia a un registro probatorio inmutable en base de datos (<code>b2b_consent_logs</code>), que captura la dirección IP pública real del solicitante, encabezado User-Agent, sello de tiempo en estándar UTC exacto y la versión vigente de los términos aceptados.</li>
-                <li><strong>Referencia Forense y No Repudio:</strong> Al generarse una consulta técnica o cotización, el sistema genera un identificador único de trazabilidad (ej. <code>BCXS-LEGAL-XXXXXX</code>) que acompaña las comunicaciones oficiales vía WhatsApp o correo electrónico, constituyendo prueba documental válida de la manifestación de voluntad de las partes.</li>
+                <li><strong>Referencia Forense y No Repudio:</strong> Al generarse una consulta técnica o cotización, el sistema genera un identificador único de trazabilidad (ej. <code>NGAI-LEGAL-XXXXXX</code>) que acompaña las comunicaciones oficiales vía WhatsApp o correo electrónico, constituyendo prueba documental válida de la manifestación de voluntad de las partes.</li>
             </ul>
 
             <h2 id="seguridad">9. Estándares de Seguridad de la Información, SLA y Blindaje Técnico</h2>
@@ -232,7 +232,7 @@
                     <strong>¿Preguntas sobre este contrato marco?</strong>
                     <div style="font-size: 13px; color: var(--color-fog-text); margin-top: 4px;">Atención legal directa para empresas y prospectos corporativos.</div>
                 </div>
-                <a href="mailto:legal@biocorexstack.com" class="legal-action-btn">
+                <a href="mailto:legal@neurogrowailabs.website" class="legal-action-btn">
                     <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contactar al Área Legal
                 </a>
             </div>

@@ -7,7 +7,7 @@
         <div class="hero-content" id="heroContent">
             <div class="hero-eyebrow-badge">
                 <span class="hero-badge-dot"></span>
-                <span>BIOCOREXSTACK SOFTWARE LABS · EST. 2026</span>
+                <span>NEUROGROW AI LABS · EST. 2026</span>
             </div>
 
             <h1 class="hero-headline">
@@ -40,10 +40,10 @@
         </div>
     </section>
 
-    <!-- 2. SECCIÓN PORTAL "BIOCOREXSTACK SOFTWARE LABS" (0:03 - 0:06) -->
+    <!-- 2. SECCIÓN PORTAL "NEUROGROW SOFTWARE LABS" (0:03 - 0:06) -->
     <section class="portal-layer" id="portalLayer">
         <div class="portal-text-wrapper">
-            <div class="portal-line-top">BIOCOREXSTACK</div>
+            <div class="portal-line-top">NEUROGROW</div>
             <!-- La letra 'a' en medio de SOFTWaRE actúa como el portal de zoom cinemático -->
             <div class="portal-line-bottom">
                 <span>SOFTW</span><span class="portal-glyph" id="portalGlyph">a</span><span>RE&nbsp;LABS</span>

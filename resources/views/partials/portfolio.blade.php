@@ -5,7 +5,7 @@
             <span class="eyebrow"><i class="fa-solid fa-flask"></i> ECOSISTEMA & PRODUCTOS DEL LABORATORIO</span>
             <h2>CASOS DE ÉXITO & PLATAFORMAS EN PRODUCCIÓN</h2>
             <p style="color:var(--color-ash-gray); margin-top:8px; font-size:15px; max-width:680px; margin-left:auto; margin-right:auto;">
-                Tecnología propietaria desarrollada en BioCoreXStack: integración de Inteligencia Artificial aplicada, PWAs hiperlocales y arquitecturas cloud resilientes.
+                Tecnología propietaria desarrollada en NeuroGrow AI Labs: integración de Inteligencia Artificial aplicada, PWAs hiperlocales y arquitecturas cloud resilientes.
             </p>
         </div>
 
@@ -102,7 +102,7 @@
                     <span>A/B TESTING</span>
                 </div>
                 <div class="portfolio-card-footer">
-                    <a href="https://wa.me/{{ $whatsappNumber }}?text={{ urlencode('Hola BioCoreXStack, quiero aplicar Diseño de Experimentos y Estadística en RStudio a mi negocio.') }}" target="_blank" rel="noopener" class="btn btn-secondary" style="width:100%; justify-content:center; border-color: rgba(146, 129, 247, 0.4); gap:8px;">
+                    <a href="https://wa.me/{{ $whatsappNumber }}?text={{ urlencode('Hola NeuroGrow AI Labs, quiero aplicar Diseño de Experimentos y Estadística en RStudio a mi negocio.') }}" target="_blank" rel="noopener" class="btn btn-secondary" style="width:100%; justify-content:center; border-color: rgba(146, 129, 247, 0.4); gap:8px;">
                         <i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Consultar Consultoría DoE ↗
                     </a>
                 </div>

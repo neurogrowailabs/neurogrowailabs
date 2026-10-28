@@ -317,7 +317,7 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify({
             ...data,
             timestamp: new Date().toISOString(),
-            version: 'v1.0-biocorexstack'
+            version: 'v1.0-neurogrowailabs'
         }));
         if (banner) {
             banner.style.opacity = '0';

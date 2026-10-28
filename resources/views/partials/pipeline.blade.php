@@ -321,7 +321,7 @@
                 <aside class="slash-vault-sidebar">
                     <div class="slash-sidebar-brand">
                         <span style="color:#fd8925;">▣</span>
-                        <span>{{ strtoupper($siteName ?? 'BIOCOREXSTACK') }}</span>
+                        <span>{{ strtoupper($siteName ?? 'NEUROGROW AI LABS') }}</span>
                     </div>
                     <div class="slash-sidebar-link active">
                         <span>Pipeline Activo</span>
@@ -365,7 +365,7 @@
                         </div>
                         <div style="font-family: var(--font-mono); font-size: 12px; color: var(--color-fog-text); display: flex; align-items: center; gap: 8px;">
                             <i class="fa-solid fa-server" style="color: var(--color-iris-violet);"></i>
-                            <span>BIOCOREX_AI_ENGINE.v2</span>
+                            <span>NEUROGROW_AI_ENGINE.v2</span>
                         </div>
                         <div class="workflow-status-badge">
                             <span class="status-dot-pulse"></span>

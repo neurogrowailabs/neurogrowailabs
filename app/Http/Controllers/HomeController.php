@@ -9,14 +9,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $siteName = 'BioCoreXStack Software Labs';
-        $siteInitials = 'BCXS';
-        $pageTitle = 'BioCoreXStack Software Labs — Software, IA & Ciencia de Datos';
+        $siteName = 'NeuroGrow AI Labs';
+        $siteInitials = 'NGAI';
+        $pageTitle = 'NeuroGrow AI Labs — Software, IA & Ciencia de Datos';
         $whatsappNumber = '593983267552';
 
-        $whatsappGlobal = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola BioCoreXStack, quiero consultar sobre sus servicios de Software, IA y Datos.');
-        $whatsappConsultar = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola BioCoreXStack, quiero consultar sobre un proyecto técnico.');
-        $whatsappConversar = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola BioCoreXStack, quiero conversar sobre una solución técnica para mi empresa.');
+        $whatsappGlobal = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola NeuroGrow AI Labs, quiero consultar sobre sus servicios de Software, IA y Datos.');
+        $whatsappConsultar = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola NeuroGrow AI Labs, quiero consultar sobre un proyecto técnico.');
+        $whatsappConversar = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola NeuroGrow AI Labs, quiero conversar sobre una solución técnica para mi empresa.');
 
         $navLinks = [
             ['href' => '#pipeline', 'label' => 'Pipeline IA & Datos'],
@@ -94,7 +94,7 @@ class HomeController extends Controller
                     'Despliegue profesional de aplicaciones en la nube, optimización y conexión con redes sociales.'
                 ],
                 'cta' => 'Cotizar Desarrollo',
-                'cta_link' => "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola BioCoreXStack, me interesa cotizar el Desarrollo de una Página Web, App o Base de Datos.')
+                'cta_link' => "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola NeuroGrow AI Labs, me interesa cotizar el Desarrollo de una Página Web, App o Base de Datos.')
             ],
             [
                 'badge' => 'CERTIFIED AI',
@@ -105,7 +105,7 @@ class HomeController extends Controller
                     'Integración de flujos inteligentes con herramientas empresariales, webs y bases de datos en tiempo real.'
                 ],
                 'cta' => 'Implementar IA',
-                'cta_link' => "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola BioCoreXStack, me gustaría implementar Inteligencia Artificial y automatización en mi negocio.')
+                'cta_link' => "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola NeuroGrow AI Labs, me gustaría implementar Inteligencia Artificial y automatización en mi negocio.')
             ],
             [
                 'badge' => 'DATA SCIENCE & BIO-STATS',
@@ -116,7 +116,7 @@ class HomeController extends Controller
                     'Estrategia de crecimiento digital y análisis de métricas para tomar decisiones de negocio basadas en evidencia matemática.'
                 ],
                 'cta' => 'Analizar mis Datos',
-                'cta_link' => "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola BioCoreXStack, necesito una consultoría de Estadística en RStudio y Diseño de Experimentos.')
+                'cta_link' => "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola NeuroGrow AI Labs, necesito una consultoría de Estadística en RStudio y Diseño de Experimentos.')
             ],
         ];
 
@@ -172,8 +172,8 @@ class HomeController extends Controller
 
     public function labs()
     {
-        $siteName = 'BioCoreXStack Software Labs';
-        $pageTitle = 'BioCoreXStack Software Labs — Laboratorio de IA, Modelos & Ciencia de Datos';
+        $siteName = 'NeuroGrow AI Labs';
+        $pageTitle = 'NeuroGrow AI Labs — Laboratorio de IA, Modelos & Ciencia de Datos';
 
         $labModules = [
             [

@@ -164,15 +164,15 @@
 
         <article class="legal-content">
             <p>
-                Esta Política explica con transparencia cómo <strong>BioCoreXStack Software Labs</strong> utiliza cookies, tokens de sesión y tecnologías de almacenamiento local en el navegador para garantizar la seguridad, rendimiento y navegación fluida en nuestra web.
+                Esta Política explica con transparencia cómo <strong>NeuroGrow AI Labs</strong> utiliza cookies, tokens de sesión y tecnologías de almacenamiento local en el navegador para garantizar la seguridad, rendimiento y navegación fluida en nuestra web.
             </p>
 
             <h2>1. ¿Qué son las cookies y qué tecnologías utilizamos?</h2>
             <p>
-                Las cookies son pequeños archivos de texto que se almacenan en su navegador cuando visita un sitio web. En BioCoreXStack utilizamos cookies HTTP estrictamente seguras (con banderas <code>HttpOnly</code>, <code>SameSite=Lax</code> y <code>Secure</code> vía TLS) y almacenamiento <code>localStorage</code> exclusivamente para registrar sus preferencias de visualización y consentimiento legal.
+                Las cookies son pequeños archivos de texto que se almacenan en su navegador cuando visita un sitio web. En NeuroGrow AI Labs utilizamos cookies HTTP estrictamente seguras (con banderas <code>HttpOnly</code>, <code>SameSite=Lax</code> y <code>Secure</code> vía TLS) y almacenamiento <code>localStorage</code> exclusivamente para registrar sus preferencias de visualización y consentimiento legal.
             </p>
 
-            <h2>2. Categorías de Cookies en BioCoreXStack</h2>
+            <h2>2. Categorías de Cookies en NeuroGrow AI Labs</h2>
 
             <div class="cookie-card">
                 <div class="cookie-card-info">

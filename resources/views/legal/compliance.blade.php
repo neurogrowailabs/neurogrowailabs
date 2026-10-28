@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Gobernanza & Marco de Cumplimiento Legal — BioCoreXStack Software Labs')
+@section('title', 'Gobernanza & Marco de Cumplimiento Legal — NeuroGrow AI Labs')
 
 @push('styles')
 <style>
@@ -239,7 +239,7 @@
                     </span>
                     <h2 class="pillar-title">Protocolo de Consentimiento & Doble Casilla</h2>
                     <p class="pillar-desc">
-                        En riguroso apego a los Artículos 12 y 15 de la LOPDP, BioCoreXStack prohíbe de forma absoluta las casillas preseleccionadas o los consentimientos agrupados. Cada formulario técnico y diagnóstico con IA exige marcar de forma individual e informada tanto el Contrato MSA como la Política de Privacidad & NDA.
+                        En riguroso apego a los Artículos 12 y 15 de la LOPDP, NeuroGrow AI Labs prohíbe de forma absoluta las casillas preseleccionadas o los consentimientos agrupados. Cada formulario técnico y diagnóstico con IA exige marcar de forma individual e informada tanto el Contrato MSA como la Política de Privacidad & NDA.
                     </p>
                 </div>
                 <div>
@@ -257,7 +257,7 @@
                     </span>
                     <h2 class="pillar-title">Trazabilidad Forense, Registro Probatorio & Fe Digital</h2>
                     <p class="pillar-desc">
-                        Bajo los Artículos 2, 45 y 47 de la Ley de Comercio Electrónico de Ecuador, toda aceptación electrónica genera un registro probatorio inmutable (captura de IP real, User-Agent, sellado temporal UTC exacto y código único de referencia <code>BCXS-LEGAL</code>) que otorga validez legal, auditoría y no repudio ante controversias.
+                        Bajo los Artículos 2, 45 y 47 de la Ley de Comercio Electrónico de Ecuador, toda aceptación electrónica genera un registro probatorio inmutable (captura de IP real, User-Agent, sellado temporal UTC exacto y código único de referencia <code>NGAI-LEGAL</code>) que otorga validez legal, auditoría y no repudio ante controversias.
                     </p>
                 </div>
                 <div>
@@ -294,8 +294,8 @@
                 <p>Nuestro equipo legal y de arquitectura técnica atiende requerimientos contractuales especiales para empresas y proyectos de alta envergadura.</p>
             </div>
             <div class="compliance-contact-actions">
-                <a href="mailto:legal@biocorexstack.com" class="legal-action-btn">
-                    <i class="fa-solid fa-envelope" aria-hidden="true"></i> <span>legal@biocorexstack.com</span>
+                <a href="mailto:legal@neurogrowailabs.website" class="legal-action-btn">
+                    <i class="fa-solid fa-envelope" aria-hidden="true"></i> <span>legal@neurogrowailabs.website</span>
                 </a>
                 <a href="{{ $whatsappGlobal ?? 'https://wa.me/593983267552' }}" target="_blank" rel="noopener" class="legal-action-btn" style="border-color: rgba(58, 211, 137, 0.4); color: #3ad389;">
                     <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp Legal (+593 98 326 7552)</span>

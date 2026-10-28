@@ -29,7 +29,7 @@
             <div class="finder-consent-box" id="finderConsentBox" role="group" aria-label="Consentimiento legal obligatorio">
                 <label class="legal-checkbox-label">
                     <input type="checkbox" id="chkTermsMsa" name="terms_msa" required aria-required="true">
-                    <span>He leído y acepto los <a href="{{ route('legal.terminos') }}" target="_blank" rel="noopener">Términos de Uso y Condiciones Marco de Servicio (MSA)</a> de BioCoreXStack.</span>
+                    <span>He leído y acepto los <a href="{{ route('legal.terminos') }}" target="_blank" rel="noopener">Términos de Uso y Condiciones Marco de Servicio (MSA)</a> de NeuroGrow AI Labs.</span>
                 </label>
                 <label class="legal-checkbox-label">
                     <input type="checkbox" id="chkPrivacyNda" name="privacy_nda" required aria-required="true">

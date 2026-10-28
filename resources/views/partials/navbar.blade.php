@@ -1,8 +1,8 @@
 <!-- ================= BARRA DE NAVEGACIÓN SUPERIOR FIJA ================= -->
 <header class="top-nav" id="topNav">
-    <a href="#masterStage" class="nav-logo" title="BioCoreXStack Software Labs">
+    <a href="#masterStage" class="nav-logo" title="NeuroGrow AI Labs">
         <span class="nav-logo-dot"></span>
-        <span>BIOCOREXSTACK</span>
+        <span>NEUROGROW</span>
     </a>
 
     <div class="nav-columns">

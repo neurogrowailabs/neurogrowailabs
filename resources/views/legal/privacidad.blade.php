@@ -139,12 +139,12 @@
 
         <article class="legal-content">
             <p>
-                En <strong>BioCoreXStack Software Labs</strong> tratamos la información de nuestros usuarios, clientes y aliados comerciales con estricto apego a la <strong>Ley Orgánica de Protección de Datos Personales (LOPDP)</strong> de la República del Ecuador y a las mejores prácticas internacionales de seguridad de la información.
+                En <strong>NeuroGrow AI Labs</strong> tratamos la información de nuestros usuarios, clientes y aliados comerciales con estricto apego a la <strong>Ley Orgánica de Protección de Datos Personales (LOPDP)</strong> de la República del Ecuador y a las mejores prácticas internacionales de seguridad de la información.
             </p>
 
             <div class="nda-badge-box" role="region" aria-label="Compromiso de Confidencialidad Comercial">
                 <strong>🔒 CLÁUSULA DE CONFIDENCIALIDAD COMERCIAL (NDA MUTUO Y UNILATERAL):</strong>
-                Toda idea de negocio, modelo operativo, flujo de datos, arquitectura o requerimiento técnico compartido por un prospecto a través de nuestro buscador de Diagnóstico Inteligente, formularios web o sesiones de cotización está amparada bajo estricto secreto profesional y confidencialidad comercial. BioCoreXStack se compromete a no divulgar, replicar ni utilizar dicha información confidencial para fines distintos a la evaluación y cotización de la solución solicitada.
+                Toda idea de negocio, modelo operativo, flujo de datos, arquitectura o requerimiento técnico compartido por un prospecto a través de nuestro buscador de Diagnóstico Inteligente, formularios web o sesiones de cotización está amparada bajo estricto secreto profesional y confidencialidad comercial. NeuroGrow AI Labs se compromete a no divulgar, replicar ni utilizar dicha información confidencial para fines distintos a la evaluación y cotización de la solución solicitada.
             </div>
 
             <h2>1. Principio de Minimización de Datos</h2>
@@ -164,7 +164,7 @@
                 <li>Generar y remitir el diagnóstico de arquitectura técnica y la cotización personalizada.</li>
                 <li>Establecer contacto comercial directo a través del canal oficial de WhatsApp o correo electrónico corporativo.</li>
                 <li>Gestionar la relación contractual y el soporte técnico de los proyectos aprobados.</li>
-                <li>Cuando la dimensión operativa del proyecto lo amerite, coordinar la ejecución a través de la <strong>Red de Desarrolladores y Partners Certificados de BioCoreXStack</strong>, siempre bajo rigurosos acuerdos de confidencialidad y procesamiento de datos (DPA / NDA).</li>
+                <li>Cuando la dimensión operativa del proyecto lo amerite, coordinar la ejecución a través de la <strong>Red de Desarrolladores y Partners Certificados de NeuroGrow AI Labs</strong>, siempre bajo rigurosos acuerdos de confidencialidad y procesamiento de datos (DPA / NDA).</li>
             </ol>
 
             <h2>3. Vinculación con el Ecosistema de Productos Propios (MiVeci)</h2>
@@ -174,7 +174,7 @@
 
             <h2>4. Transferencia y Almacenamiento Seguro</h2>
             <p>
-                BioCoreXStack no vende ni comercializa bases de datos personales bajo ningún concepto. Los datos se almacenan en infraestructura cloud de alta disponibilidad (Render, Cloudflare R2, MongoDB Atlas y servidores protegidos con cifrado TLS 1.3), con cortafuegos perimetrales y políticas de mínimo privilegio de acceso.
+                NeuroGrow AI Labs no vende ni comercializa bases de datos personales bajo ningún concepto. Los datos se almacenan en infraestructura cloud de alta disponibilidad (Render, Cloudflare R2, MongoDB Atlas y servidores protegidos con cifrado TLS 1.3), con cortafuegos perimetrales y políticas de mínimo privilegio de acceso.
             </p>
 
             <h2>5. Derechos ARCO y Mecanismo de Baja Inmediata</h2>
@@ -182,8 +182,8 @@
                 Conforme al ordenamiento jurídico ecuatoriano, el titular puede ejercer en todo momento sus derechos de <strong>Acceso, Rectificación, Cancelación y Oposición (ARCO)</strong> o revocar su consentimiento comercial:
             </p>
             <ul>
-                <li><strong>Vía Correo Electrónico:</strong> Remitiendo su solicitud a <code>legal@biocorexstack.com</code>.</li>
-                <li><strong>Vía WhatsApp:</strong> Respondiendo en cualquier momento con la palabra <strong>"BAJA"</strong> al hilo de conversación comercial de BioCoreXStack.</li>
+                <li><strong>Vía Correo Electrónico:</strong> Remitiendo su solicitud a <code>legal@neurogrowailabs.website</code>.</li>
+                <li><strong>Vía WhatsApp:</strong> Respondiendo en cualquier momento con la palabra <strong>"BAJA"</strong> al hilo de conversación comercial de NeuroGrow AI Labs.</li>
             </ul>
             <p>
                 Su solicitud será atendida y procesada en un plazo máximo de cuarenta y ocho (48) horas hábiles, procediendo al bloqueo y eliminación definitiva de sus datos de contacto de nuestras listas comerciales.

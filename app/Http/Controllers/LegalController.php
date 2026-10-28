@@ -15,9 +15,9 @@ class LegalController extends Controller
     public function terminos(): View
     {
         return view('legal.terminos', [
-            'pageTitle' => 'Términos de Uso y Contrato Marco de Servicios (MSA) — BioCoreXStack Software Labs',
-            'legalVersion' => 'v1.0-biocorexstack-2026-10',
-            'lastUpdated' => '26 de Octubre de 2026',
+            'pageTitle' => 'Términos de Uso y Contrato Marco de Servicios (MSA) — NeuroGrow AI Labs',
+            'legalVersion' => 'v1.0-neurogrowailabs-2026-10',
+            'lastUpdated' => '28 de Octubre de 2026',
         ]);
     }
 
@@ -27,9 +27,9 @@ class LegalController extends Controller
     public function privacidad(): View
     {
         return view('legal.privacidad', [
-            'pageTitle' => 'Política de Privacidad, Confidencialidad (NDA) y Protección de Datos — BioCoreXStack Software Labs',
-            'legalVersion' => 'v1.0-biocorexstack-2026-10',
-            'lastUpdated' => '26 de Octubre de 2026',
+            'pageTitle' => 'Política de Privacidad, Confidencialidad (NDA) y Protección de Datos — NeuroGrow AI Labs',
+            'legalVersion' => 'v1.0-neurogrowailabs-2026-10',
+            'lastUpdated' => '28 de Octubre de 2026',
         ]);
     }
 
@@ -39,9 +39,9 @@ class LegalController extends Controller
     public function cookies(): View
     {
         return view('legal.cookies', [
-            'pageTitle' => 'Política y Configuración de Cookies — BioCoreXStack Software Labs',
-            'legalVersion' => 'v1.0-biocorexstack-2026-10',
-            'lastUpdated' => '26 de Octubre de 2026',
+            'pageTitle' => 'Política y Configuración de Cookies — NeuroGrow AI Labs',
+            'legalVersion' => 'v1.0-neurogrowailabs-2026-10',
+            'lastUpdated' => '28 de Octubre de 2026',
         ]);
     }
 
@@ -51,12 +51,12 @@ class LegalController extends Controller
     public function compliance(): View
     {
         $whatsappNumber = '593983267552';
-        $whatsappGlobal = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola BioCoreXStack, deseo consultar sobre un requerimiento legal o NDA corporativo.');
+        $whatsappGlobal = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola NeuroGrow AI Labs, deseo consultar sobre un requerimiento legal o NDA corporativo.');
 
         return view('legal.compliance', [
-            'pageTitle' => 'Gobernanza & Marco de Cumplimiento Legal — BioCoreXStack Software Labs',
-            'legalVersion' => 'v1.0-biocorexstack-2026-10',
-            'lastUpdated' => '26 de Octubre de 2026',
+            'pageTitle' => 'Gobernanza & Marco de Cumplimiento Legal — NeuroGrow AI Labs',
+            'legalVersion' => 'v1.0-neurogrowailabs-2026-10',
+            'lastUpdated' => '28 de Octubre de 2026',
             'whatsappGlobal' => $whatsappGlobal,
         ]);
     }
@@ -92,14 +92,14 @@ class LegalController extends Controller
             'user_agent' => substr((string) $request->userAgent(), 0, 500),
             'accepted_terms_msa' => true,
             'accepted_privacy_nda_whatsapp' => true,
-            'legal_version' => 'v1.0-biocorexstack-2026-10',
+            'legal_version' => 'v1.0-neurogrowailabs-2026-10',
             'timestamp_utc' => now('UTC'),
         ]);
 
         return response()->json([
             'status' => 'success',
             'message' => 'Consentimiento B2B registrado conforme a LOPDP',
-            'reference_id' => 'BCXS-LEGAL-' . str_pad((string) $log->id, 6, '0', STR_PAD_LEFT),
+            'reference_id' => 'NGAI-LEGAL-' . str_pad((string) $log->id, 6, '0', STR_PAD_LEFT),
             'timestamp_utc' => $log->timestamp_utc->toIso8601String(),
         ], 201);
     }

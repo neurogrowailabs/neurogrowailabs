@@ -58,7 +58,7 @@ class ArchitectureDiagnosticService
         $specText = !empty($cleanSpecification) ? $cleanSpecification : 'Evaluación general del proyecto';
         $whatsappNumber = '593983267552';
 
-        $waMessage = "Hola BioCoreXStack, realicé un Diagnóstico Técnico en su web:\n\n"
+        $waMessage = "Hola NeuroGrow AI Labs, realicé un Diagnóstico Técnico en su web:\n\n"
             . "📌 *Área / Enfoque:* {$cleanCategory}\n"
             . "📝 *Idea de Proyecto:* {$specText}\n\n"
             . "⚙️ *Arquitectura Sugerida:* {$selectedArchetype['architecture']}\n\n"

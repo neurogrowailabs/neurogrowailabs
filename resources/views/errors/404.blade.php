@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '404 — Ruta No Encontrada | BioCoreXStack Software Labs')
+@section('title', '404 — Ruta No Encontrada | NeuroGrow AI Labs')
 
 @section('content')
 <main style="min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; background-color: var(--bg-principal);">

@@ -1,6 +1,6 @@
 <div class="legal-top-nav">
     <div class="legal-nav-left">
-        <a href="{{ route('home') }}" class="legal-back-btn" aria-label="Volver a la portada de BioCoreXStack">
+        <a href="{{ route('home') }}" class="legal-back-btn" aria-label="Volver a la portada de NeuroGrow AI Labs">
             <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> <span>Volver al Inicio</span>
         </a>
         <nav class="legal-nav-pills" aria-label="Navegación entre documentos legales">

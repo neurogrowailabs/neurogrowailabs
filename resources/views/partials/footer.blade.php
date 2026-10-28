@@ -30,7 +30,7 @@
                 </div>
                 <div class="footer-col">
                     <h4>ECOSISTEMA</h4>
-                    <a href="{{ route('labs') }}">BioCoreX AI Engine</a>
+                    <a href="{{ route('labs') }}">NeuroGrow AI Engine</a>
                     <a href="#portfolio">MiVeci PWA & AI</a>
                     <a href="#portfolio">RStudio & Data Lab</a>
                     <a href="https://github.com/ricardodevcorex99" target="_blank" rel="noopener">GitHub Repositories</a>
@@ -53,7 +53,7 @@
             <div class="footer-giant-watermark-wrap">
                 <!-- Sombra tipográfica gigante réplica exacta de la cortina portal -->
                 <div class="footer-portal-watermark">
-                    <div class="footer-portal-line-top">BIOCOREXSTACK</div>
+                    <div class="footer-portal-line-top">NEUROGROW</div>
                     <div class="footer-portal-line-bottom">
                         <span>SOFTW</span><span class="footer-portal-glyph">a</span><span>RE&nbsp;LABS</span>
                     </div>

@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title', 'BioCoreXStack Software Labs') — {{ $siteName ?? 'BioCoreXStack' }}</title>
+    <title>@yield('title', 'NeuroGrow AI Labs') — {{ $siteName ?? 'NeuroGrow AI Labs' }}</title>
 
     <!-- SEO & Metadatos Principales -->
-    <meta name="description" content="BioCoreXStack Software Labs — Estudio de Ingeniería Full-Stack, Inteligencia Artificial Certificada (Google Gemini) y Ciencia de Datos con RStudio & DoE.">
-    <meta name="keywords" content="BioCoreXStack, Software Labs, Inteligencia Artificial, Google Gemini, Full-Stack, Laravel 11, RStudio, Diseño de Experimentos, Firebase, Ecuador">
-    <meta name="author" content="BioCoreXStack Software Labs">
+    <meta name="description" content="NeuroGrow AI Labs — Estudio de Ingeniería Full-Stack, Inteligencia Artificial Certificada (Google Gemini) y Ciencia de Datos con RStudio & DoE.">
+    <meta name="keywords" content="NeuroGrow AI Labs, NeuroGrow, Software Labs, Inteligencia Artificial, Google Gemini, Full-Stack, Laravel 11, RStudio, Diseño de Experimentos, Firebase, Ecuador">
+    <meta name="author" content="NeuroGrow AI Labs">
     <meta name="theme-color" content="#000000">
 
     <!-- Open Graph / WhatsApp / Instagram / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="BioCoreXStack | Software, IA y Ciencia de Datos">
+    <meta property="og:title" content="NeuroGrow AI Labs | Software, IA y Ciencia de Datos">
     <meta property="og:description" content="Ingeniería Full-Stack, Inteligencia Artificial Certificada (Google Gemini) y Ciencia de Datos con rigor estadístico en RStudio.">
     <meta property="og:image" content="{{ asset('favicon.ico') }}">
-    <meta property="og:site_name" content="BioCoreXStack Software Labs">
+    <meta property="og:site_name" content="NeuroGrow AI Labs">
 
     <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="BioCoreXStack | Software, IA y Ciencia de Datos">
+    <meta name="twitter:title" content="NeuroGrow AI Labs | Software, IA y Ciencia de Datos">
     <meta name="twitter:description" content="Ingeniería Full-Stack, Inteligencia Artificial Certificada y Ciencia de Datos con RStudio.">
     <meta name="twitter:image" content="{{ asset('favicon.ico') }}">
 
@@ -36,8 +36,8 @@
     {
       "@@context": "https://schema.org",
       "@@type": "ProfessionalService",
-      "name": "BioCoreXStack Software Labs",
-      "alternateName": "BioCoreXStack",
+      "name": "NeuroGrow AI Labs",
+      "alternateName": "NeuroGrow",
       "url": "{{ url('/') }}",
       "logo": "{{ asset('favicon.svg') }}",
       "telephone": "+593983267552",
@@ -47,9 +47,7 @@
         "addressCountry": "EC"
       },
       "sameAs": [
-        "https://github.com/ricardodevcorex99",
-        "https://x.com/biocorexstack",
-        "https://instagram.com/biocorexstack"
+        "https://github.com/ricardodevcorex99"
       ],
       "priceRange": "$$"
     }
