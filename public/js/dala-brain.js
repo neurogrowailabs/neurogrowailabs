@@ -76,8 +76,18 @@
             console.error('[Dala 3D Brain] Error loading brain coordinates:', e);
             return;
         }
+        // Sin tallo/bulbo raquideo: la banda inferior-izquierda colgante se
+        // descarta para una silueta limpia (aprox 2% del cloud)
+        pts = pts.filter((p) => !(p[1] < -0.52 && p[0] < 0.34));
+
         const count = pts.length;
         if (!count) return;
+
+        // Telemetria veraz: cuenta real de particulas renderizadas
+        const telemetryLabel = document.querySelector('#canvasWrapper .telemetry-label');
+        if (telemetryLabel) {
+            telemetryLabel.textContent = 'NEURAL BRAIN CLOUD · ' + count.toLocaleString('en-US') + ' POINTS';
+        }
 
         const HALF_Y = Math.tan(25 * Math.PI / 180) * 10;
         const HALF_X = () => HALF_Y * (window.innerWidth / window.innerHeight);
@@ -214,26 +224,38 @@
         brainGroup.add(constellation);
         scene.add(brainGroup);
 
-        /* ---------- Encuadre responsivo (sin recortes) ---------- */
+        /* ---------- Encuadre responsivo (sin recortes, sin tocar header) ---------- */
         let brainScale = 3.42;
         const frame = { cx: 0, cy: 0, pxPerUnit: 1, screenR: 100 };
+        const TOP_CLEAR = 130;   // px reservados para el header/nav
+        const BOT_CLEAR = 26;    // px de aire inferior
         function applyFrame() {
             const halfX = HALF_X();
             const isDesktop = window.innerWidth >= 1024;
-            const cx = isDesktop ? halfX * 0.50 : 0;
-            const rx = cx > 0 ? (halfX - cx) * 0.80 : halfX * 0.66;
-            const targetR = Math.min(0.72 * HALF_Y, Math.max(0.9, rx));
-            brainScale = targetR / 0.92;
+            const pxPerUnit = (window.innerHeight / 2) / HALF_Y;
 
-            const cy = isDesktop ? 0.02 : -0.85;
+            // Centro: integrado con la columna del texto ("entre las palabras")
+            const cx = isDesktop ? halfX * 0.44 : 0;
+            const cy = isDesktop ? -0.18 : -0.95;
+
+            // Radio maximo manteniendo el cerebro ENTERO:
+            // tope bajo el header y base sobre el borde inferior
+            const topLimit = HALF_Y - TOP_CLEAR / pxPerUnit;
+            const botLimit = HALF_Y - BOT_CLEAR / pxPerUnit;
+            const R = Math.min(
+                0.74 * HALF_Y,
+                topLimit - cy,
+                cy + botLimit,
+                isDesktop ? (halfX - cx) * 0.80 : halfX * 0.68
+            );
+            brainScale = Math.max(1.0, R / 0.92);
+
             brainGroup.scale.setScalar(brainScale);
             brainGroup.position.set(cx, cy, 0);
             brainGroup.rotation.set(0.08, -0.58, -0.04);
 
-            // Metricas de pantalla para el hover circular sobre el cerebro
-            const pxPerUnit = (window.innerHeight / 2) / HALF_Y;
             frame.cx = cx; frame.cy = cy; frame.pxPerUnit = pxPerUnit;
-            frame.screenR = brainScale * 0.95 * pxPerUnit;
+            frame.screenR = brainScale * 0.92 * pxPerUnit;
         }
         applyFrame();
 
@@ -370,8 +392,8 @@
                 const pulse = 1.0 + Math.sin(t * 0.9) * (0.014 + 0.006 * hb);
                 brainGroup.scale.setScalar(brainScale * pulse);
 
-                // Levitacion suave continua
-                brainGroup.position.y = frame.cy + Math.sin(t * 0.5) * (0.11 + 0.05 * hb);
+                // Levitacion suave continua (contenida, no invade el header)
+                brainGroup.position.y = frame.cy + Math.sin(t * 0.5) * 0.08;
             }
 
             // Prismas ambientales: drift + fade progresivo junto con el cerebro
