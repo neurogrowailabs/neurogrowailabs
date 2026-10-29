@@ -224,38 +224,49 @@
         brainGroup.add(constellation);
         scene.add(brainGroup);
 
-        /* ---------- Encuadre responsivo (sin recortes, sin tocar header) ---------- */
+        /* ---------- Encuadre responsivo: cerebro CERCA de la cámara ---------- */
         let brainScale = 3.42;
         const frame = { cx: 0, cy: 0, pxPerUnit: 1, screenR: 100 };
         const TOP_CLEAR = 130;   // px reservados para el header/nav
         const BOT_CLEAR = 26;    // px de aire inferior
         function applyFrame() {
-            const halfX = HALF_X();
             const isDesktop = window.innerWidth >= 1024;
-            const pxPerUnit = (window.innerHeight / 2) / HALF_Y;
+            const W = window.innerWidth, H = window.innerHeight;
 
-            // Centro: integrado con la columna del texto ("entre las palabras")
+            // De-profundidad: el cerebro se despega HACIA la camara. La
+            // perspectiva real (lo cercano grande, lo lejano chico) es lo que
+            // produce la sensacion de acercamiento con volumen 3D.
+            const brainZ = isDesktop ? 3.6 : 2.4;
+            const depth = 10 - brainZ;
+
+            // Medio frustum visible en el plano donde vive el cerebro
+            const hy = Math.tan(25 * Math.PI / 180) * depth;
+            const halfX = hy * (W / H);
+            const worldPerPx = (2 * hy) / H;
+
+            // Centro: integrado en la columna de texto ("entre las palabras")
             const cx = isDesktop ? halfX * 0.44 : 0;
-            const cy = isDesktop ? -0.18 : -0.95;
+            const cy = isDesktop ? -0.10 : -0.62;
 
-            // Radio maximo manteniendo el cerebro ENTERO:
-            // tope bajo el header y base sobre el borde inferior
-            const topLimit = HALF_Y - TOP_CLEAR / pxPerUnit;
-            const botLimit = HALF_Y - BOT_CLEAR / pxPerUnit;
+            // Radio maximo con el cerebro ENTERO a esa profundidad
+            const topLimit = hy - TOP_CLEAR * worldPerPx;
+            const botLimit = hy - BOT_CLEAR * worldPerPx;
             const R = Math.min(
-                0.74 * HALF_Y,
+                0.78 * hy,
                 topLimit - cy,
                 cy + botLimit,
-                isDesktop ? (halfX - cx) * 0.80 : halfX * 0.68
+                isDesktop ? (halfX - cx) * 0.85 : halfX * 0.72
             );
             brainScale = Math.max(1.0, R / 0.92);
 
             brainGroup.scale.setScalar(brainScale);
-            brainGroup.position.set(cx, cy, 0);
+            brainGroup.position.set(cx, cy, brainZ);
             brainGroup.rotation.set(0.08, -0.58, -0.04);
 
-            frame.cx = cx; frame.cy = cy; frame.pxPerUnit = pxPerUnit;
-            frame.screenR = brainScale * 0.92 * pxPerUnit;
+            // Metricas de pantalla para el hover circular
+            frame.cx = cx; frame.cy = cy;
+            frame.pxPerUnit = (H / 2) / hy;
+            frame.screenR = brainScale * 0.92 * frame.pxPerUnit;
         }
         applyFrame();
 
