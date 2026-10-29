@@ -1,7 +1,9 @@
 /**
- * BioCoreX Labs — Dala 3D Authentic Anatomical Brain Engine
- * Rendered via Three.js with 10,000 instanced pyramidal particles (Q2 quadrant)
- * and ambient floating chromatic wireframe prisms drifting in the pure black void.
+ * BioCoreX Labs — Dala 3D Authentic Brain Engine
+ * Cerebro anatómico auténtico: 10,000 pirámides instanciadas (quad_q2.json, el
+ * quadrant con silueta completa verificada) sobre void puro. Limpieza prisms
+ * ambientales limitados al hero, encuadre calculado contra el viewport para
+ * no recortar nunca la silueta.
  */
 (function() {
     'use strict';
@@ -10,6 +12,8 @@
         console.warn('[Dala 3D Brain] Three.js not found. Skipping 3D initialization.');
         return;
     }
+
+    const REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     async function initDalaEngine() {
         const canvas = document.getElementById('dala3dCanvas');
@@ -28,14 +32,14 @@
             return;
         }
 
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 50);
         camera.position.set(0, 0, 10);
 
-        // Fetch the 10,000 anatomical human brain points (extracted from Q2 HDR half-float map)
+        // Cerebro auténtico de dala.ai: quadrant Q2 = silueta completa (ámbar/lavanda/violeta)
         let pts = [];
         try {
             const res = await fetch('/dala-assets/quad_q2.json');
@@ -48,208 +52,228 @@
         const count = pts.length;
         if (!count) return;
 
-        // 1. Brain Mesh: 10,000 triangular pyramids (matching Dala's piramed mesh)
-        const coneGeo = new THREE.ConeGeometry(0.040, 0.076, 3);
+        // Escala responsiva: calculada contra el encuadre visible de la cámara
+        // para garantizar cerebro completo sin recortes en cualquier breakpoint.
+        const HALF_Y = Math.tan(25 * Math.PI / 180) * 10;
+        const HALF_X = () => HALF_Y * (window.innerWidth / window.innerHeight);
+        let brainScale = 3.92;
+
+        // 1. Cerebro: 10,000 pirámides de 3 caras siguiendo la silueta original
+        const coneGeo = new THREE.ConeGeometry(0.028, 0.058, 3);
         const coneMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-        const instancedMesh = new THREE.InstancedMesh(coneGeo, coneMat, count);
+        const brainMesh = new THREE.InstancedMesh(coneGeo, coneMat, count);
 
         const dummy = new THREE.Object3D();
         const color = new THREE.Color();
-        const brainScale = 3.92;
+        const brainPoints = [];
 
         for (let i = 0; i < count; i++) {
             const p = pts[i];
-            const x = p[0] * brainScale;
-            const y = p[1] * brainScale;
-            const z = p[2] * brainScale;
+            brainPoints.push({
+                x: p[0], y: p[1], z: p[2],
+                size: p[6],
+                jitter: 0.92 + Math.random() * 0.16
+            });
 
-            dummy.position.set(x, y, z);
-            dummy.lookAt(x * 1.6, y * 1.6, z * 1.6);
-            const s = 0.50 + p[6] * 0.90;
-            dummy.scale.set(s, s, s);
-            dummy.updateMatrix();
-            instancedMesh.setMatrixAt(i, dummy.matrix);
-
-            // True chromatic values with Dala saturation boost
-            color.setRGB(p[3] * 1.35, p[4] * 1.35, p[5] * 1.35);
-            instancedMesh.setColorAt(i, color);
+            // Fidelidad cromática del archivo original (boost suave + clamping)
+            const r = Math.min(1, p[3] * 1.08);
+            const g = Math.min(1, p[4] * 1.08);
+            const b = Math.min(1, p[5] * 1.08);
+            color.setRGB(r, g, b);
+            brainMesh.setColorAt(i, color);
         }
-        instancedMesh.instanceMatrix.needsUpdate = true;
-        if (instancedMesh.instanceColor) instancedMesh.instanceColor.needsUpdate = true;
+        if (brainMesh.instanceColor) brainMesh.instanceColor.needsUpdate = true;
+        brainMesh.frustumCulled = false;
 
         const brainGroup = new THREE.Group();
-        brainGroup.add(instancedMesh);
+        brainGroup.add(brainMesh);
         scene.add(brainGroup);
 
-        // 2. Ambient Floating Crystals: Solid Prisms (180 particles)
-        const fgCount = 180;
-        const fgGeo = new THREE.ConeGeometry(0.07, 0.13, 3);
-        const fgMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.65 });
-        const fgMesh = new THREE.InstancedMesh(fgGeo, fgMat, fgCount);
+        function applyBrainScale() {
+            const halfX = HALF_X();
+            const isDesktop = window.innerWidth >= 1024;
+            const cx = isDesktop ? halfX * 0.50 : 0;
+            // Radio objetivo: 58% del alto visible; limitado por el ancho libre
+            // hasta el borde de pantalla (1.22 de margen contra clipping)
+            const rx = cx > 0 ? (halfX - cx) * 0.78 : halfX * 0.62;
+            const targetR = Math.min(0.60 * HALF_Y, Math.max(0.9, rx));
+            brainScale = targetR / 0.92;
+            return { cx };
+        }
 
-        // 3. Ambient Floating Crystals: Wireframe Outlines (35 large prisms)
-        const fgWireCount = 35;
-        const fgWireGeo = new THREE.ConeGeometry(0.12, 0.22, 3);
-        const fgWireMat = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.45 });
-        const fgWireMesh = new THREE.InstancedMesh(fgWireGeo, fgWireMat, fgWireCount);
+        function updateLayout() {
+            const { cx } = applyBrainScale();
+            const isDesktop = window.innerWidth >= 1024;
+            const cy = isDesktop ? 0.05 : -0.85;
 
-        const fgColors = [
-            new THREE.Color(93/255, 57/255, 154/255),   // Electric Iris (#8052ff)
-            new THREE.Color(186/255, 136/255, 43/255),  // Saffron Spark (#ffb829)
-            new THREE.Color(40/255, 116/255, 100/255),  // Deep Verdant (#15846e)
-            new THREE.Color(164/255, 148/255, 175/255)  // Silver Mist (#bdbdbd)
+            for (let i = 0; i < count; i++) {
+                const P = brainPoints[i];
+                const x = P.x * brainScale, y = P.y * brainScale, z = P.z * brainScale;
+                dummy.position.set(x, y, z);
+                dummy.lookAt(x * 1.7, y * 1.7, z * 1.7);
+                const s = (0.55 + P.size * 0.85) * P.jitter;
+                dummy.scale.set(s, s, s);
+                dummy.updateMatrix();
+                brainMesh.setMatrixAt(i, dummy.matrix);
+            }
+            brainMesh.instanceMatrix.needsUpdate = true;
+
+            basePos.set(cx, cy, 0);
+            brainGroup.position.copy(basePos);
+            brainGroup.rotation.set(0.08, -0.58, -0.04);
+            brainGroup.scale.set(1, 1, 1);
+        }
+
+        // 2. Prisms ambientales: 3 capas cuidadas, confinadas y tenues
+        const ambientPalette = [
+            new THREE.Color('#8052ff'), // Electric Iris
+            new THREE.Color('#ffb829'), // Saffron Spark
+            new THREE.Color('#15846e'), // Deep Verdant
+            new THREE.Color('#e056fd'), // Magenta Glow
+            new THREE.Color('#bdbdbd')  // Silver Mist
         ];
 
-        const fgData = [];
-        for (let i = 0; i < fgCount; i++) {
-            const x = (Math.random() - 0.5) * 16;
-            const y = (Math.random() - 0.5) * 10;
-            const z = (Math.random() - 0.5) * 6;
-            const rotSpeedX = (Math.random() - 0.5) * 0.02;
-            const rotSpeedY = (Math.random() - 0.5) * 0.02;
-            const speed = 0.4 + Math.random() * 0.6;
-            const scale = 0.35 + Math.random() * 0.9;
-            fgData.push({ x, y, z, rotSpeedX, rotSpeedY, speed, scale, curRotX: Math.random() * Math.PI, curRotY: Math.random() * Math.PI });
+        const solidCount = 54;
+        const solidGeo = new THREE.ConeGeometry(0.055, 0.10, 3);
+        const solidMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.5 });
+        const solidMesh = new THREE.InstancedMesh(solidGeo, solidMat, solidCount);
+        solidMesh.frustumCulled = false;
 
-            dummy.position.set(x, y, z);
-            dummy.scale.set(scale, scale, scale);
-            dummy.updateMatrix();
-            fgMesh.setMatrixAt(i, dummy.matrix);
+        const wireCount = 12;
+        const wireGeo = new THREE.ConeGeometry(0.11, 0.19, 3);
+        const wireMat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.28, wireframe: true });
+        const wireMesh = new THREE.InstancedMesh(wireGeo, wireMat, wireCount);
+        wireMesh.frustumCulled = false;
 
-            const col = fgColors[Math.floor(Math.random() * fgColors.length)];
-            fgMesh.setColorAt(i, col);
-        }
-        fgMesh.instanceMatrix.needsUpdate = true;
-        if (fgMesh.instanceColor) fgMesh.instanceColor.needsUpdate = true;
-        scene.add(fgMesh);
-
-        const fgWireData = [];
-        for (let i = 0; i < fgWireCount; i++) {
-            const x = (Math.random() - 0.5) * 15;
-            const y = (Math.random() - 0.5) * 9;
-            const z = (Math.random() - 0.5) * 6 + 1.5;
-            const rotSpeedX = (Math.random() - 0.5) * 0.015;
-            const rotSpeedY = (Math.random() - 0.5) * 0.015;
-            const speed = 0.3 + Math.random() * 0.4;
-            const scale = 0.8 + Math.random() * 1.5;
-            fgWireData.push({ x, y, z, rotSpeedX, rotSpeedY, speed, scale, curRotX: Math.random() * Math.PI, curRotY: Math.random() * Math.PI });
-
-            dummy.position.set(x, y, z);
-            dummy.scale.set(scale, scale, scale);
-            dummy.updateMatrix();
-            fgWireMesh.setMatrixAt(i, dummy.matrix);
-
-            const col = fgColors[Math.floor(Math.random() * fgColors.length)];
-            fgWireMesh.setColorAt(i, col);
-        }
-        fgWireMesh.instanceMatrix.needsUpdate = true;
-        if (fgWireMesh.instanceColor) fgWireMesh.instanceColor.needsUpdate = true;
-        scene.add(fgWireMesh);
-
-        // Layout positioning matching Dala's basePosition and orientation
-        let basePosX = 2.65, basePosY = 0.12;
-        function updateLayout() {
-            const isDesktop = window.innerWidth >= 1024;
-            if (isDesktop) {
-                basePosX = 2.65;
-                basePosY = 0.12;
-                brainGroup.position.set(basePosX, basePosY, 0);
-                brainGroup.rotation.y = -0.58;
-                brainGroup.rotation.x = 0.08;
-                brainGroup.rotation.z = -0.04;
-            } else {
-                basePosX = 0;
-                basePosY = -1.0;
-                brainGroup.position.set(basePosX, basePosY, 0);
-                brainGroup.rotation.y = -0.58;
-                brainGroup.rotation.x = 0.08;
-                brainGroup.rotation.z = -0.04;
+        function scatterAmbient(count, xSpread, ySpread, zRange) {
+            const data = [];
+            for (let i = 0; i < count; i++) {
+                data.push({
+                    x: (Math.random() - 0.5) * xSpread,
+                    y: (Math.random() - 0.5) * ySpread,
+                    z: zRange[0] + Math.random() * (zRange[1] - zRange[0]),
+                    rotX: Math.random() * Math.PI,
+                    rotY: Math.random() * Math.PI,
+                    rotSpeed: 0.008 + Math.random() * 0.02,
+                    speed: 0.3 + Math.random() * 0.5,
+                    scale: 0.4 + Math.random() * 0.85,
+                    phase: i
+                });
             }
+            return data;
         }
+
+        const basePos = new THREE.Vector3();
+        const halfXForSpread = HALF_X();
+        let solidData = scatterAmbient(solidCount, halfXForSpread * 2.1, HALF_Y * 2.0, [-3, 1.5]);
+        let wireData = scatterAmbient(wireCount, halfXForSpread * 2.0, HALF_Y * 1.8, [-2.5, 1.5]);
+
+        solidData.forEach((_, i) => solidMesh.setColorAt(i, ambientPalette[i % ambientPalette.length]));
+        wireData.forEach((_, i) => wireMesh.setColorAt(i, ambientPalette[(i + 2) % ambientPalette.length]));
+        solidMesh.instanceColor.needsUpdate = true;
+        wireMesh.instanceColor.needsUpdate = true;
+        scene.add(solidMesh);
+        scene.add(wireMesh);
+
+        // Encuadre inicial
         updateLayout();
 
-        // Mouse Parallax
+        // Parallax sutil de puntero
         let targetRotY = -0.58, targetRotX = 0.08;
-        window.addEventListener('mousemove', (e) => {
-            const mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-            const mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-            targetRotY = -0.58 + mouseX * 0.22;
-            targetRotX = 0.08 - mouseY * 0.18;
-        }, { passive: true });
+        if (!REDUCED_MOTION) {
+            window.addEventListener('mousemove', (e) => {
+                const mx = (e.clientX / window.innerWidth - 0.5) * 2;
+                const my = (e.clientY / window.innerHeight - 0.5) * 2;
+                targetRotY = -0.58 + mx * 0.10;
+                targetRotX = 0.08 - my * 0.08;
+            }, { passive: true });
+        }
 
-        // Scroll Parallax
         let scrollY = window.scrollY;
         window.addEventListener('scroll', () => {
             scrollY = window.scrollY;
         }, { passive: true });
 
-        // Continuous render loop
         const clock = new THREE.Clock();
         function animate() {
             requestAnimationFrame(animate);
-            const time = clock.getElapsedTime();
+            const t = clock.getElapsedTime();
+            const progress = Math.min(scrollY / window.innerHeight, 2.2);
 
-            // Smooth rotation & organic breathing
-            brainGroup.rotation.y += (targetRotY + Math.sin(time * 0.4) * 0.04 - brainGroup.rotation.y) * 0.05;
-            brainGroup.rotation.x += (targetRotX + Math.cos(time * 0.3) * 0.03 - brainGroup.rotation.x) * 0.05;
+            // Dormir el render cuando el cerebro ya sale de Vista por scroll
+            if (progress >= 2.0) return;
 
-            // Subtle living pulse
-            const pulse = 1.0 + Math.sin(time * 1.1) * 0.015;
-            brainGroup.scale.set(pulse, pulse, pulse);
+            if (!REDUCED_MOTION) {
+                // Rotación orgánica viva: idle wobble + parallax del puntero
+                const idleY = Math.sin(t * 0.25) * 0.05;
+                const idleX = Math.cos(t * 0.20) * 0.03;
+                brainGroup.rotation.y += (targetRotY + idleY - brainGroup.rotation.y) * 0.06;
+                brainGroup.rotation.x += (targetRotX + idleX - brainGroup.rotation.x) * 0.06;
 
-            // Scroll movement: smooth translation across the void
-            const scrollProgress = Math.min(scrollY / window.innerHeight, 2.5);
-            const isDesktop = window.innerWidth >= 1024;
-            if (isDesktop) {
-                brainGroup.position.x = basePosX - scrollProgress * 4.5;
-                brainGroup.position.y = basePosY + scrollProgress * 0.4;
+                const pulse = 1.0 + Math.sin(t * 0.9) * 0.012;
+                brainGroup.scale.set(pulse, pulse, pulse);
+            }
+
+            // Deriva al hacer scroll: el cerebro sale limpio de escenario
+            const halfX = HALF_X();
+            const drift = (halfX + brainScale * 0.9 + 2.0) / 1.6;
+            if (window.innerWidth >= 1024) {
+                brainGroup.position.x = basePos.x - progress * drift;
+                brainGroup.position.y = basePos.y + progress * 0.5;
             } else {
-                brainGroup.position.y = basePosY - scrollProgress * 1.8;
+                brainGroup.position.y = basePos.y - progress * 2.2;
             }
 
-            // Animate floating solid prisms
-            for (let i = 0; i < fgCount; i++) {
-                const item = fgData[i];
-                item.curRotX += item.rotSpeedX;
-                item.curRotY += item.rotSpeedY;
+            // Prismas solid ambientales
+            for (let i = 0; i < solidCount; i++) {
+                const item = solidData[i];
+                item.rotX += item.rotSpeed;
+                item.rotY += item.rotSpeed * 0.7;
                 dummy.position.set(
-                    item.x + Math.sin(time * item.speed + i) * 0.2,
-                    item.y + Math.cos(time * item.speed + i) * 0.2,
+                    item.x + Math.sin(t * item.speed + item.phase) * 0.28,
+                    item.y + Math.cos(t * item.speed + item.phase) * 0.22,
                     item.z
                 );
-                dummy.rotation.set(item.curRotX, item.curRotY, 0);
-                dummy.scale.set(item.scale, item.scale, item.scale);
+                dummy.rotation.set(item.rotX, item.rotY, 0);
+                dummy.scale.setScalar(item.scale);
                 dummy.updateMatrix();
-                fgMesh.setMatrixAt(i, dummy.matrix);
+                solidMesh.setMatrixAt(i, dummy.matrix);
             }
-            fgMesh.instanceMatrix.needsUpdate = true;
+            solidMesh.instanceMatrix.needsUpdate = true;
 
-            // Animate floating wireframe prisms
-            for (let i = 0; i < fgWireCount; i++) {
-                const item = fgWireData[i];
-                item.curRotX += item.rotSpeedX;
-                item.curRotY += item.rotSpeedY;
+            // Prismas wireframe de silueta amplia
+            for (let i = 0; i < wireCount; i++) {
+                const item = wireData[i];
+                item.rotX -= item.rotSpeed * 0.55;
+                item.rotY += item.rotSpeed * 0.5;
                 dummy.position.set(
-                    item.x + Math.sin(time * item.speed + i) * 0.25,
-                    item.y + Math.cos(time * item.speed + i) * 0.25,
+                    item.x + Math.sin(t * item.speed + item.phase) * 0.34,
+                    item.y + Math.cos(t * item.speed * 0.8 + item.phase) * 0.28,
                     item.z
                 );
-                dummy.rotation.set(item.curRotX, item.curRotY, 0);
-                dummy.scale.set(item.scale, item.scale, item.scale);
+                dummy.rotation.set(item.rotX, item.rotY, 0);
+                dummy.scale.setScalar(item.scale);
                 dummy.updateMatrix();
-                fgWireMesh.setMatrixAt(i, dummy.matrix);
+                wireMesh.setMatrixAt(i, dummy.matrix);
             }
-            fgWireMesh.instanceMatrix.needsUpdate = true;
+            wireMesh.instanceMatrix.needsUpdate = true;
 
             renderer.render(scene, camera);
         }
         animate();
 
+        let resizeTimer;
         window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            updateLayout();
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                const halfX = HALF_X();
+                solidData = scatterAmbient(solidCount, halfX * 2.1, HALF_Y * 2.0, [-3, 1.5]);
+                wireData = scatterAmbient(wireCount, halfX * 2.0, HALF_Y * 1.8, [-2.5, 1.5]);
+                updateLayout();
+            }, 120);
         }, { passive: true });
     }
 

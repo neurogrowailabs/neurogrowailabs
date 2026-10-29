@@ -46,7 +46,7 @@
                     {{-- Mini badge de telemetría flotante minimalista --}}
                     <div class="dala-canvas-telemetry">
                         <span class="telemetry-pulse"></span>
-                        <span class="telemetry-label">AUTHENTIC 3D NEURAL MESH · 10,000 CONES</span>
+                        <span class="telemetry-label">NEURAL BRAIN CLOUD · 10,000 PARTICLES</span>
                     </div>
                 </div>
             </div>
