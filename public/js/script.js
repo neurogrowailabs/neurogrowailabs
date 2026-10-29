@@ -13,237 +13,168 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, { passive: true });
 
-  // 2. SCROLLYTELLING GSAP MASTER STAGE (0:00 - 0:17)
-  const masterStage = document.getElementById("masterStage");
-  if (masterStage && typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
+  // 2. DALA HERO: CONSTELACIÓN INTERACTIVA DE PARTÍCULAS (CANVAS)
+  const canvas = document.getElementById("constellationCanvas");
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    const wrapper = document.getElementById("canvasWrapper") || canvas.parentElement;
 
-    // Separar automáticamente todas las palabras blancas en <span class="white-word">
-    const paragraph = document.getElementById("manifestoParagraph");
-    if (paragraph) {
-      const nodes = Array.from(paragraph.childNodes);
-      paragraph.innerHTML = "";
+    let animationFrameId;
+    let width = 0;
+    let height = 0;
+    let mouse = { x: -9999, y: -9999, active: false };
 
-      nodes.forEach(node => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          const words = node.textContent.trim().split(/\s+/);
-          words.forEach(word => {
-            if (word) {
-              const span = document.createElement("span");
-              span.className = "white-word";
-              span.textContent = word;
-              paragraph.appendChild(span);
-              paragraph.appendChild(document.createTextNode(" "));
-            }
-          });
-        } else {
-          paragraph.appendChild(node);
-          paragraph.appendChild(document.createTextNode(" "));
+    const resizeCanvas = () => {
+      if (!wrapper) return;
+      const rect = wrapper.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = rect.width;
+      height = rect.height || 450;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.scale(dpr, dpr);
+    };
+
+    window.addEventListener("resize", resizeCanvas, { passive: true });
+    resizeCanvas();
+
+    // Paleta cromática Dala adaptada a NeuroGrow AI Labs
+    const colors = ["#8052ff", "#ffb829", "#15846e", "#e056fd", "#00d2d3", "#ffffff", "#9281f7"];
+
+    // Generar partículas triangulares y nodos de datos
+    const particleCount = window.innerWidth < 768 ? 120 : 210;
+    const particles = Array.from({ length: particleCount }, () => ({
+      x: width * 0.5 + (Math.random() - 0.5) * width * 0.75,
+      y: height * 0.5 + (Math.random() - 0.5) * height * 0.75,
+      size: Math.random() * 4.5 + 2,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vx: (Math.random() - 0.5) * 0.45,
+      vy: (Math.random() - 0.5) * 0.45,
+      angle: Math.random() * Math.PI * 2,
+      va: (Math.random() - 0.5) * 0.025,
+      opacity: Math.random() * 0.65 + 0.35,
+    }));
+
+    // Interacción suave con mouse / cursor sobre el canvas
+    canvas.addEventListener("mousemove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.active = true;
+    }, { passive: true });
+
+    canvas.addEventListener("mouseleave", () => {
+      mouse.active = false;
+    }, { passive: true });
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      const centerX = width * 0.5;
+      const centerY = height * 0.5;
+      const maxRadius = Math.min(width, height) * 0.44;
+
+      // Dibujar partículas triangulares delineadas estilo Dala
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.angle += p.va;
+
+        // Atracción orbital hacia el centro de la mente/nube de datos
+        const dx = p.x - centerX;
+        const dy = p.y - centerY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist > maxRadius) {
+          p.vx -= dx * 0.0006;
+          p.vy -= dy * 0.0006;
         }
-      });
-    }
 
-    const whiteWords = gsap.utils.toArray(".white-word");
-    const redWords = gsap.utils.toArray(".red-word");
-
-    // 1. Punto focal exacto de la letra 'a' (50% 56% constante fija de la marca)
-    const portalOrigin = "50% 56%";
-
-    // 2. Coordenadas dinámicas exactas para alinear las palabras moradas al centro en columna
-    function getRedWordsTargetOffsets(isMobile = false) {
-      if (!paragraph || redWords.length === 0) return [];
-      const pRect = paragraph.getBoundingClientRect();
-      const centerX = pRect.left + pRect.width / 2;
-      const centerY = pRect.top + pRect.height / 2;
-      const verticalGap = isMobile ? 32 : (window.innerWidth < 768 ? 36 : 52);
-      const totalHeight = (redWords.length - 1) * verticalGap;
-      const startY = centerY - totalHeight / 2;
-
-      return redWords.map((el, i) => {
-        const r = el.getBoundingClientRect();
-        // Restar transforms activos si ScrollTrigger se recalcula mid-scroll
-        const curX = gsap.getProperty(el, "x") || 0;
-        const curY = gsap.getProperty(el, "y") || 0;
-        const naturalX = (r.left + r.width / 2) - curX;
-        const naturalY = (r.top + r.height / 2) - curY;
-
-        return {
-          x: centerX - naturalX,
-          y: (startY + i * verticalGap) - naturalY
-        };
-      });
-    }
-
-    // Inicialización adaptativa con GSAP MatchMedia (Cinemática completa en PC, agilidad táctil en Móvil)
-    const mm = gsap.matchMedia();
-
-    // ================= DESKTOP & TABLETS LIGERAS (>= 769px) =================
-    mm.add("(min-width: 769px)", () => {
-      gsap.set("#portalLayer", { 
-        yPercent: 100,
-        scale: 1,
-        opacity: 1,
-        transformOrigin: portalOrigin
-      });
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: "#masterStage",
-          start: "top top",
-          end: "+=5500",
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true
+        // Repulsión sutil ante el cursor
+        if (mouse.active) {
+          const mdx = p.x - mouse.x;
+          const mdy = p.y - mouse.y;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+          if (mdist < 100 && mdist > 0) {
+            const force = ((100 - mdist) / 100) * 0.4;
+            p.vx += (mdx / mdist) * force;
+            p.vy += (mdy / mdist) * force;
+          }
         }
-      });
 
-      // FASE 1 (0:00 - 0:03): Desvanecimiento suave del Hero Content y Scroll Cue
-      tl.to("#heroContent", { y: -60, opacity: 0, duration: 1.2, ease: "power2.inOut" }, 0)
-        .to("#heroScrollCue", { opacity: 0, duration: 0.5, ease: "none" }, 0)
+        // Fricción suave para estabilidad visual
+        p.vx *= 0.992;
+        p.vy *= 0.992;
 
-      // FASE 2 (0:03 - 0:04): Sube la cortina portal
-        .fromTo("#portalLayer", 
-          { yPercent: 100, scale: 1, opacity: 1, transformOrigin: portalOrigin }, 
-          { yPercent: 0, scale: 1, opacity: 1, transformOrigin: portalOrigin, duration: 1.2, ease: "power2.out" }, 
-          0.4
-        )
+        // Renderizado del triángulo hueco/vectorial
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.angle);
+        ctx.beginPath();
+        ctx.moveTo(0, -p.size);
+        ctx.lineTo(p.size * 0.866, p.size * 0.5);
+        ctx.lineTo(-p.size * 0.866, p.size * 0.5);
+        ctx.closePath();
+        ctx.strokeStyle = p.color;
+        ctx.globalAlpha = p.opacity;
+        ctx.lineWidth = 1.25;
+        ctx.stroke();
+        ctx.restore();
+      }
 
-      // FASE 3 (0:04 - 0:06): Zoom monumental a través de la 'a'
-        .to("#portalLayer", {
-          scale: 55,
-          transformOrigin: portalOrigin,
-          duration: 2.2,
-          ease: "power3.in"
-        })
-        .to("#manifestoLayer", {
-          opacity: 1,
-          duration: 0.4
-        }, "-=0.55")
-        .to("#portalLayer", {
-          opacity: 0,
-          duration: 0.2
-        })
+      animationFrameId = requestAnimationFrame(render);
+    };
 
-      // FASE 4 (0:06 - 0:12): Tarjetas laterales cruzadas y desvanecimiento
-        .to("#cardLeft", { y: "-190vh", duration: 3.5, ease: "none" }, "-=0.2")
-        .to("#cardRight", { y: "-210vh", duration: 3.5, ease: "none" }, "<0.4")
-        .to(whiteWords, {
-          opacity: 0,
-          stagger: 0.025,
-          duration: 2.5,
-          ease: "none"
-        }, "<0.2")
+    render();
+  }
 
-      // FASE 5 (0:12 - 0:16): Alineación central de las 6 palabras moradas
-        .to(redWords, {
-          x: (i) => {
-            const offsets = getRedWordsTargetOffsets(false);
-            return offsets[i] ? offsets[i].x : 0;
-          },
-          y: (i) => {
-            const offsets = getRedWordsTargetOffsets(false);
-            return offsets[i] ? offsets[i].y : 0;
-          },
-          scale: 1.4,
-          duration: 2.2,
-          ease: "power2.inOut"
-        }, "-=0.8")
-
-      // FASE 6 (0:16 - 0:17): Botón de navegación final
-        .to("#finalCta", {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power2.out"
-        }, "-=0.3");
+  // 2.1 ANIMACIÓN SUAVE DE ENTRADA HERO (GSAP SIN PIN NI HIJACKING)
+  if (typeof gsap !== "undefined") {
+    gsap.from(".dala-eyebrow", {
+      opacity: 0,
+      y: 16,
+      duration: 0.8,
+      delay: 0.1,
+      ease: "power2.out"
     });
-
-    // ================= MOBILE EXPERT TOUCH (<= 768px) =================
-    // Recorrido táctil rápido y ágil: sin trabar el dedo, sin tarjetas cruzadas tapando texto
-    mm.add("(max-width: 768px)", () => {
-      gsap.set("#portalLayer", { 
-        yPercent: 100,
-        scale: 1,
-        opacity: 1,
-        transformOrigin: portalOrigin
-      });
-
-      const tlMobile = gsap.timeline({
-        scrollTrigger: {
-          trigger: "#masterStage",
-          start: "top top",
-          end: "+=1700", // Scrub ágil de apenas 2 swipes suaves en móvil
-          pin: true,
-          scrub: 0.6,
-          invalidateOnRefresh: true
-        }
-      });
-
-      tlMobile.to("#heroContent", { y: -40, opacity: 0, duration: 0.8, ease: "power2.inOut" }, 0)
-        .to("#heroScrollCue", { opacity: 0, duration: 0.3, ease: "none" }, 0)
-        .fromTo("#portalLayer", 
-          { yPercent: 100, scale: 1, opacity: 1, transformOrigin: portalOrigin }, 
-          { yPercent: 0, scale: 1, opacity: 1, transformOrigin: portalOrigin, duration: 1, ease: "power2.out" }, 
-          0.3
-        )
-        .to("#portalLayer", {
-          scale: 32,
-          transformOrigin: portalOrigin,
-          duration: 1.5,
-          ease: "power2.in"
-        })
-        .to("#manifestoLayer", {
-          opacity: 1,
-          duration: 0.35
-        }, "-=0.4")
-        .to("#portalLayer", {
-          opacity: 0,
-          duration: 0.15
-        })
-        .to(whiteWords, {
-          opacity: 0,
-          stagger: 0.015,
-          duration: 1.6,
-          ease: "none"
-        }, "-=0.2")
-        .to(redWords, {
-          x: (i) => {
-            const offsets = getRedWordsTargetOffsets(true);
-            return offsets[i] ? offsets[i].x : 0;
-          },
-          y: (i) => {
-            const offsets = getRedWordsTargetOffsets(true);
-            return offsets[i] ? offsets[i].y : 0;
-          },
-          scale: 1.15,
-          duration: 1.5,
-          ease: "power2.inOut"
-        }, "-=0.6")
-        .to("#finalCta", {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: "power2.out"
-        }, "-=0.2");
+    gsap.from(".dala-headline", {
+      opacity: 0,
+      y: 28,
+      duration: 1.1,
+      delay: 0.25,
+      ease: "power3.out"
     });
-
-    // Sincronizar coordenadas exactas al terminar de cargar las tipografías web
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(() => {
-        ScrollTrigger.refresh();
-      });
-    }
-
-    // Click en el botón final para navegar suavemente al pipeline
-    const finalCta = document.getElementById("finalCta");
-    if (finalCta) {
-      finalCta.addEventListener("click", () => {
-        const nextTarget = document.getElementById("pipeline");
-        if (nextTarget) {
-          nextTarget.scrollIntoView({ behavior: "smooth" });
-        }
-      });
-    }
+    gsap.from(".dala-subheadline", {
+      opacity: 0,
+      y: 20,
+      duration: 1.0,
+      delay: 0.45,
+      ease: "power2.out"
+    });
+    gsap.from(".dala-hero-actions", {
+      opacity: 0,
+      y: 16,
+      duration: 0.9,
+      delay: 0.6,
+      ease: "power2.out"
+    });
+    gsap.from(".dala-canvas-wrapper", {
+      opacity: 0,
+      scale: 0.92,
+      duration: 1.4,
+      delay: 0.35,
+      ease: "power2.out"
+    });
+    gsap.from(".dala-pillars-strip", {
+      opacity: 0,
+      y: 15,
+      duration: 1.0,
+      delay: 0.8,
+      ease: "power2.out"
+    });
   }
 
   // 3. TRUST MARQUEE (Bucle continuo x4 si no está precargado por Blade)

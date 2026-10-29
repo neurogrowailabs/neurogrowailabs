@@ -1,96 +1,72 @@
-<!-- ================= ESCENARIO PRINCIPAL (SCROLLYTELLING 0:00 A 0:17) ================= -->
-<main class="master-stage" id="masterStage">
+<!-- ================= DALA DARK VOID HERO SECTION ================= -->
+<section class="dala-hero-section" id="heroSection">
+    {{-- Anclaje de compatibilidad para enlaces existentes --}}
+    <div id="masterStage" style="position: absolute; top: 0; left: 0; width: 1px; height: 1px; pointer-events: none;"></div>
 
-    <!-- 1. SECCIÓN HERO (0:00 - 0:03) -->
-    <section class="hero-layer">
-        <!-- Texto Central del Hero Enriquecido -->
-        <div class="hero-content" id="heroContent">
-            <div class="hero-eyebrow-badge">
-                <span class="hero-badge-dot"></span>
-                <span>NEUROGROW AI LABS · EST. 2026</span>
-            </div>
-
-            <h1 class="hero-headline">
-                <span class="italic-word">creando</span> ECOSISTEMAS INTELIGENTES <span class="italic-word">para las</span><br class="hero-desktop-br">
-                EMPRESAS DEL MAÑANA
-            </h1>
-
-            <p class="hero-subheadline">
-                Ingeniería de software de alta concurrencia, inteligencia artificial aplicada y analítica experimental para empresas que demandan escalabilidad determinista.
-            </p>
-
-            <div class="hero-actions">
-                <a href="#finder" class="hero-btn-primary">
-                    <span>Iniciar Diagnóstico</span>
-                    <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
-                </a>
-                <a href="#portfolio" class="hero-btn-secondary">
-                    <span>Explorar Labs</span>
-                    <i class="fa-solid fa-flask" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- Indicador de Navegación / Scroll -->
-        <div class="hero-scroll-cue" id="heroScrollCue">
-            <span class="hero-scroll-text">EXPLORAR ECOSISTEMA</span>
-            <div class="scroll-cue-pill">
-                <div class="scroll-cue-thumb"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 2. SECCIÓN PORTAL "NEUROGROW SOFTWARE LABS" (0:03 - 0:06) -->
-    <section class="portal-layer" id="portalLayer">
-        <div class="portal-text-wrapper">
-            <div class="portal-line-top">NEUROGROW</div>
-            <!-- La letra 'a' en medio de SOFTWaRE actúa como el portal de zoom cinemático -->
-            <div class="portal-line-bottom">
-                <span>SOFTW</span><span class="portal-glyph" id="portalGlyph">a</span><span>RE&nbsp;LABS</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. SECCIÓN MANIFIESTO Y PALABRAS DESTACADAS (0:06 - 0:17) -->
-    <section class="manifesto-layer" id="manifestoLayer">
-        
-        <!-- Tarjetas flotantes que suben por los costados -->
-        <div class="floating-cards-container">
-            <div class="float-card float-card-left" id="cardLeft">
-                <div class="float-card-header">
-                    <span>CIENCIA DE DATOS</span>
-                    <span>©2026</span>
+    <div class="dala-hero-container">
+        {{-- Composición asimétrica de dos columnas estilo Dala --}}
+        <div class="dala-hero-grid">
+            
+            {{-- Columna Izquierda: Escultura Tipográfica Monumental --}}
+            <div class="dala-hero-content">
+                {{-- Micro-etiqueta superior en Saffron Spark (#ffb829) --}}
+                <div class="dala-eyebrow">
+                    <span class="dala-eyebrow-dot"></span>
+                    <span>NEUROGROW AI LABS · EST. 2026</span>
                 </div>
-                <div class="float-card-title">RStudio & DoE</div>
-            </div>
 
-            <div class="float-card float-card-right" id="cardRight">
-                <div class="float-card-header">
-                    <span>FULL-STACK & IA</span>
-                    <span>©2026</span>
+                {{-- Titular Colosal a Peso 400 (Escultórico, tracking -0.04em) --}}
+                <h1 class="dala-headline">
+                    Ecosistemas Inteligentes para las Empresas del Mañana.
+                </h1>
+
+                {{-- Cuerpo de Texto Etéreo en Peso Ultra-Light (200 / 300) --}}
+                <p class="dala-subheadline">
+                    Ingeniería de software de alta concurrencia, inteligencia artificial aplicada y analítica experimental para organizaciones que demandan escalabilidad determinista, latencias mínimas y rigor matemático.
+                </p>
+
+                {{-- Botón Píldora Violeta (#8052ff) & Enlace Ámbar Saffron (#ffb829) --}}
+                <div class="dala-hero-actions">
+                    <a href="#finder" class="dala-btn-primary">
+                        <span>Iniciar Diagnóstico</span>
+                        <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                    </a>
+                    <a href="#pipeline" class="dala-link-secondary">
+                        <span>Explorar pipeline en vivo</span>
+                        <span class="dala-arrow">→</span>
+                    </a>
                 </div>
-                <div class="float-card-title">Gemini Core</div>
             </div>
+
+            {{-- Columna Derecha: El Lienzo Interactivo de la Constelación --}}
+            <div class="dala-canvas-column">
+                <div class="dala-canvas-wrapper" id="canvasWrapper">
+                    <canvas id="constellationCanvas" class="dala-canvas" aria-label="Constelación interactiva de datos y redes neuronales"></canvas>
+                    
+                    {{-- Mini badge de telemetría flotante minimalista --}}
+                    <div class="dala-canvas-telemetry">
+                        <span class="telemetry-pulse"></span>
+                        <span class="telemetry-label">NEURAL MESH · 60 FPS LIVE</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
-        <!-- Párrafo principal con 6 palabras clave destacadas en morado -->
-        <div class="manifesto-text" id="manifestoParagraph">
-            INGENIERÍA DE SOFTWARE RIGUROSA CONDUCIDA POR LA 
-            <span class="red-word">INTELIGENCIA</span> 
-            ARTIFICIAL Y EL PROCESAMIENTO DISTRIBUIDO DE DATOS. MEDIANTE EL 
-            <span class="red-word">DESARROLLO</span> 
-            FULL-STACK DE APLICACIONES WEB REACTIVAS Y 
-            <span class="red-word">SISTEMAS</span> 
-            CLOUD DE ALTA DISPONIBILIDAD, GARANTIZAMOS LATENCIAS MÍNIMAS Y ESCALABILIDAD HORIZONTAL. EL 
-            <span class="red-word">DISEÑO</span> 
-            TÉCNICO MODULAR OPTIMIZA EL RENDIMIENTO Y LA ACCESIBILIDAD DIGITAL. APLICAMOS 
-            <span class="red-word">ESTADÍSTICA</span> 
-            EXPERIMENTAL (DoE) PARA VALIDAR HIPÓTESIS CON RIGOR MATEMÁTICO, CONSOLIDANDO UN 
-            <span class="red-word">CRECIMIENTO</span> 
-            SÓLIDO, DETERMINISTA Y MEDIBLE PARA TU ORGANIZACIÓN.
+        {{-- Franja Arquitectónica: Los 6 Pilares del Manifiesto en el Vacío --}}
+        <div class="dala-pillars-strip">
+            <span class="dala-pillar-item"><span class="pillar-bullet">/</span> INTELIGENCIA</span>
+            <span class="dala-pillar-item"><span class="pillar-bullet">/</span> DESARROLLO</span>
+            <span class="dala-pillar-item"><span class="pillar-bullet">/</span> SISTEMAS</span>
+            <span class="dala-pillar-item"><span class="pillar-bullet">/</span> DISEÑO</span>
+            <span class="dala-pillar-item"><span class="pillar-bullet">/</span> ESTADÍSTICA</span>
+            <span class="dala-pillar-item"><span class="pillar-bullet">/</span> CRECIMIENTO</span>
         </div>
+    </div>
 
-        <button class="final-cta-btn" id="finalCta">VER NUESTRAS CAPACIDADES</button>
-    </section>
-
-</main>
+    {{-- Indicador sutil de scroll al vacío hacia el Pipeline --}}
+    <a href="#pipeline" class="dala-scroll-cue" aria-label="Desplazarse hacia el Live Workflow Canvas">
+        <span class="dala-scroll-cue-text">EXPLORAR ARQUITECTURA</span>
+        <div class="dala-scroll-cue-line"></div>
+    </a>
+</section>

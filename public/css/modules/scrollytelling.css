@@ -1,569 +1,368 @@
 /* ==========================================================================
-   BIOCOREXSTACK SOFTWARE LABS — MÓDULO 02: SCROLLYTELLING & ESCENARIO MAESTRO
+   NEUROGROW AI LABS — MÓDULO 02: DALA DARK VOID HERO & ESCENARIO MONOLÍTICO
+   Inspirado en el Sistema de Diseño Dala: Vacío Absoluto, Escala Tipográfica,
+   Tensión Iris/Saffron (#8052ff / #ffb829) y Constelación Geométrica de Partículas.
    Thermos Compliant: < 1,000 líneas
    ========================================================================== */
 
-/* 3. ESCENARIO MAESTRO (Contiene del 0:00 al 0:17 fijado en pantalla) */
-.master-stage {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
-  background-color: var(--bg-principal);
+:root {
+  --dala-void: #000000;
+  --dala-bone-white: #ffffff;
+  --dala-ash-gray: #9a9a9a;
+  --dala-silver-mist: #bdbdbd;
+  --dala-electric-iris: #8052ff;
+  --dala-electric-iris-hover: #966eff;
+  --dala-saffron-spark: #ffb829;
+  --dala-deep-verdant: #15846e;
+  --dala-magenta-glow: #e056fd;
 }
 
-/* --- CAPA 1: HERO LIMPIO & BALANCEADO (0:00 - 0:03) --- */
-.hero-layer {
-  position: absolute;
-  inset: 0;
-  max-width: 100vw;
-  height: 100%;
+/* ==================== 1. SECCIÓN DALA DARK VOID HERO ==================== */
+.dala-hero-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--dala-void);
+  color: var(--dala-bone-white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: calc(var(--nav-height, 68px) + 28px);
+  padding-bottom: 24px;
   overflow: hidden;
+  box-sizing: border-box;
+}
+
+.dala-hero-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  z-index: 1;
-  padding: calc(var(--nav-height, 68px) + 20px) 24px 60px;
-  background: radial-gradient(circle at 50% 28%, rgba(146, 129, 247, 0.08) 0%, transparent 65%);
 }
 
-.hero-content {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-  padding: 0;
-  max-width: 940px;
-  width: 100%;
+/* Composición Asimétrica de Dos Columnas */
+.dala-hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 48px;
+  padding: 24px 0 16px;
+}
+
+/* ==================== 2. COLUMNA TIPOGRÁFICA ESCULTÓRICA ==================== */
+.dala-hero-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  z-index: 2;
+  text-align: left;
 }
 
-.hero-eyebrow-badge {
+/* Micro-etiqueta Superior en Saffron Spark (#ffb829) */
+.dala-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 16px;
-  border-radius: 9999px;
-  border: 1px solid rgba(146, 129, 247, 0.28);
-  background: rgba(146, 129, 247, 0.08);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12.5px;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #e2e8f0;
+  color: var(--dala-saffron-spark);
   margin-bottom: 22px;
-  transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
-.hero-eyebrow-badge:hover {
-  border-color: rgba(146, 129, 247, 0.5);
-  background: rgba(146, 129, 247, 0.14);
-}
-
-.hero-badge-dot {
+.dala-eyebrow-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background-color: var(--color-iris-violet);
-  box-shadow: 0 0 10px var(--color-iris-violet);
-  animation: pulseBadgeDot 2s infinite ease-in-out;
+  background-color: var(--dala-saffron-spark);
+  box-shadow: 0 0 10px rgba(255, 184, 41, 0.7);
+  animation: dalaPulseBadge 2.2s infinite ease-in-out;
 }
 
-@keyframes pulseBadgeDot {
+@keyframes dalaPulseBadge {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.35; transform: scale(0.8); }
+  50% { opacity: 0.35; transform: scale(0.85); }
 }
 
-.hero-headline {
-  font-family: var(--font-condensed);
-  font-size: clamp(32px, 5.2vw, 74px);
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.025em;
-  text-transform: uppercase;
-  color: var(--texto-blanco);
-  max-width: 100%;
-  margin: 0;
+/* Titular Colosal a Peso 400 (Escultórico, NUNCA Bold 700) */
+.dala-headline {
+  font-family: var(--font-inter);
+  font-weight: 400;
+  font-size: clamp(38px, 5.2vw, 86px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: var(--dala-bone-white);
+  margin: 0 0 24px 0;
+  max-width: 720px;
+  word-break: normal;
   overflow-wrap: break-word;
 }
 
-.hero-headline .italic-word {
+/* Cuerpo de Texto en Peso Ultra-Light (200 / 300) */
+.dala-subheadline {
   font-family: var(--font-inter);
-  font-weight: 500;
-  font-style: italic;
-  text-transform: lowercase;
-  font-size: 0.58em;
-  letter-spacing: -0.01em;
-  margin: 0 6px;
-  vertical-align: middle;
-  color: rgba(255, 255, 255, 0.9);
+  font-weight: 200;
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.62;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0 0 36px 0;
+  max-width: 560px;
 }
 
-.hero-subheadline {
-  font-family: var(--font-inter);
-  font-size: clamp(14px, 1.35vw, 17px);
-  font-weight: 400;
-  line-height: 1.6;
-  color: #a1a1aa;
-  max-width: 680px;
-  margin: 18px auto 28px;
-}
-
-.hero-actions {
+/* Acciones Principales */
+.dala-hero-actions {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 14px;
+  gap: 22px;
   flex-wrap: wrap;
 }
 
-.hero-btn-primary {
+/* Botón Píldora Violeta Eléctrico (#8052ff) */
+.dala-btn-primary {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 12px 24px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+  gap: 10px;
+  background-color: var(--dala-electric-iris);
   color: #ffffff;
+  border-radius: 9999px;
+  padding: 14px 28px;
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: 12.5px;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   text-decoration: none;
-  box-shadow: 0 0 24px rgba(139, 92, 246, 0.4);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  min-height: 44px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(128, 82, 255, 0.35);
+  transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
 }
 
-.hero-btn-primary:hover {
+.dala-btn-primary:hover {
+  filter: brightness(1.15);
   transform: translateY(-2px);
-  box-shadow: 0 0 32px rgba(139, 92, 246, 0.6);
+  box-shadow: 0 8px 32px rgba(128, 82, 255, 0.55);
   color: #ffffff;
 }
 
-.hero-btn-secondary {
+.dala-btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* Enlace Ámbar Saffron (#ffb829) */
+.dala-link-secondary {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 12px 22px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.04);
-  color: #ffffff;
+  gap: 6px;
+  color: var(--dala-saffron-spark);
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  text-decoration: none;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-  min-height: 44px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.hero-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.35);
-  transform: translateY(-2px);
-  color: #ffffff;
+.dala-link-secondary:hover {
+  opacity: 0.8;
+  transform: translateX(3px);
+  color: var(--dala-saffron-spark);
 }
 
-.hero-scroll-cue {
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
+.dala-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.dala-link-secondary:hover .dala-arrow {
+  transform: translateX(4px);
+}
+
+/* ==================== 3. COLUMNA LIENZO DE LA CONSTELACIÓN ==================== */
+.dala-canvas-column {
+  position: relative;
+  width: 100%;
+  height: 480px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 8px;
-  z-index: 3;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  justify-content: center;
 }
 
-.hero-scroll-text {
+.dala-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dala-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: auto;
+  cursor: crosshair;
+}
+
+/* Mini badge de telemetría flotante */
+.dala-canvas-telemetry {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--font-mono);
   font-size: 9.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-fog-text, #71717a);
-}
-
-.scroll-cue-pill {
-  width: 18px;
-  height: 28px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.03);
-  padding: 2px;
-  display: flex;
-  justify-content: center;
-}
-
-.scroll-cue-thumb {
-  width: 4px;
-  height: 7px;
-  border-radius: 4px;
-  background: var(--color-iris-violet);
-  box-shadow: 0 0 8px var(--color-iris-violet);
-  animation: scrollThumbPulse 2s infinite ease-in-out;
-}
-
-/* --- CAPA 2: CORTINA TRANSPARENTE "SOFTWARE BLINDADO" (0:03 - 0:06) --- */
-.portal-layer {
-  position: absolute;
-  inset: 0;
-  max-width: 100vw;
-  overflow: hidden;
-  background-color: var(--bg-glass-portal);
-  backdrop-filter: blur(var(--blur-portal));
-  -webkit-backdrop-filter: blur(var(--blur-portal));
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-  transform-origin: 50% 56%;
-  will-change: transform, opacity;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.45);
   pointer-events: none;
 }
 
-.portal-text-wrapper {
-  text-align: center;
-  color: var(--texto-portal);
+.telemetry-pulse {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--dala-electric-iris);
+  box-shadow: 0 0 6px var(--dala-electric-iris);
+  animation: dalaPulseBadge 1.5s infinite ease-in-out;
+}
+
+/* ==================== 4. FRANJA ARQUITECTÓNICA DE PILARES ==================== */
+.dala-pillars-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 28px;
+  margin-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.55);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.dala-pillar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
   user-select: none;
+}
+
+.dala-pillar-item:hover {
+  color: var(--dala-bone-white);
+}
+
+.pillar-bullet {
+  color: var(--dala-electric-iris);
+  font-weight: 700;
+}
+
+/* ==================== 5. INDICADOR DE SCROLL SUTIL AL PIPELINE ==================== */
+.dala-scroll-cue {
   display: flex;
   flex-direction: column;
   align-items: center;
-  line-height: 0.85;
-  max-width: 100%;
+  gap: 6px;
+  margin: 12px auto 0;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.35);
+  transition: color 0.25s ease;
 }
 
-.portal-line-top {
-  font-size: clamp(34px, 8.8vw, 126px);
-  font-weight: 900;
-  letter-spacing: -0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
+.dala-scroll-cue:hover {
+  color: var(--dala-bone-white);
 }
 
-.portal-line-bottom {
-  font-size: clamp(32px, 8.2vw, 118px);
-  font-weight: 900;
-  letter-spacing: -0.06em;
-  text-transform: uppercase;
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-  white-space: nowrap;
-}
-
-/* La letra central estilizada que sirve de túnel negro */
-.portal-glyph {
-  font-family: var(--font-serif-italica);
-  font-style: italic;
-  font-weight: 600;
-  font-size: 1.25em;
-  text-transform: lowercase;
-  margin: 0 0.02em;
-  display: inline-block;
-}
-
-/* --- CAPA 3: PÁRRAFO DECONSTRUCTIVO Y PALABRAS MORADAS (0:06 - 0:17) --- */
-.manifesto-layer {
-  position: absolute;
-  inset: 0;
-  max-width: 100vw;
-  overflow: hidden;
-  background-color: var(--bg-negro-profundo);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  z-index: 20;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.manifesto-text {
-  font-family: var(--font-condensed);
-  max-width: 860px;
-  font-size: clamp(16px, 2.1vw, 30px);
-  font-weight: 700;
-  line-height: 1.18;
-  letter-spacing: 0.02em;
-  text-align: center;
-  text-transform: uppercase;
-  position: relative;
-  z-index: 5;
-}
-
-.manifesto-text .white-word {
-  display: inline-block;
-  color: var(--texto-blanco);
-  will-change: opacity;
-}
-
-.manifesto-text .red-word {
-  display: inline-block;
-  color: var(--color-iris-violet);
-  text-shadow: 0 0 24px rgba(146, 129, 247, 0.45);
-  font-weight: 700;
-  will-change: transform;
-}
-
-/* Tarjetas flotantes laterales que suben mientras haces scroll (0:06 - 0:15) */
-.floating-cards-container {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.float-card {
-  position: absolute;
-  width: 280px;
-  height: 170px;
-  background-color: var(--bg-tarjetas);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 6px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
-
-.float-card-left {
-  left: 4%;
-  top: 110%;
-}
-
-.float-card-right {
-  right: 4%;
-  top: 140%;
-  background-color: #6c636b;
-  color: #080808;
-}
-
-.float-card-header {
+.dala-scroll-cue-text {
   font-family: var(--font-mono);
-  display: flex;
-  justify-content: space-between;
   font-size: 9px;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  opacity: 0.7;
-}
-
-.float-card-title {
-  font-family: var(--font-condensed);
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-/* Botón final (0:16 - 0:17) */
-.final-cta-btn {
-  font-family: var(--font-mono);
-  margin-top: clamp(115px, 15vh, 145px);
-  padding: 12px 26px;
-  border: 1px solid rgba(212, 210, 210, 0.45);
-  border-radius: 3px;
-  background: transparent;
-  color: var(--texto-blanco);
-  font-size: 10px;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(15px);
-  z-index: 6;
-  pointer-events: auto;
-  transition: all 0.2s ease;
-}
-
-@media (max-width: 768px) {
-  .final-cta-btn {
-    margin-top: clamp(55px, 9vh, 75px);
-  }
-}
-
-.final-cta-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #ffffff;
-}
-
-/* ==================== MERCURY SCROLL-DRIVEN HERO & VIDEO SCRUB ==================== */
-.scroll-explore-capsule {
-  position: absolute;
-  bottom: 64px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  z-index: 10;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.scroll-explore-capsule span {
-  font-family: var(--font-mono);
-  font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-fog-text);
 }
 
-.capsule-pill {
-  width: 20px;
-  height: 34px;
-  border-radius: 20px;
-  border: 1px solid var(--color-border-smoke);
-  background: rgba(23, 23, 33, 0.4);
-  padding: 3px;
-  display: flex;
-  justify-content: center;
+.dala-scroll-cue-line {
+  width: 1px;
+  height: 18px;
+  background: linear-gradient(180deg, var(--dala-electric-iris), transparent);
+  animation: dalaScrollLinePulse 2s infinite ease-in-out;
 }
 
-.capsule-thumb {
-  width: 6px;
-  height: 8px;
-  border-radius: 6px;
-  background: var(--color-cobalt);
-  box-shadow: 0 0 8px var(--color-cobalt);
-  animation: scrollThumbPulse 2s infinite ease-in-out;
+@keyframes dalaScrollLinePulse {
+  0% { transform: scaleY(0.4); opacity: 0.3; }
+  50% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(0.4); opacity: 0.3; }
 }
 
-@keyframes scrollThumbPulse {
-  0% { transform: translateY(0); opacity: 0.9; }
-  50% { transform: translateY(14px); opacity: 0.3; }
-  100% { transform: translateY(0); opacity: 0.9; }
+/* ==================== 6. RESPONSIVE / ADAPTATIVO ==================== */
+@media (max-width: 1024px) {
+  .dala-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-top: 12px;
+  }
+  .dala-canvas-column {
+    height: 380px;
+    order: 2;
+  }
+  .dala-hero-content {
+    order: 1;
+  }
 }
 
-/* Scroll Revelations */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
-}
-
-[data-reveal].in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ==================== RESPONSIVE SCROLLYTELLING MOBILE (<= 768px) ==================== */
 @media (max-width: 768px) {
-  .hero-desktop-br {
-    display: none;
+  .dala-hero-section {
+    padding-top: calc(var(--nav-height, 58px) + 20px);
+    padding-bottom: 20px;
   }
-  .hero-layer {
-    padding: calc(var(--nav-height, 58px) + 20px) 18px 48px;
+  .dala-hero-container {
+    padding: 0 20px;
+  }
+  .dala-headline {
+    font-size: clamp(32px, 8.5vw, 46px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .dala-subheadline {
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin-bottom: 28px;
+  }
+  .dala-canvas-column {
+    height: 300px;
+  }
+  .dala-pillars-strip {
     justify-content: center;
-  }
-  .hero-eyebrow-badge {
-    font-size: 9.5px;
-    padding: 5px 12px;
-    margin-bottom: 14px;
-    letter-spacing: 0.06em;
-  }
-  .hero-headline {
-    font-size: clamp(22px, 6.8vw, 34px);
-    line-height: 1.14;
-    letter-spacing: -0.02em;
-  }
-  .hero-headline .italic-word {
-    font-size: 0.62em;
-    margin: 0 4px;
-    vertical-align: baseline;
-  }
-  .hero-subheadline {
-    font-size: 13px;
-    line-height: 1.48;
-    margin: 12px auto 20px;
-    max-width: 95%;
-    color: #9ca3af;
-  }
-  .hero-actions {
-    width: 100%;
-    flex-direction: row;
-    gap: 10px;
-    max-width: 380px;
-  }
-  .hero-btn-primary,
-  .hero-btn-secondary {
-    flex: 1;
-    justify-content: center;
-    padding: 11px 12px;
+    gap: 12px 18px;
     font-size: 10.5px;
-    min-height: 44px;
   }
-  .hero-scroll-cue {
-    bottom: 14px;
-    gap: 4px;
-  }
-  .hero-scroll-text {
-    font-size: 8.5px;
-    letter-spacing: 0.1em;
-  }
-  .scroll-cue-pill {
-    width: 16px;
-    height: 24px;
-  }
-  .scroll-cue-thumb {
-    width: 3px;
-    height: 6px;
-  }
-
-  /* Portal Layer en mobile */
-  .portal-line-top {
-    font-size: clamp(20px, 6.2vw, 56px);
-    letter-spacing: -0.04em;
-  }
-  .portal-line-bottom {
-    font-size: clamp(19px, 5.8vw, 52px);
-    letter-spacing: -0.04em;
-  }
-
-  /* Manifiesto y Palabras Moradas en Mobile */
-  .manifesto-layer {
-    padding: 24px 18px;
-  }
-  .manifesto-text {
-    font-size: clamp(16px, 4.4vw, 24px);
-    line-height: 1.35;
-    max-width: 100%;
-  }
-
-  /* Ocultar tarjetas flotantes colisionantes en el scrub del manifiesto en móvil */
-  .floating-cards-container {
-    display: none !important;
-  }
-
-  .scroll-explore-capsule {
-    bottom: 32px;
-  }
-}
-
-@media (max-width: 380px) {
-  .hero-actions {
-    flex-direction: column;
+  .dala-hero-actions {
+    gap: 14px;
     width: 100%;
   }
-  .hero-btn-primary,
-  .hero-btn-secondary {
+  .dala-btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+  .dala-link-secondary {
+    justify-content: center;
     width: 100%;
   }
 }

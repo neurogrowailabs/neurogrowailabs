@@ -1,6 +1,6 @@
 <!-- ================= BARRA DE NAVEGACIÓN SUPERIOR FIJA ================= -->
 <header class="top-nav" id="topNav">
-    <a href="#masterStage" class="nav-logo" title="NeuroGrow AI Labs">
+    <a href="#heroSection" class="nav-logo" title="NeuroGrow AI Labs">
         <span class="nav-logo-dot"></span>
         <span>NEUROGROW</span>
     </a>
@@ -48,8 +48,8 @@
 <!-- ================= MERCURY OBSERVATORY SCROLL RAIL ================= -->
 <nav class="scroll-rail" id="scrollRail" aria-label="Navegación de Secciones">
     <div class="rail-line"></div>
-    <a href="#masterStage" class="rail-dot active" data-target="masterStage" title="01. Intro Scrollytelling">
-        <span class="rail-tooltip">01. INTRO</span>
+    <a href="#heroSection" class="rail-dot active" data-target="heroSection" title="01. Inicio / Ecosistema">
+        <span class="rail-tooltip">01. INICIO</span>
     </a>
     <a href="#pipeline" class="rail-dot" data-target="pipeline" title="02. Pipeline IA & Datos">
         <span class="rail-tooltip">02. PIPELINE IA</span>
