@@ -54,6 +54,11 @@
     }
     </script>
 
+    <!-- Preload Tipografía Escultórica Dala (PPNeueMontreal) -->
+    <link rel="preload" href="{{ asset('fonts/PPNeueMontreal-Regular.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ asset('fonts/PPNeueMontreal-Light.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ asset('fonts/PPNeueMontreal-SemiBold.woff2') }}" as="font" type="font/woff2" crossorigin>
+
     <!-- Google Fonts: Inter + Playfair Display (Scrollytelling) + Bebas Neue / Barlow Condensed + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,6 +70,10 @@
     <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Three.js 3D Engine & Dala Brain -->
+    <script src="{{ asset('js/three.min.js') }}"></script>
+    <script src="{{ asset('js/dala-brain.js') }}?v={{ file_exists(public_path('js/dala-brain.js')) ? filemtime(public_path('js/dala-brain.js')) : time() }}" defer></script>
+
     <!-- GSAP & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -72,6 +81,8 @@
     @stack('styles')
 </head>
 <body>
+    {{-- Canvas 3D de Alto Rendimiento en el Vacío Absoluto (#000000) --}}
+    <canvas id="dala3dCanvas" style="position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none;"></canvas>
 
     @yield('content')
 
