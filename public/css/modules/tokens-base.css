@@ -4,82 +4,85 @@
    ========================================================================== */
 
 :root {
-  /* Colors — Pure Black Void System */
+  /* Dala Pure Black Void System */
   --color-void-base: #000000;
   --color-void-pure: #000000;
-  --color-elevated-surface: #181324;
-  --color-deep-panel: #1e192c;
-  --color-muted-shell: #292436;
-  --color-border-smoke: #353042;
-  --color-graphite-hairline: rgba(255, 255, 255, 0.1);
+  --color-elevated-surface: #050505;
+  --color-deep-panel: #000000;
+  --color-muted-shell: #0a0a0a;
+  --color-border-smoke: rgba(255, 255, 255, 0.08);
+  --color-graphite-hairline: rgba(255, 255, 255, 0.05);
 
-  /* Typography Colors */
+  /* Dala Typographic Scale & Hierarchy */
+  --color-bone-white: #ffffff;
   --color-cloud-white: #ffffff;
-  --color-ash-text: #d1cece;
-  --color-fog-text: #9d9797;
-  --color-bone-white: #f0f0f0;
-  --color-iron: #6e727a;
+  --color-ash-text: #9a9a9a;
+  --color-ash-gray: #9a9a9a;
+  --color-fog-text: #bdbdbd;
+  --color-silver-mist: #bdbdbd;
+  --color-iron: #71717a;
 
-  /* The Signature Kinetic Gradients */
-  --gradient-ember-cta: linear-gradient(30deg, rgb(253, 137, 37), rgb(255, 12, 0));
-  --color-ember-glow: rgba(253, 137, 37, 0.45);
-  --color-ember-scorch: #ff492c;
-  
-  --gradient-electric-current: linear-gradient(141deg, rgb(7, 122, 199), rgb(107, 33, 239));
-  --color-iris-violet: #9281f7;
-  --color-iris-violet-glow: #baa7ff;
+  /* Dala Chromatic Tension Tokens */
+  --color-electric-iris: #8052ff;
+  --color-electric-iris-hover: #966eff;
+  --color-iris-violet: #8052ff;
+  --color-iris-violet-glow: rgba(128, 82, 255, 0.35);
+  --color-saffron-spark: #ffb829;
+  --color-deep-verdant: #15846e;
+  --color-magenta-glow: #e056fd;
   --color-pulse-green: #3ad389;
 
-  /* Backlit Inset Hardware Shadows (n8n signature) */
-  --shadow-backlit-inset: rgba(255, 255, 255, 0.08) 0px 0px 0px 1px inset, rgba(255, 142, 93, 0.28) 0px 1px 0px 0px inset;
-  --shadow-node-active: 0 0 24px rgba(107, 33, 239, 0.4), 0 0 8px rgba(7, 122, 199, 0.3);
+  /* Kinetic Gradients (Restrained & Flat) */
+  --gradient-ember-cta: linear-gradient(135deg, #8052ff, #6b21ef);
+  --color-ember-glow: rgba(128, 82, 255, 0.35);
+  --color-ember-scorch: #ffb829;
+  --gradient-electric-current: linear-gradient(141deg, #8052ff, #15846e);
+
+  /* Dala Flat Elevation: Zero Shadows */
+  --shadow-backlit-inset: none;
+  --shadow-node-active: none;
 
   /* Typography */
-  --font-condensed: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+  --font-condensed: 'Inter', system-ui, -apple-system, sans-serif;
   --font-inter: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'Commit Mono', monospace;
 
-  /* Radii — 6px/8px Buttons & Inputs, 16px/24px Nodes & Cards, 64px Brutalist Pills */
-  --radius-buttons: 8px;
-  --radius-nodes: 14px;
-  --radius-badges: 64px;
-  --radius-inputs: 8px;
+  /* Dala Radii: 24px Cards/Panels, 9999px Pills */
+  --radius-buttons: 9999px;
+  --radius-nodes: 24px;
+  --radius-badges: 9999px;
+  --radius-inputs: 9999px;
   --radius-cards: 24px;
-  --radius-panels: 28px;
+  --radius-panels: 24px;
+  --radius-pill: 9999px;
+  --radius-pill-lg: 9999px;
 
-  /* Mercury Alpine Banking & Observatory Tokens */
-  --color-onyx-canvas: #171721;
-  --color-graphite-card: #1e1e2a;
-  --color-obsidian-button: #272735;
-  --color-cobalt: #5266eb;
-  --color-cobalt-glow: rgba(82, 102, 235, 0.4);
-  --color-ivory-text: #ededf3;
-  --color-mist-border: rgba(226, 227, 237, 0.12);
-  --color-slate-border: #70707d;
-  --radius-pill: 32px;
-  --radius-pill-lg: 40px;
+  /* Surfaces */
+  --color-onyx-canvas: #000000;
+  --color-graphite-card: #050505;
+  --color-obsidian-button: #8052ff;
+  --color-cobalt: #8052ff;
+  --color-cobalt-glow: rgba(128, 82, 255, 0.4);
+  --color-ivory-text: #ffffff;
+  --color-mist-border: rgba(255, 255, 255, 0.08);
+  --color-slate-border: rgba(255, 255, 255, 0.12);
 
   /* Layout */
-  --container-max: 1200px;
+  --container-max: 1280px;
   --ease: cubic-bezier(0.16, 0.84, 0.44, 1);
 
-  /* ==================== SCROLLYTELLING TOKENS (0:00 - 0:17) ==================== */
+  /* Global Section Canvas */
   --bg-principal: #000000;
   --bg-negro-profundo: #000000;
-  --bg-figuras-fondo: #171617;
-  --bg-tarjetas: #262525;
+  --bg-figuras-fondo: #000000;
+  --bg-tarjetas: #000000;
   
-  --bg-glass-portal: rgba(140, 138, 138, 0.55);
-  --blur-portal: 22px;
-  --texto-portal: #000000;
-
-  --texto-blanco: #fcfcfc;
-  --texto-gris-nav: #d4d2d2;
-  --color-acento: #9281f7; /* Morado Iris Violet insignia */
-  --color-acento-glow: rgba(146, 129, 247, 0.45);
+  --texto-blanco: #ffffff;
+  --texto-gris-nav: #9a9a9a;
+  --color-acento: #8052ff;
+  --color-acento-glow: rgba(128, 82, 255, 0.45);
 
   --font-principal: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-serif-italica: 'Playfair Display', serif; /* Exclusivo para la cortina de SOFTWARE BLINDaDO */
 }
 
 /* ==================== RESET ESTRUCTURAL & SCROLL ==================== */
@@ -175,46 +178,68 @@ a {
 }
 
 .btn-ember,
-.btn-accent {
-  background: var(--gradient-ember-cta);
+.btn-accent,
+.btn-cobalt {
+  background: var(--color-electric-iris);
   color: #ffffff !important;
+  font-family: var(--font-inter);
+  font-size: 13.5px;
   font-weight: 600;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  padding: 13px 28px;
   border: none;
-  box-shadow: 0 0 20px rgba(253, 137, 37, 0.35);
+  box-shadow: 0 4px 20px rgba(128, 82, 255, 0.35);
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-ember:hover,
-.btn-accent:hover {
+.btn-accent:hover,
+.btn-cobalt:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 32px rgba(253, 137, 37, 0.6), 0 0 12px rgba(255, 12, 0, 0.4);
+  filter: brightness(1.15);
+  box-shadow: 0 8px 30px rgba(128, 82, 255, 0.55);
 }
 
 .btn-secondary {
-  background: rgba(44, 40, 52, 0.35);
-  border: 1px solid var(--color-border-smoke);
-  color: var(--color-ash-text);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px;
+  color: var(--color-bone-white);
+  font-family: var(--font-inter);
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 12px 24px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .btn-secondary:hover {
   color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(44, 40, 52, 0.7);
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .btn-primary {
-  background: transparent;
-  border: 1px solid var(--color-border-smoke);
-  color: var(--color-cloud-white);
+  background: var(--color-electric-iris);
+  border: none;
+  border-radius: 9999px;
+  color: #ffffff;
+  font-family: var(--font-inter);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  padding: 13px 28px;
+  box-shadow: 0 4px 20px rgba(128, 82, 255, 0.35);
 }
 
 .btn-primary:hover {
-  border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.05);
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(128, 82, 255, 0.55);
 }
-
-.btn-cobalt {
-  background: var(--color-cobalt);
-  color: #ffffff !important;
   font-weight: 500;
   border: none;
   border-radius: var(--radius-pill);

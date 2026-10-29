@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, { passive: true });
 
-  // 2. DALA HERO: CONSTELACIÓN INTERACTIVA DE PARTÍCULAS (CANVAS)
+  // 2. DALA HERO: CONSTELACIÓN CEREBRAL 3D INTERACTIVA (BRAIN PARTICLE CLOUD)
   const canvas = document.getElementById("constellationCanvas");
   if (canvas) {
     const ctx = canvas.getContext("2d");
@@ -22,109 +22,260 @@ document.addEventListener("DOMContentLoaded", () => {
     let animationFrameId;
     let width = 0;
     let height = 0;
-    let mouse = { x: -9999, y: -9999, active: false };
+    let dpr = 1;
+
+    // Estado 3D y Física del Modelo Cerebral
+    let rotY = -0.15;
+    let rotX = 0.05;
+    let targetRotY = -0.15;
+    let targetRotX = 0.05;
 
     const resizeCanvas = () => {
       if (!wrapper) return;
       const rect = wrapper.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
       width = rect.width;
-      height = rect.height || 450;
+      height = rect.height || 540;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
-      ctx.scale(dpr, dpr);
     };
 
     window.addEventListener("resize", resizeCanvas, { passive: true });
     resizeCanvas();
 
-    // Paleta cromática Dala adaptada a NeuroGrow AI Labs
-    const colors = ["#8052ff", "#ffb829", "#15846e", "#e056fd", "#00d2d3", "#ffffff", "#9281f7"];
+    // Paleta cromática idéntica a Dala (Refero Design Style):
+    // Saffron Spark (ámbar), Electric Iris (violeta), Magenta, Cyan/Teal y Blanco Puro
+    const colorPalette = {
+      temporal: ["#ffb829", "#ffa000", "#ffc107", "#ff8f00"], // Ámbar cálido anterior/temporal
+      cortex: ["#8052ff", "#9281f7", "#a29bfe", "#706fd3"],   // Violeta iris en la corteza
+      crown: ["#e056fd", "#be2edd", "#ffffff", "#00d2d3"],    // Magenta, cyan y chispas blancas
+      cerebellum: ["#ffb829", "#8052ff", "#15846e", "#ffa000"] // Mezcla orgánica inferior
+    };
 
-    // Generar partículas triangulares y nodos de datos
-    const particleCount = window.innerWidth < 768 ? 120 : 210;
-    const particles = Array.from({ length: particleCount }, () => ({
-      x: width * 0.5 + (Math.random() - 0.5) * width * 0.75,
-      y: height * 0.5 + (Math.random() - 0.5) * height * 0.75,
-      size: Math.random() * 4.5 + 2,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      vx: (Math.random() - 0.5) * 0.45,
-      vy: (Math.random() - 0.5) * 0.45,
-      angle: Math.random() * Math.PI * 2,
-      va: (Math.random() - 0.5) * 0.025,
-      opacity: Math.random() * 0.65 + 0.35,
+    // Función anatómica para moldear la silueta lateral de un cerebro humano en 3D
+    function isInsideBrain(x, y, z) {
+      const dZ = z / 0.58;
+      if (dZ * dZ > 1) return false;
+      const depthFactor = Math.sqrt(Math.max(0, 1 - dZ * dZ));
+
+      // 1. Corteza Cerebral Superior
+      const cx = (x + 0.08) / 0.92;
+      const cy = (y + 0.16) / 0.72;
+      const inCortex = (cx * cx + cy * cy) <= (depthFactor * 1.08);
+
+      // 2. Lóbulo Frontal (Curva anterior izquierda)
+      const fx = (x + 0.58) / 0.42;
+      const fy = (y + 0.06) / 0.46;
+      const inFrontal = (fx * fx + fy * fy) <= (depthFactor * 1.02);
+
+      // 3. Lóbulo Temporal (Protuberancia inferior media)
+      const tx = (x + 0.18) / 0.44;
+      const ty = (y - 0.28) / 0.32;
+      const inTemporal = (tx * tx + ty * ty) <= (depthFactor * 0.95);
+
+      // 4. Cerebelo (Posterior inferior derecha)
+      const cbx = (x - 0.54) / 0.36;
+      const cby = (y - 0.44) / 0.28;
+      const inCerebellum = (cbx * cbx + cby * cby) <= (depthFactor * 0.9);
+
+      // 5. Fisura de Silvio (Cisura entre lóbulo frontal y temporal)
+      if (x > -0.55 && x < -0.15 && y > 0.08 && y < 0.22 && z > 0.15) {
+        if (Math.random() > 0.18) return false;
+      }
+
+      // 6. Tronco encefálico (descenso inferior central)
+      const sx = (x - 0.12) / 0.16;
+      const sy = (y - 0.65) / 0.26;
+      const inStem = (sx * sx + sy * sy) <= 0.65 && z * z < 0.1;
+
+      return inCortex || inFrontal || inTemporal || inCerebellum || inStem;
+    }
+
+    // Generador de partículas que dan forma al cerebro
+    const particleCount = window.innerWidth < 768 ? 950 : 1900;
+    const brainParticles = [];
+    let attempts = 0;
+
+    while (brainParticles.length < particleCount && attempts < particleCount * 30) {
+      attempts++;
+      const x = (Math.random() - 0.5) * 2.2;
+      const y = (Math.random() - 0.5) * 1.9;
+      const z = (Math.random() - 0.5) * 1.3;
+
+      if (isInsideBrain(x, y, z)) {
+        const gyriWave = Math.sin(x * 12) * Math.cos(y * 12) * Math.sin(z * 10);
+        
+        let palette;
+        if (y > 0.12 && x < 0.25) {
+          palette = colorPalette.temporal; // Ámbar intenso en temporal y base
+        } else if (y > 0.25 && x >= 0.25) {
+          palette = colorPalette.cerebellum; // Ámbar / violeta en cerebelo
+        } else if (y < -0.35) {
+          palette = colorPalette.crown; // Magenta / Cyan / Blanco en corona
+        } else {
+          palette = colorPalette.cortex; // Violeta iris en corteza
+        }
+
+        const color = palette[Math.floor(Math.random() * palette.length)];
+        const size = Math.random() * 3.2 + 1.8;
+
+        brainParticles.push({
+          x: x + gyriWave * 0.03,
+          y: y + gyriWave * 0.03,
+          z: z + gyriWave * 0.03,
+          color,
+          size,
+          angle: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.02,
+          phase: Math.random() * Math.PI * 2,
+          pulseSpeed: Math.random() * 0.03 + 0.015,
+        });
+      }
+    }
+
+    // Generar triángulos grandes flotantes en el espacio circundante (los wireframes del void)
+    const ambientCount = 20;
+    const ambientColors = ["#ffb829", "#8052ff", "#00d2d3", "#e056fd"];
+    const ambientTriangles = Array.from({ length: ambientCount }, () => ({
+      x: (Math.random() - 0.5) * 3.2,
+      y: (Math.random() - 0.5) * 2.8,
+      z: (Math.random() - 0.5) * 2.2,
+      size: Math.random() * 22 + 12,
+      color: ambientColors[Math.floor(Math.random() * ambientColors.length)],
+      angleX: Math.random() * Math.PI * 2,
+      angleY: Math.random() * Math.PI * 2,
+      angleZ: Math.random() * Math.PI * 2,
+      vx: (Math.random() - 0.5) * 0.002,
+      vy: (Math.random() - 0.5) * 0.002,
+      rotSpeedX: (Math.random() - 0.5) * 0.01,
+      rotSpeedY: (Math.random() - 0.5) * 0.01,
+      rotSpeedZ: (Math.random() - 0.5) * 0.01,
+      opacity: Math.random() * 0.45 + 0.25,
     }));
 
-    // Interacción suave con mouse / cursor sobre el canvas
-    canvas.addEventListener("mousemove", (e) => {
+    // Interacción con el cursor: inclinación tridimensional suave
+    window.addEventListener("mousemove", (e) => {
       const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      mouse.active = true;
+      const nx = (e.clientX - (rect.left + rect.width / 2)) / (window.innerWidth / 2);
+      const ny = (e.clientY - (rect.top + rect.height / 2)) / (window.innerHeight / 2);
+      targetRotY = -0.15 + nx * 0.45;
+      targetRotX = 0.05 + ny * 0.35;
     }, { passive: true });
 
-    canvas.addEventListener("mouseleave", () => {
-      mouse.active = false;
-    }, { passive: true });
-
+    // Loop de renderizado de alto rendimiento a 60 FPS
+    let time = 0;
     const render = () => {
+      ctx.save();
+      ctx.scale(dpr, dpr);
       ctx.clearRect(0, 0, width, height);
 
-      const centerX = width * 0.5;
-      const centerY = height * 0.5;
-      const maxRadius = Math.min(width, height) * 0.44;
+      time += 1;
 
-      // Dibujar partículas triangulares delineadas estilo Dala
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.angle += p.va;
+      // Amortiguación física suave
+      rotY += (targetRotY - rotY) * 0.04 + 0.0018;
+      rotX += (targetRotX - rotX) * 0.04;
 
-        // Atracción orbital hacia el centro de la mente/nube de datos
-        const dx = p.x - centerX;
-        const dy = p.y - centerY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
+      const cosY = Math.cos(rotY);
+      const sinY = Math.sin(rotY);
+      const cosX = Math.cos(rotX);
+      const sinX = Math.sin(rotX);
 
-        if (dist > maxRadius) {
-          p.vx -= dx * 0.0006;
-          p.vy -= dy * 0.0006;
+      const fov = 3.2;
+      const baseRadius = Math.min(width, height) * (window.innerWidth < 768 ? 0.38 : 0.44);
+      const centerX = width * 0.52;
+      const centerY = height * 0.48;
+
+      // 1. Dibujar triángulos flotantes del entorno (Wireframe Triangles)
+      for (let i = 0; i < ambientTriangles.length; i++) {
+        const at = ambientTriangles[i];
+        at.angleX += at.rotSpeedX;
+        at.angleY += at.rotSpeedY;
+        at.angleZ += at.rotSpeedZ;
+        at.x += at.vx;
+        at.y += at.vy;
+
+        if (Math.abs(at.x) > 1.8) at.vx *= -1;
+        if (Math.abs(at.y) > 1.6) at.vy *= -1;
+
+        const px = at.x * cosY + at.z * sinY;
+        const pz = -at.x * sinY + at.z * cosY;
+        const py = at.y * cosX - pz * sinX;
+        const pz2 = at.y * sinX + pz * cosX;
+
+        const pScale = fov / (fov + pz2 + 1.2);
+        if (pScale > 0) {
+          const sx = centerX + px * baseRadius * 1.25;
+          const sy = centerY + py * baseRadius * 1.25;
+          const sSize = at.size * pScale;
+
+          ctx.save();
+          ctx.translate(sx, sy);
+          ctx.rotate(at.angleZ);
+          ctx.beginPath();
+          ctx.moveTo(0, -sSize);
+          ctx.lineTo(sSize * 0.866, sSize * 0.5);
+          ctx.lineTo(-sSize * 0.866, sSize * 0.5);
+          ctx.closePath();
+          ctx.strokeStyle = at.color;
+          ctx.globalAlpha = at.opacity * Math.min(1, pScale);
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+          ctx.restore();
         }
+      }
 
-        // Repulsión sutil ante el cursor
-        if (mouse.active) {
-          const mdx = p.x - mouse.x;
-          const mdy = p.y - mouse.y;
-          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-          if (mdist < 100 && mdist > 0) {
-            const force = ((100 - mdist) / 100) * 0.4;
-            p.vx += (mdx / mdist) * force;
-            p.vy += (mdy / mdist) * force;
-          }
+      // 2. Proyección y Z-sorting de las partículas del cerebro
+      const projected = [];
+      for (let i = 0; i < brainParticles.length; i++) {
+        const p = brainParticles[i];
+        
+        const x1 = p.x * cosY + p.z * sinY;
+        const z1 = -p.x * sinY + p.z * cosY;
+        const y2 = p.y * cosX - z1 * sinX;
+        const z2 = p.y * sinX + z1 * cosX;
+
+        const scale = fov / (fov + z2);
+        if (scale > 0) {
+          projected.push({
+            p,
+            sx: centerX + x1 * baseRadius * scale,
+            sy: centerY + y2 * baseRadius * scale,
+            scale,
+            z: z2
+          });
         }
+      }
 
-        // Fricción suave para estabilidad visual
-        p.vx *= 0.992;
-        p.vy *= 0.992;
+      projected.sort((a, b) => a.z - b.z);
 
-        // Renderizado del triángulo hueco/vectorial
+      // 3. Renderizado de las partículas triangulares del cerebro
+      for (let i = 0; i < projected.length; i++) {
+        const item = projected[i];
+        const p = item.p;
+        p.angle += p.rotSpeed;
+
+        const size = p.size * item.scale;
+        const pulse = 0.4 + 0.6 * Math.sin(time * p.pulseSpeed + p.phase);
+        const alpha = Math.min(1, Math.max(0.18, pulse * (item.scale * 0.95)));
+
         ctx.save();
-        ctx.translate(p.x, p.y);
+        ctx.translate(item.sx, item.sy);
         ctx.rotate(p.angle);
         ctx.beginPath();
-        ctx.moveTo(0, -p.size);
-        ctx.lineTo(p.size * 0.866, p.size * 0.5);
-        ctx.lineTo(-p.size * 0.866, p.size * 0.5);
+        ctx.moveTo(0, -size);
+        ctx.lineTo(size * 0.866, size * 0.5);
+        ctx.lineTo(-size * 0.866, size * 0.5);
         ctx.closePath();
         ctx.strokeStyle = p.color;
-        ctx.globalAlpha = p.opacity;
-        ctx.lineWidth = 1.25;
+        ctx.globalAlpha = alpha;
+        ctx.lineWidth = 1.15;
         ctx.stroke();
         ctx.restore();
       }
 
+      ctx.restore();
       animationFrameId = requestAnimationFrame(render);
     };
 

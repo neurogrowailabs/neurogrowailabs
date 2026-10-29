@@ -1,7 +1,7 @@
 /* ==========================================================================
    NEUROGROW AI LABS — MÓDULO 02: DALA DARK VOID HERO & ESCENARIO MONOLÍTICO
    Inspirado en el Sistema de Diseño Dala: Vacío Absoluto, Escala Tipográfica,
-   Tensión Iris/Saffron (#8052ff / #ffb829) y Constelación Geométrica de Partículas.
+   Tensión Iris/Saffron (#8052ff / #ffb829) y Constelación Cerebral 3D de Partículas.
    Thermos Compliant: < 1,000 líneas
    ========================================================================== */
 
@@ -17,7 +17,115 @@
   --dala-magenta-glow: #e056fd;
 }
 
-/* ==================== 1. SECCIÓN DALA DARK VOID HERO ==================== */
+/* ==================== 1. BARRA DE NAVEGACIÓN DALA ==================== */
+.dala-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.25s ease;
+}
+
+.dala-nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dala-nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.dala-nav-logo-glyph {
+  width: 14px;
+  height: 16px;
+  background: linear-gradient(135deg, #15846e, #8052ff);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  display: inline-block;
+}
+
+.dala-nav-logo-text {
+  font-family: var(--font-inter);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.dala-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.dala-nav-link {
+  font-family: var(--font-inter);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: #9a9a9a;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.dala-nav-link:hover {
+  color: #ffffff;
+}
+
+.dala-nav-actions {
+  display: flex;
+  align-items: center;
+}
+
+.dala-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 22px;
+  border-radius: 9999px;
+  background-color: #8052ff;
+  color: #ffffff;
+  font-family: var(--font-inter);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 18px rgba(128, 82, 255, 0.35);
+}
+
+.dala-nav-cta:hover {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(128, 82, 255, 0.55);
+  color: #ffffff;
+}
+
+.dala-nav-arrow {
+  font-size: 11px;
+  transition: transform 0.2s ease;
+}
+
+.dala-nav-cta:hover .dala-nav-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* ==================== 2. SECCIÓN DALA DARK VOID HERO ==================== */
 .dala-hero-section {
   position: relative;
   width: 100%;
@@ -28,7 +136,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: calc(var(--nav-height, 68px) + 28px);
+  padding-top: 96px;
   padding-bottom: 24px;
   overflow: hidden;
   box-sizing: border-box;
@@ -48,13 +156,13 @@
 /* Composición Asimétrica de Dos Columnas */
 .dala-hero-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1.05fr 0.95fr;
   align-items: center;
-  gap: 48px;
+  gap: 32px;
   padding: 24px 0 16px;
 }
 
-/* ==================== 2. COLUMNA TIPOGRÁFICA ESCULTÓRICA ==================== */
+/* ==================== 3. COLUMNA TIPOGRÁFICA ESCULTÓRICA ==================== */
 .dala-hero-content {
   display: flex;
   flex-direction: column;
@@ -69,12 +177,12 @@
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
-  font-size: 12.5px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--dala-saffron-spark);
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
 .dala-eyebrow-dot {
@@ -91,36 +199,38 @@
   50% { opacity: 0.35; transform: scale(0.85); }
 }
 
-/* Titular Colosal a Peso 400 (Escultórico, NUNCA Bold 700) */
+/* Titular Colosal a Peso 400 (Escultórico en 3 líneas, tracking -0.04em) */
 .dala-headline {
   font-family: var(--font-inter);
   font-weight: 400;
-  font-size: clamp(38px, 5.2vw, 86px);
-  line-height: 0.98;
+  font-size: clamp(48px, 6.2vw, 98px);
+  line-height: 0.94;
   letter-spacing: -0.04em;
   color: var(--dala-bone-white);
-  margin: 0 0 24px 0;
-  max-width: 720px;
-  word-break: normal;
-  overflow-wrap: break-word;
+  margin: 0 0 28px 0;
+  max-width: 680px;
 }
 
-/* Cuerpo de Texto en Peso Ultra-Light (200 / 300) */
+.dala-headline .dala-line {
+  display: block;
+}
+
+/* Cuerpo de Texto en Peso Ultra-Light (200) */
 .dala-subheadline {
   font-family: var(--font-inter);
   font-weight: 200;
-  font-size: clamp(16px, 1.25vw, 19px);
-  line-height: 1.62;
-  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.6;
+  color: #bdbdbd;
   margin: 0 0 36px 0;
-  max-width: 560px;
+  max-width: 480px;
 }
 
 /* Acciones Principales */
 .dala-hero-actions {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 24px;
   flex-wrap: wrap;
 }
 
@@ -132,23 +242,23 @@
   background-color: var(--dala-electric-iris);
   color: #ffffff;
   border-radius: 9999px;
-  padding: 14px 28px;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
+  padding: 14px 32px;
+  font-family: var(--font-inter);
+  font-size: 13.5px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.025em;
   text-transform: uppercase;
   text-decoration: none;
   border: none;
   cursor: pointer;
-  box-shadow: 0 4px 24px rgba(128, 82, 255, 0.35);
+  box-shadow: 0 4px 24px rgba(128, 82, 255, 0.4);
   transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
 }
 
 .dala-btn-primary:hover {
   filter: brightness(1.15);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(128, 82, 255, 0.55);
+  box-shadow: 0 8px 34px rgba(128, 82, 255, 0.6);
   color: #ffffff;
 }
 
@@ -162,8 +272,8 @@
   align-items: center;
   gap: 6px;
   color: var(--dala-saffron-spark);
-  font-family: var(--font-mono);
-  font-size: 13px;
+  font-family: var(--font-inter);
+  font-size: 14px;
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -185,11 +295,11 @@
   transform: translateX(4px);
 }
 
-/* ==================== 3. COLUMNA LIENZO DE LA CONSTELACIÓN ==================== */
+/* ==================== 4. COLUMNA LIENZO DE LA CONSTELACIÓN ==================== */
 .dala-canvas-column {
   position: relative;
   width: 100%;
-  height: 480px;
+  height: 560px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -199,7 +309,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 420px;
+  min-height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -221,7 +331,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -241,7 +351,7 @@
   animation: dalaPulseBadge 1.5s infinite ease-in-out;
 }
 
-/* ==================== 4. FRANJA ARQUITECTÓNICA DE PILARES ==================== */
+/* ==================== 5. FRANJA ARQUITECTÓNICA DE PILARES ==================== */
 .dala-pillars-strip {
   display: flex;
   align-items: center;
@@ -275,7 +385,7 @@
   font-weight: 700;
 }
 
-/* ==================== 5. INDICADOR DE SCROLL SUTIL AL PIPELINE ==================== */
+/* ==================== 6. INDICADOR DE SCROLL SUTIL AL PIPELINE ==================== */
 .dala-scroll-cue {
   display: flex;
   flex-direction: column;
@@ -311,7 +421,7 @@
   100% { transform: scaleY(0.4); opacity: 0.3; }
 }
 
-/* ==================== 6. RESPONSIVE / ADAPTATIVO ==================== */
+/* ==================== 7. RESPONSIVE / ADAPTATIVO ==================== */
 @media (max-width: 1024px) {
   .dala-hero-grid {
     grid-template-columns: 1fr;
@@ -319,34 +429,37 @@
     padding-top: 12px;
   }
   .dala-canvas-column {
-    height: 380px;
+    height: 420px;
     order: 2;
   }
   .dala-hero-content {
     order: 1;
   }
+  .dala-nav-links {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
   .dala-hero-section {
-    padding-top: calc(var(--nav-height, 58px) + 20px);
+    padding-top: 80px;
     padding-bottom: 20px;
   }
   .dala-hero-container {
     padding: 0 20px;
   }
   .dala-headline {
-    font-size: clamp(32px, 8.5vw, 46px);
-    line-height: 1.05;
+    font-size: clamp(36px, 9vw, 54px);
+    line-height: 1;
     letter-spacing: -0.03em;
   }
   .dala-subheadline {
-    font-size: 14.5px;
+    font-size: 15px;
     line-height: 1.55;
     margin-bottom: 28px;
   }
   .dala-canvas-column {
-    height: 300px;
+    height: 340px;
   }
   .dala-pillars-strip {
     justify-content: center;

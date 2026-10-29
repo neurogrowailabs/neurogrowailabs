@@ -218,17 +218,17 @@
 /* ==================== 5. LIVE WORKFLOW CANVAS (EL MOTOR n8n) ==================== */
 .workflow-section {
   padding: 104px 0;
-  background: radial-gradient(circle at 50% 30%, rgba(27, 23, 40, 0.6) 0%, var(--color-void-base) 80%);
-  border-bottom: 1px solid var(--color-border-smoke);
+  background: #000000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   position: relative;
 }
 
 .workflow-stage {
   margin-top: 54px;
-  background: var(--color-deep-panel);
-  border: 1px solid var(--color-border-smoke);
-  box-shadow: var(--shadow-backlit-inset);
-  border-radius: var(--radius-panels);
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+  border-radius: 24px;
   padding: 44px 32px;
   position: relative;
   overflow: hidden;
@@ -381,8 +381,8 @@
 /* ==================== 6. VALIDADOR / TERMINAL EN VIVO ==================== */
 .finder-section {
   padding: 104px 0;
-  background: var(--color-void-base);
-  border-bottom: 1px solid var(--color-border-smoke);
+  background: #000000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .eyebrow {
@@ -390,36 +390,36 @@
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #fd8925;
-  padding: 6px 16px;
-  border-radius: var(--radius-badges);
-  border: 1px solid rgba(253, 137, 37, 0.3);
-  background: rgba(253, 137, 37, 0.06);
+  letter-spacing: 0.04em;
+  color: #ffb829;
+  padding: 0;
+  border: none;
+  background: transparent;
   margin-bottom: 16px;
+  font-weight: 600;
 }
 
 .section-head h2,
 .sticky-copy h2,
 .cta-final h2 {
-  font-family: var(--font-condensed);
+  font-family: var(--font-inter);
   text-transform: uppercase;
-  font-size: clamp(2.6rem, 5.8vw, 4.8rem);
-  font-weight: 700;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
+  font-size: clamp(34px, 4.6vw, 68px);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
   color: var(--color-cloud-white);
 }
 
 .finder-card {
   max-width: 840px;
   margin: 44px auto 0;
-  background: var(--color-deep-panel);
-  border: 1px solid var(--color-border-smoke);
-  box-shadow: var(--shadow-backlit-inset);
-  border-radius: var(--radius-cards);
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+  border-radius: 24px;
   padding: 36px;
 }
 
@@ -442,20 +442,20 @@
 
 .field input {
   width: 100%;
-  padding: 12px 16px;
-  background: var(--color-void-base);
-  border: 1px solid var(--color-border-smoke);
-  border-radius: var(--radius-inputs);
+  padding: 12px 20px;
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
   color: var(--color-cloud-white);
-  font-family: var(--font-mono);
-  font-size: 13px;
+  font-family: var(--font-inter);
+  font-size: 13.5px;
   outline: none;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .field input:focus {
-  border-color: #fd8925;
-  box-shadow: 0 0 0 1px #fd8925;
+  border-color: #8052ff;
+  box-shadow: 0 0 0 1px #8052ff;
 }
 
 .finder-result {
@@ -562,8 +562,8 @@
 /* ==================== 7. METODOLOGÍA STICKY ==================== */
 .sticky-section {
   padding: 104px 0;
-  background: var(--color-void-base);
-  border-bottom: 1px solid var(--color-border-smoke);
+  background: #000000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .sticky-layout {
@@ -579,46 +579,48 @@
 }
 
 .step-card {
-  background: var(--color-elevated-surface);
-  border: 1px solid var(--color-border-smoke);
-  box-shadow: var(--shadow-backlit-inset);
-  border-radius: var(--radius-cards);
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+  border-radius: 24px;
   padding: 32px;
   margin-bottom: 20px;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color 0.2s ease;
 }
 
 .step-card:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  background: var(--color-deep-panel);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .step-card.active {
-  border-color: rgba(253, 137, 37, 0.5);
+  border-color: #8052ff;
 }
 
 .step-num {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: #fd8925;
+  color: #ffb829;
   display: block;
   margin-bottom: 8px;
   letter-spacing: 0.08em;
 }
 
 .step-card h3 {
-  font-family: var(--font-condensed);
+  font-family: var(--font-inter);
   text-transform: uppercase;
-  font-size: 1.85rem;
-  line-height: 0.95;
-  letter-spacing: -0.015em;
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   color: var(--color-cloud-white);
   margin-bottom: 10px;
 }
 
 .step-card p {
-  color: var(--color-ash-text);
-  font-size: 14px;
+  color: #bdbdbd;
+  font-family: var(--font-inter);
+  font-weight: 200;
+  font-size: 15px;
   line-height: 1.6;
 }
 
@@ -649,10 +651,11 @@
   display: block;
 }
 
-/* ==================== 8. SERVICIOS EN CARDS RETROILUMINADAS ==================== */
+/* ==================== 8. SERVICIOS ==================== */
 .services-section {
   padding: 104px 0;
-  background: var(--color-void-base);
+  background: #000000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .services-grid {
@@ -663,30 +666,29 @@
 }
 
 .service-card {
-  background: var(--color-elevated-surface);
-  border: 1px solid var(--color-border-smoke);
-  box-shadow: var(--shadow-backlit-inset);
-  border-radius: var(--radius-cards);
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
+  border-radius: 24px;
   padding: 36px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.2s var(--ease);
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .service-card:hover {
-  border-color: rgba(255, 255, 255, 0.25);
-  background: var(--color-deep-panel);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
 }
 
 .service-card .badge {
   display: inline-block;
   padding: 4px 12px;
-  border-radius: var(--radius-badges);
-  border: 1px solid rgba(253, 137, 37, 0.3);
-  background: rgba(253, 137, 37, 0.08);
-  color: #fd8925;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 184, 41, 0.3);
+  background: rgba(255, 184, 41, 0.08);
+  color: #ffb829;
   font-family: var(--font-mono);
   font-size: 11px;
   font-weight: 500;
@@ -695,13 +697,13 @@
 }
 
 .service-card h3 {
-  font-family: var(--font-condensed);
+  font-family: var(--font-inter);
   text-transform: uppercase;
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.55rem;
+  font-weight: 400;
   color: var(--color-cloud-white);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
 }
 
 .checklist {
@@ -757,25 +759,22 @@
 }
 
 .portfolio-card {
-  background: var(--color-elevated-surface);
-  border: 1px solid var(--color-border-smoke);
-  border-radius: var(--radius-panels);
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: none;
   padding: 36px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease);
   position: relative;
   overflow: hidden;
 }
 
-.portfolio-card.card-miveci::before {
-  background: linear-gradient(90deg, transparent, #fd8925, transparent);
-}
-
 .portfolio-card.card-miveci:hover {
-  border-color: rgba(253, 137, 37, 0.45);
-  box-shadow: 0 16px 40px rgba(253, 137, 37, 0.14);
+  border-color: #8052ff;
+  transform: translateY(-2px);
 }
 
 .portfolio-card::before {

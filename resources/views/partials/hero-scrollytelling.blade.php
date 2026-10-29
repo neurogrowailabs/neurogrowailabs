@@ -12,17 +12,19 @@
                 {{-- Micro-etiqueta superior en Saffron Spark (#ffb829) --}}
                 <div class="dala-eyebrow">
                     <span class="dala-eyebrow-dot"></span>
-                    <span>NEUROGROW AI LABS · EST. 2026</span>
+                    <span>INGENIERÍA DE SOFTWARE &amp; IA APLICADA · EST. 2026</span>
                 </div>
 
-                {{-- Titular Colosal a Peso 400 (Escultórico, tracking -0.04em) --}}
+                {{-- Titular Colosal a Peso 400 (Escultórico en 3 líneas, tracking -0.04em) --}}
                 <h1 class="dala-headline">
-                    Ecosistemas Inteligentes para las Empresas del Mañana.
+                    <span class="dala-line">Ecosistemas</span>
+                    <span class="dala-line">inteligentes</span>
+                    <span class="dala-line">del mañana.</span>
                 </h1>
 
-                {{-- Cuerpo de Texto Etéreo en Peso Ultra-Light (200 / 300) --}}
+                {{-- Cuerpo de Texto Etéreo en Peso Ultra-Light (200) --}}
                 <p class="dala-subheadline">
-                    Ingeniería de software de alta concurrencia, inteligencia artificial aplicada y analítica experimental para organizaciones que demandan escalabilidad determinista, latencias mínimas y rigor matemático.
+                    Ingeniería de software de alta concurrencia, inteligencia artificial aplicada y diseño experimental de datos. Desarrollamos infraestructuras de misión crítica donde el rigor matemático y la escalabilidad determinista sustituyen a la improvisación.
                 </p>
 
                 {{-- Botón Píldora Violeta (#8052ff) & Enlace Ámbar Saffron (#ffb829) --}}
@@ -32,21 +34,21 @@
                         <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
                     </a>
                     <a href="#pipeline" class="dala-link-secondary">
-                        <span>Explorar pipeline en vivo</span>
+                        <span>Explorar labs &amp; pipeline</span>
                         <span class="dala-arrow">→</span>
                     </a>
                 </div>
             </div>
 
-            {{-- Columna Derecha: El Lienzo Interactivo de la Constelación --}}
+            {{-- Columna Derecha: El Lienzo de la Constelación Cerebral (Brain Particle Cloud) --}}
             <div class="dala-canvas-column">
                 <div class="dala-canvas-wrapper" id="canvasWrapper">
-                    <canvas id="constellationCanvas" class="dala-canvas" aria-label="Constelación interactiva de datos y redes neuronales"></canvas>
+                    <canvas id="constellationCanvas" class="dala-canvas" aria-label="Constelación interactiva en forma de cerebro humano con miles de partículas triangulares de colores"></canvas>
                     
                     {{-- Mini badge de telemetría flotante minimalista --}}
                     <div class="dala-canvas-telemetry">
                         <span class="telemetry-pulse"></span>
-                        <span class="telemetry-label">NEURAL MESH · 60 FPS LIVE</span>
+                        <span class="telemetry-label">NEURAL BRAIN MESH · 60 FPS LIVE</span>
                     </div>
                 </div>
             </div>
