@@ -216,20 +216,41 @@
 
         /* ---------- Encuadre responsivo (sin recortes) ---------- */
         let brainScale = 3.42;
+        const frame = { cx: 0, cy: 0, pxPerUnit: 1, screenR: 100 };
         function applyFrame() {
             const halfX = HALF_X();
             const isDesktop = window.innerWidth >= 1024;
             const cx = isDesktop ? halfX * 0.50 : 0;
-            const rx = cx > 0 ? (halfX - cx) * 0.78 : halfX * 0.62;
-            const targetR = Math.min(0.60 * HALF_Y, Math.max(0.9, rx));
+            const rx = cx > 0 ? (halfX - cx) * 0.80 : halfX * 0.66;
+            const targetR = Math.min(0.72 * HALF_Y, Math.max(0.9, rx));
             brainScale = targetR / 0.92;
 
-            const cy = isDesktop ? 0.05 : -0.85;
+            const cy = isDesktop ? 0.02 : -0.85;
             brainGroup.scale.setScalar(brainScale);
             brainGroup.position.set(cx, cy, 0);
             brainGroup.rotation.set(0.08, -0.58, -0.04);
+
+            // Metricas de pantalla para el hover circular sobre el cerebro
+            const pxPerUnit = (window.innerHeight / 2) / HALF_Y;
+            frame.cx = cx; frame.cy = cy; frame.pxPerUnit = pxPerUnit;
+            frame.screenR = brainScale * 0.95 * pxPerUnit;
         }
         applyFrame();
+
+        /* ---------- Hover frontal + parallax por puntero ---------- */
+        const hover = { cur: 0, target: 0 };
+        const ptr = { x: -1, y: -1, parX: 0, parY: 0, inside: false };
+
+        function updateHover() {
+            if (ptr.inside === false || scrollSmooth > 0.55) {
+                hover.target = 0;
+                return;
+            }
+            const centerX = window.innerWidth / 2 + frame.cx * frame.pxPerUnit;
+            const centerY = window.innerHeight / 2 - frame.cy * frame.pxPerUnit;
+            const dx = ptr.x - centerX, dy = ptr.y - centerY;
+            hover.target = (dx*dx + dy*dy <= frame.screenR * frame.screenR * 1.18) ? 1 : 0;
+        }
 
         /* ---------- Prisms ambientales (2 capas tenues) ---------- */
         const ambientPalette = [
@@ -280,20 +301,40 @@
 
         const dummy = new THREE.Object3D();
 
-        /* ---------- Interaccion ---------- */
-        let targetRotY = -0.58, targetRotX = 0.08;
+        /* ---------- Interaccion: parallax + hover frontal + tactil ---------- */
         if (!REDUCED_MOTION) {
             window.addEventListener('mousemove', (e) => {
+                ptr.x = e.clientX; ptr.y = e.clientY; ptr.inside = true;
                 const mx = (e.clientX / window.innerWidth - 0.5) * 2;
                 const my = (e.clientY / window.innerHeight - 0.5) * 2;
-                targetRotY = -0.58 + mx * 0.10;
-                targetRotX = 0.08 - my * 0.08;
+                ptr.parX = -my * 0.16;
+                ptr.parY = mx * 0.16;
+                updateHover();
             }, { passive: true });
+            document.addEventListener('mouseleave', () => {
+                ptr.inside = false;
+                hover.target = 0;
+            });
         }
+
+        // Tactil: pasar el dedo por encima del cerebro tambien gira el frente
+        const applyTouch = (e) => {
+            if (!e.touches || !e.touches.length) return;
+            ptr.x = e.touches[0].clientX; ptr.y = e.touches[0].clientY;
+            ptr.inside = true;
+            updateHover();
+        };
+        window.addEventListener('touchmove', applyTouch, { passive: true });
+        window.addEventListener('touchstart', applyTouch, { passive: true });
+        window.addEventListener('touchend', () => {
+            ptr.inside = false;
+            hover.target = 0;
+        }, { passive: true });
 
         let scrollTarget = 0, scrollSmooth = 0;
         const readScroll = () => {
             scrollTarget = Math.min(Math.max(window.scrollY / window.innerHeight, 0), 2.2);
+            updateHover();
         };
         readScroll();
         window.addEventListener('scroll', readScroll, { passive: true });
@@ -309,14 +350,28 @@
 
             if (scrollSmooth >= 1.85) return; // Fuera de vista: dormir el render
 
-            if (!REDUCED_MOTION) {
-                const idleY = Math.sin(t * 0.25) * 0.03;
-                const idleX = Math.cos(t * 0.20) * 0.02;
-                brainGroup.rotation.y += (targetRotY + idleY - brainGroup.rotation.y) * 0.06;
-                brainGroup.rotation.x += (targetRotX + idleX - brainGroup.rotation.x) * 0.06;
+            // Transicion frontal <-> suave por hover: hover.cur 0..1
+            hover.cur += (hover.target - hover.cur) * 0.085;
+            const hb = hover.cur;
 
-                const pulse = 1.0 + Math.sin(t * 0.9) * 0.012;
+            if (!REDUCED_MOTION) {
+                // Moto vivo: amplitudes crecen cuando el cerebro esta observado
+                const idleAmpY = 0.045 + 0.040 * hb;
+                const idleAmpX = 0.030 + 0.025 * hb;
+                const idleY = Math.sin(t * 0.25) * idleAmpY;
+                const idleX = Math.cos(t * 0.22) * idleAmpX;
+
+                // Vista frontal al observar: giro de perfil (ry -0.58) al frente (ry 0.02)
+                const ry = -0.58 + 0.60 * hb + ptr.parY * (0.55 + 0.45 * hb);
+                const rx = 0.08 - 0.13 * hb + ptr.parX * (0.55 + 0.45 * hb);
+                brainGroup.rotation.y += (ry + idleY - brainGroup.rotation.y) * 0.075;
+                brainGroup.rotation.x += (rx + idleX - brainGroup.rotation.x) * 0.075;
+
+                const pulse = 1.0 + Math.sin(t * 0.9) * (0.014 + 0.006 * hb);
                 brainGroup.scale.setScalar(brainScale * pulse);
+
+                // Levitacion suave continua
+                brainGroup.position.y = frame.cy + Math.sin(t * 0.5) * (0.11 + 0.05 * hb);
             }
 
             // Prismas ambientales: drift + fade progresivo junto con el cerebro
