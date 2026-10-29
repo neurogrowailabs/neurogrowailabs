@@ -39,7 +39,7 @@ Reglas estrictas de calidad y mantenibilidad:
 
 ## Estado Actual del Proyecto (BioCoreXStack Software Labs)
 
-- **Ubicación:** `/Users/ricardo2499/Documents/BioDevCoreX SoftwareLab`
+- **Ubicación:** `/Users/ricardo2499/Documents/NeuroGrow AI Labs`
 - **Nombre de Marca Unificado:** BioCoreXStack Software Labs (`@biocorexstack` en redes).
 - **Estética Global:** Fondo negro profundo (`#000000`), estética técnica oscura inspirada en Mercury / Slash / Resend.
 - **Scrollytelling:**
