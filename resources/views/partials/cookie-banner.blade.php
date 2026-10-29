@@ -319,6 +319,7 @@
             timestamp: new Date().toISOString(),
             version: 'v1.0-neurogrowailabs'
         }));
+        window.dispatchEvent(new CustomEvent('cookieConsentUpdated', { detail: data }));
         if (banner) {
             banner.style.opacity = '0';
             banner.style.transition = 'opacity 0.3s ease';

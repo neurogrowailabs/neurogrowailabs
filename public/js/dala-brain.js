@@ -244,20 +244,37 @@
             const halfX = hy * (W / H);
             const worldPerPx = (2 * hy) / H;
 
-            // Centro: integrado en la columna de texto ("entre las palabras")
-            const cx = isDesktop ? halfX * 0.44 : 0;
-            const cy = isDesktop ? -0.10 : -0.62;
+            // Centro y escala: en desktop a la derecha; en movil/tablet anclado a la columna inferior sin tapar texto
+            let cx = 0;
+            let cy = -0.10;
 
-            // Radio maximo con el cerebro ENTERO a esa profundidad
-            const topLimit = hy - TOP_CLEAR * worldPerPx;
-            const botLimit = hy - BOT_CLEAR * worldPerPx;
-            const R = Math.min(
-                0.78 * hy,
-                topLimit - cy,
-                cy + botLimit,
-                isDesktop ? (halfX - cx) * 0.85 : halfX * 0.72
-            );
-            brainScale = Math.max(1.0, R / 0.92);
+            if (isDesktop) {
+                cx = halfX * 0.44;
+                cy = -0.10;
+                const topLimit = hy - TOP_CLEAR * worldPerPx;
+                const botLimit = hy - BOT_CLEAR * worldPerPx;
+                const R = Math.min(
+                    0.78 * hy,
+                    topLimit - cy,
+                    cy + botLimit,
+                    (halfX - cx) * 0.85
+                );
+                brainScale = Math.max(1.0, R / 0.92);
+            } else {
+                cx = 0;
+                const canvasWrapper = document.getElementById('canvasWrapper');
+                if (canvasWrapper) {
+                    const rect = canvasWrapper.getBoundingClientRect();
+                    const rectCenterY = rect.top + rect.height * 0.5 + window.scrollY;
+                    const offsetPxY = (H * 0.5) - rectCenterY;
+                    cy = offsetPxY * worldPerPx;
+                    cy = Math.max(-2.6, Math.min(-0.85, cy));
+                } else {
+                    cy = -1.65;
+                }
+                const maxMobileR = Math.min(0.55 * hy, halfX * 0.85);
+                brainScale = Math.max(1.0, maxMobileR / 0.92);
+            }
 
             brainGroup.scale.setScalar(brainScale);
             brainGroup.position.set(cx, cy, brainZ);

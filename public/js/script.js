@@ -157,6 +157,9 @@ document.addEventListener("DOMContentLoaded", () => {
         })
       }).catch(err => console.warn('Audit Consent Log:', err));
 
+      const hpField = document.getElementById('finderHoneypot');
+      const honeypotVal = hpField ? hpField.value : '';
+
       const response = await fetch('/api/diagnostico', {
         method: 'POST',
         headers: {
@@ -164,7 +167,11 @@ document.addEventListener("DOMContentLoaded", () => {
           'Accept': 'application/json',
           'X-CSRF-TOKEN': csrfToken
         },
-        body: JSON.stringify({ category, specification })
+        body: JSON.stringify({
+          category,
+          specification,
+          _hp_company_field: honeypotVal
+        })
       });
 
       const data = await response.json();

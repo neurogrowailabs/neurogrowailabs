@@ -8,6 +8,12 @@
         </div>
 
         <div class="finder-card" data-reveal>
+            {{-- Campo Trampa Oculto Anti-Spam / Anti-Bots (Honeypot) --}}
+            <div style="position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none;" aria-hidden="true">
+                <label for="finderHoneypot">Do not fill this field</label>
+                <input type="text" id="finderHoneypot" name="_hp_company_field" tabindex="-1" autocomplete="off">
+            </div>
+
             <div class="finder-inputs">
                 <div class="field">
                     <label for="inputPrimary">Área / Tecnología</label>

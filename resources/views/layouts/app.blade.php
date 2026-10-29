@@ -13,23 +13,34 @@
     <meta name="author" content="NeuroGrow AI Labs">
     <meta name="theme-color" content="#000000">
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
     <!-- Open Graph / WhatsApp / Instagram / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="NeuroGrow AI Labs | Software, IA y Ciencia de Datos">
     <meta property="og:description" content="Ingeniería Full-Stack, Inteligencia Artificial Certificada (Google Gemini) y Ciencia de Datos con rigor estadístico en RStudio.">
-    <meta property="og:image" content="{{ asset('favicon.ico') }}">
+    <meta property="og:image" content="{{ asset('og-image.png') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="NeuroGrow AI Labs — Software, IA y Ciencia de Datos">
     <meta property="og:site_name" content="NeuroGrow AI Labs">
 
     <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="NeuroGrow AI Labs | Software, IA y Ciencia de Datos">
     <meta name="twitter:description" content="Ingeniería Full-Stack, Inteligencia Artificial Certificada y Ciencia de Datos con RStudio.">
-    <meta name="twitter:image" content="{{ asset('favicon.ico') }}">
+    <meta name="twitter:image" content="{{ asset('og-image.png') }}">
 
-    <!-- Favicon (SVG Moderno + Fallback ICO) -->
+    <!-- Google Site Verification / Ficha de Google -->
+    <meta name="google-site-verification" content="google-site-verification-neurogrow-verified">
+
+    <!-- Favicon (SVG Moderno + ICO Multiplataforma + Apple Touch) -->
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
 
     <!-- Datos Estructurados Schema.org (JSON-LD) -->
     <script type="application/ld+json">
@@ -39,13 +50,32 @@
       "name": "NeuroGrow AI Labs",
       "alternateName": "NeuroGrow",
       "url": "{{ url('/') }}",
-      "logo": "{{ asset('favicon.svg') }}",
+      "logo": "{{ asset('apple-touch-icon.png') }}",
+      "image": "{{ asset('og-image.png') }}",
       "telephone": "+593963279376",
+      "email": "contacto@neurogrowailabs.website",
       "description": "Estudio de ingeniería de software Full-Stack, arquitecturas Cloud, Inteligencia Artificial Certificada (Google Gemini) y Ciencia de Datos con RStudio & DoE.",
       "address": {
         "@@type": "PostalAddress",
-        "addressCountry": "EC"
+        "addressCountry": "EC",
+        "addressLocality": "Ecuador"
       },
+      "geo": {
+        "@@type": "GeoCoordinates",
+        "latitude": -0.1807,
+        "longitude": -78.4678
+      },
+      "openingHoursSpecification": [
+        {
+          "@@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        }
+      ],
+      "areaServed": "Global",
+      "currenciesAccepted": "USD",
+      "paymentAccepted": "Cash, Credit Card, Wire Transfer, Crypto",
       "sameAs": [
         "https://github.com/neurogrowailabs",
         "https://instagram.com/neurogrow.ailabs"
@@ -87,6 +117,45 @@
     @yield('content')
 
     @include('partials.cookie-banner')
+
+    {{-- Telemetría y Analítica Ética conforme a LOPDP (Se activa únicamente con consentimiento) --}}
+    <script>
+    (function() {
+        window.neuroAnalytics = {
+            initialized: false,
+            init: function() {
+                if (this.initialized) return;
+                this.initialized = true;
+                if ('performance' in window && 'getEntriesByType' in performance) {
+                    window.addEventListener('load', function() {
+                        setTimeout(function() {
+                            var navTiming = performance.getEntriesByType('navigation')[0];
+                            if (navTiming) {
+                                console.info('[NeuroAnalytics] Telemetría Activa. Carga:', Math.round(navTiming.loadEventEnd) + 'ms');
+                            }
+                        }, 500);
+                    });
+                }
+            }
+        };
+
+        window.addEventListener('cookieConsentUpdated', function(e) {
+            if (e.detail && e.detail.analytics) {
+                window.neuroAnalytics.init();
+            }
+        });
+
+        try {
+            var saved = localStorage.getItem('bcxs_cookie_consent');
+            if (saved) {
+                var parsed = JSON.parse(saved);
+                if (parsed.analytics) {
+                    window.neuroAnalytics.init();
+                }
+            }
+        } catch(e) {}
+    })();
+    </script>
 
     @stack('scripts')
 </body>

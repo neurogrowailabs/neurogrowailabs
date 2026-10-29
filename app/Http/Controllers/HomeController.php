@@ -157,9 +157,18 @@ class HomeController extends Controller
 
     public function diagnostico(Request $request, ArchitectureDiagnosticService $diagnosticService)
     {
+        // Trampa Honeypot Anti-Spam: si el bot llena este campo oculto, rechazar inmediatamente
+        if ($request->filled('_hp_company_field')) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Solicitud rechazada por filtros de seguridad.'
+            ], 422);
+        }
+
         $validated = $request->validate([
             'category' => 'required|string|max:150',
             'specification' => 'nullable|string|max:500',
+            '_hp_company_field' => 'nullable|string',
         ]);
 
         $result = $diagnosticService->generate(

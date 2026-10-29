@@ -444,41 +444,78 @@
 }
 
 @media (max-width: 768px) {
+  .dala-nav-inner {
+    padding: 12px 20px;
+  }
   .dala-hero-section {
-    padding-top: 80px;
-    padding-bottom: 20px;
+    padding-top: 84px;
+    padding-bottom: 24px;
+    min-height: auto;
   }
   .dala-hero-container {
-    padding: 0 20px;
+    padding: 0 18px;
+  }
+  .dala-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    white-space: normal;
+    line-height: 1.4;
+    max-width: 100%;
   }
   .dala-headline {
-    font-size: clamp(36px, 9vw, 54px);
-    line-height: 1;
-    letter-spacing: -0.03em;
+    font-size: clamp(34px, 8.8vw, 50px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
   }
   .dala-subheadline {
     font-size: 15px;
     line-height: 1.55;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
   .dala-canvas-column {
-    height: 340px;
+    height: 320px;
+    margin-top: 10px;
   }
   .dala-pillars-strip {
     justify-content: center;
-    gap: 12px 18px;
-    font-size: 10.5px;
+    gap: 10px 16px;
+    font-size: 10px;
+    margin-top: 24px;
+    padding-top: 18px;
   }
   .dala-hero-actions {
-    gap: 14px;
+    gap: 12px;
     width: 100%;
+    flex-direction: column;
   }
   .dala-btn-primary {
     width: 100%;
     justify-content: center;
+    min-height: 48px;
   }
   .dala-link-secondary {
     justify-content: center;
     width: 100%;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dala-nav-inner {
+    padding: 10px 16px;
+  }
+  .dala-nav-cta {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+  .dala-headline {
+    font-size: clamp(30px, 8.4vw, 42px);
+  }
+  .dala-canvas-column {
+    height: 270px;
+  }
+  .dala-pillars-strip {
+    gap: 8px 12px;
+    font-size: 9.5px;
   }
 }

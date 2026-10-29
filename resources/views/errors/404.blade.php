@@ -28,7 +28,7 @@
         </div>
 
         <div style="margin-top: 36px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-family: var(--font-mono); font-size: 10px; color: #6b6974; letter-spacing: 0.05em;">
-            BIOCOREXSTACK SOFTWARE LABS · INFRAESTRUCTURA CLOUD SEGURA
+            NEUROGROW AI LABS · INFRAESTRUCTURA CLOUD SEGURA
         </div>
     </div>
 </main>
