@@ -12,7 +12,7 @@ class HomeController extends Controller
         $siteName = 'NeuroGrow AI Labs';
         $siteInitials = 'NGAI';
         $pageTitle = 'NeuroGrow AI Labs — Software, IA & Ciencia de Datos';
-        $whatsappNumber = '593983267552';
+        $whatsappNumber = '593963279376';
 
         $whatsappGlobal = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola NeuroGrow AI Labs, quiero consultar sobre sus servicios de Software, IA y Datos.');
         $whatsappConsultar = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola NeuroGrow AI Labs, quiero consultar sobre un proyecto técnico.');

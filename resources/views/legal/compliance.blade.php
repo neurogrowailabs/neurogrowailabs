@@ -297,8 +297,8 @@
                 <a href="mailto:legal@neurogrowailabs.website" class="legal-action-btn">
                     <i class="fa-solid fa-envelope" aria-hidden="true"></i> <span>legal@neurogrowailabs.website</span>
                 </a>
-                <a href="{{ $whatsappGlobal ?? 'https://wa.me/593983267552' }}" target="_blank" rel="noopener" class="legal-action-btn" style="border-color: rgba(58, 211, 137, 0.4); color: #3ad389;">
-                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp Legal (+593 98 326 7552)</span>
+                <a href="{{ $whatsappGlobal ?? 'https://wa.me/593963279376' }}" target="_blank" rel="noopener" class="legal-action-btn" style="border-color: rgba(58, 211, 137, 0.4); color: #3ad389;">
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> <span>WhatsApp Legal (+593 96 327 9376)</span>
                 </a>
             </div>
         </div>

@@ -56,7 +56,7 @@ class ArchitectureDiagnosticService
         $selectedArchetype = $this->resolveArchetype($catLower);
 
         $specText = !empty($cleanSpecification) ? $cleanSpecification : 'Evaluación general del proyecto';
-        $whatsappNumber = '593983267552';
+        $whatsappNumber = '593963279376';
 
         $waMessage = "Hola NeuroGrow AI Labs, realicé un Diagnóstico Técnico en su web:\n\n"
             . "📌 *Área / Enfoque:* {$cleanCategory}\n"

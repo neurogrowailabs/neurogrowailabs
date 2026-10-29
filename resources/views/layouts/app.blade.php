@@ -40,14 +40,15 @@
       "alternateName": "NeuroGrow",
       "url": "{{ url('/') }}",
       "logo": "{{ asset('favicon.svg') }}",
-      "telephone": "+593983267552",
+      "telephone": "+593963279376",
       "description": "Estudio de ingeniería de software Full-Stack, arquitecturas Cloud, Inteligencia Artificial Certificada (Google Gemini) y Ciencia de Datos con RStudio & DoE.",
       "address": {
         "@@type": "PostalAddress",
         "addressCountry": "EC"
       },
       "sameAs": [
-        "https://github.com/neurogrowailabs"
+        "https://github.com/neurogrowailabs",
+        "https://instagram.com/neurogrow.ailabs"
       ],
       "priceRange": "$$"
     }

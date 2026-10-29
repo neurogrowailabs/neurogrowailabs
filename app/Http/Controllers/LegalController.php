@@ -50,7 +50,7 @@ class LegalController extends Controller
      */
     public function compliance(): View
     {
-        $whatsappNumber = '593983267552';
+        $whatsappNumber = '593963279376';
         $whatsappGlobal = "https://wa.me/{$whatsappNumber}?text=" . urlencode('Hola NeuroGrow AI Labs, deseo consultar sobre un requerimiento legal o NDA corporativo.');
 
         return view('legal.compliance', [
