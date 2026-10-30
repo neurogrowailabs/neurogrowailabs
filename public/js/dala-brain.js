@@ -187,25 +187,22 @@
             breakPos[i*3+1] = y + (fy/fl) * rad * 0.85;
             breakPos[i*3+2] = z + (fz/fl) * rad;
 
-            // Paleta guiada por el relieve (el RGB del archivo es multihue y
-            // desharia los surcos): crestas ambar caliente, valles violeta
-            // profundo. El archivo aporta solo variacion sutil de calidez.
+            // Color: nucleo fiel al archivo (identidad multicolor original de
+            // la constelacion). El relieve vive en el brillo: crestas
+            // luminosas (hasta 1.24x), valles atenuados (0.30x) para que el
+            // surco se lea sin sacrificar la identidad cromatica. Las
+            // chispas cromaticas se concentran en las crestas.
             const isOuter = Math.abs(xNorm(p[0]) - 0.5) > 0.22 || Math.abs(yNorm(p[1]) - 0.5) > 0.30;
             const spark = Math.random();
+            const crestBias = 0.30 + 0.70 * ridge;
             if (spark < 0.030 && ridge > 0.62) {
-                cTmp.setRGB(1.0, 0.96, 0.90);            // glint calido en la cima
-            } else if (spark < (isOuter ? 0.065 : 0.022)) {
+                cTmp.setRGB(1.0, 0.96, 0.90);
+            } else if (spark < (isOuter ? 0.24 : 0.07) * crestBias) {
                 cTmp.copy(accents[(Math.random() * accents.length) | 0]);
             } else {
-                const warm = (p[3] - 0.4) * 0.10;        // matiz sutil del archivo
-                const jr = 0.90 + 0.22 * Math.random();
-                const ridgeP = Math.pow(ridge, 0.8);
-                // lerp(valley, crest, relieve)
-                const vr = 0.24 + 0.76 * ridgeP;
-                const vg = 0.10 + 0.59 * ridgeP;
-                const vb = 0.42 - 0.16 * ridgeP;
-                cTmp.setRGB(vr * jr + warm, vg * jr, vb * jr);
-                if (isOuter) { cTmp.r *= 1.30; cTmp.g *= 1.18; cTmp.b *= 1.05; }   // rim light en la corteza
+                cTmp.setRGB(p[3], p[4], p[5]);
+                const lum = 0.30 + 0.94 * ridge + Math.random() * 0.20;
+                cTmp.multiplyScalar(lum);
             }
             colorArr[i*3] = cTmp.r; colorArr[i*3+1] = cTmp.g; colorArr[i*3+2] = cTmp.b;
 
