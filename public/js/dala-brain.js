@@ -92,12 +92,49 @@
         const HALF_Y = Math.tan(25 * Math.PI / 180) * 10;
         const HALF_X = () => HALF_Y * (window.innerWidth / window.innerHeight);
 
+        /* ---------- Escultura de surcos (sulci) y giros (gyri) ---------- */
+        // Ruido fractal de valor 3D sobre las coordenadas del archivo: crea
+        // bandas organicas de relieve. En el valle la particula se hunde,
+        // encoge y se apaga hacia violeta profundo; en la cresta sobresale,
+        // crece y brilla ambar. Refleja la anatomia del render de referencia.
+        function iHash(x, y, z) {
+            let n = (x * 374761393 + y * 668265263 + z * 1274126177) | 0;
+            n = Math.imul(n ^ (n >>> 13), 1274126177);
+            return ((n ^ (n >>> 16)) >>> 0) / 4294967295;
+        }
+        function vNoise(x, y, z) {
+            const xi = Math.floor(x), yi = Math.floor(y), zi = Math.floor(z);
+            const xf = x - xi, yf = y - yi, zf = z - zi;
+            const su = xf * xf * (3 - 2 * xf), sv = yf * yf * (3 - 2 * yf), sw = zf * zf * (3 - 2 * zf);
+            const m = (a, b, t) => a + (b - a) * t;
+            return m(
+                m(m(iHash(xi, yi, zi), iHash(xi + 1, yi, zi), su), m(iHash(xi, yi + 1, zi), iHash(xi + 1, yi + 1, zi), su), sv),
+                m(m(iHash(xi, yi, zi + 1), iHash(xi + 1, yi, zi + 1), su), m(iHash(xi, yi + 1, zi + 1), iHash(xi + 1, yi + 1, zi + 1), su), sv),
+                sw
+            );
+        }
+        function reliefBands(x, y, z) {
+            const f = 4.2;
+            const n = vNoise(x * f, y * f, z * f)
+                + 0.5 * vNoise(x * 2 * f + 11.7, y * 2 * f + 3.3, z * 2 * f + 7.1)
+                + 0.25 * vNoise(x * 4 * f + 29.2, y * 4 * f + 13.9, z * 4 * f + 17.5);
+            const fbm = (n / 1.75) * 2 - 1;
+            // Irradiancia anatomica: los giros emanan de la cisura lateral
+            // (foco de la insula); el radio lo ondula el propio fbm para que
+            // el abanico no sea geometrico.
+            const dx = x + 0.08, dy = y + 0.02, dz = z;
+            const r = Math.sqrt(dx*dx + dy*dy + dz*dz);
+            const bands = Math.sin(2 * Math.PI * (8.4 * (r + 0.19 * fbm) - 0.65));
+            return 0.50 * fbm + 0.50 * bands;
+        }
+
         /* ---------- Geometria de la constelacion ---------- */
         const basePos = new Float32Array(count * 3);
         const breakPos = new Float32Array(count * 3);
         const colorArr = new Float32Array(count * 3);
         const sizeArr = new Float32Array(count);
         const seedArr = new Float32Array(count);
+        const foldArr = new Float32Array(count);
 
         const accents = [
             new THREE.Color('#e056fd'),  // Magenta Glow
@@ -121,40 +158,59 @@
             const p = pts[i];
             const bx = p[0], by = p[1], bz = p[2];
 
+            // Banda de relieve en esta coordenada
+            const bandN = reliefBands(bx, by, bz);
+            const tr = Math.min(1, Math.max(0, ((bandN + 1) / 2 - 0.34) / 0.32));
+            const ridge = tr * tr * (3 - 2 * tr);   // 0 = surco, 1 = giro
+            foldArr[i] = ridge;
+
             // Semilla de erosion: las particulas inferiores se sueltan primero
             // (cascada de polvo como en el video), mezcladas con azar para
             // que el frente de erosion no sea una fila recta.
             seedArr[i] = Math.min(1, Math.max(0, yNorm(by) * 0.72 + Math.random() * 0.28));
 
-            basePos[i*3] = bx; basePos[i*3+1] = by; basePos[i*3+2] = bz;
+            // Relieve radial: valle hundido (-2.5%), cresta sobresalida (+3%)
+            const rl = Math.sqrt(bx*bx + by*by + bz*bz) || 1e-4;
+            const kRelief = 0.975 + 0.055 * ridge;
+            const x = bx * kRelief, y = by * kRelief, z = bz * kRelief;
+            basePos[i*3] = x; basePos[i*3+1] = y; basePos[i*3+2] = z;
 
             // Vector de dispersion: radial suave + corriente predominante
             // hacia abajo-derecha (gravedad + viento), en unidades locales
             // relativas al tamano del cerebro (~1.1 a 3.2 radios).
-            const rl = Math.sqrt(bx*bx + by*by + bz*bz) || 1e-4;
             const rad = 1.15 + Math.random() * 1.55 + (1 - Math.abs(by)) * 0.45;
             let fx = (bx / rl) * 0.85 + 0.52 + (Math.random() - 0.5) * 0.30;
             let fy = (by / rl) * 0.85 - 0.68 + (Math.random() - 0.5) * 0.30;
             let fz = (bz / rl) * 0.85 + (Math.random() - 0.5) * 0.55;
             const fl = Math.sqrt(fx*fx + fy*fy + fz*fz) || 1;
-            breakPos[i*3]   = bx + (fx/fl) * rad;
-            breakPos[i*3+1] = by + (fy/fl) * rad * 0.85;
-            breakPos[i*3+2] = bz + (fz/fl) * rad;
+            breakPos[i*3]   = x + (fx/fl) * rad;
+            breakPos[i*3+1] = y + (fy/fl) * rad * 0.85;
+            breakPos[i*3+2] = z + (fz/fl) * rad;
 
-            // Color: nucleo ambar fiel al archivo con brillo vivo;
-            // chispas cromaticas salpicadas (mas probabilidad en la corteza).
+            // Paleta guiada por el relieve (el RGB del archivo es multihue y
+            // desharia los surcos): crestas ambar caliente, valles violeta
+            // profundo. El archivo aporta solo variacion sutil de calidez.
             const isOuter = Math.abs(xNorm(p[0]) - 0.5) > 0.22 || Math.abs(yNorm(p[1]) - 0.5) > 0.30;
-            if (Math.random() < (isOuter ? 0.24 : 0.07)) {
+            const spark = Math.random();
+            if (spark < 0.030 && ridge > 0.62) {
+                cTmp.setRGB(1.0, 0.96, 0.90);            // glint calido en la cima
+            } else if (spark < (isOuter ? 0.065 : 0.022)) {
                 cTmp.copy(accents[(Math.random() * accents.length) | 0]);
             } else {
-                cTmp.setRGB(p[3], p[4], p[5]);
-                const lum = 0.92 + Math.random() * 0.22;
-                cTmp.multiplyScalar(lum);
+                const warm = (p[3] - 0.4) * 0.10;        // matiz sutil del archivo
+                const jr = 0.90 + 0.22 * Math.random();
+                const ridgeP = Math.pow(ridge, 0.8);
+                // lerp(valley, crest, relieve)
+                const vr = 0.24 + 0.76 * ridgeP;
+                const vg = 0.10 + 0.59 * ridgeP;
+                const vb = 0.42 - 0.16 * ridgeP;
+                cTmp.setRGB(vr * jr + warm, vg * jr, vb * jr);
+                if (isOuter) { cTmp.r *= 1.30; cTmp.g *= 1.18; cTmp.b *= 1.05; }   // rim light en la corteza
             }
             colorArr[i*3] = cTmp.r; colorArr[i*3+1] = cTmp.g; colorArr[i*3+2] = cTmp.b;
 
-            // Tamano: particulas pequenas cristalinas; chispas algo mayores
-            sizeArr[i] = 0.20 + p[6] * 0.34 + (Math.random() < 0.06 ? 0.12 : 0);
+            // Tamano: crestas destacan, valles se recogen
+            sizeArr[i] = (0.20 + p[6] * 0.36) * (0.62 + 0.42 * ridge) + (Math.random() < 0.05 ? 0.10 * ridge : 0);
         }
 
         const geo = new THREE.BufferGeometry();
@@ -163,6 +219,7 @@
         geo.setAttribute('aColor', new THREE.BufferAttribute(colorArr, 3));
         geo.setAttribute('aSize', new THREE.BufferAttribute(sizeArr, 1));
         geo.setAttribute('aSeed', new THREE.BufferAttribute(seedArr, 1));
+        geo.setAttribute('aFold', new THREE.BufferAttribute(foldArr, 1));
 
         const uTime = { value: 0 };
         const uProgress = { value: 0 };
@@ -182,6 +239,7 @@
                 'attribute vec3 aColor;',
                 'attribute float aSize;',
                 'attribute float aSeed;',
+                'attribute float aFold;',
                 'uniform float uTime;',
                 'uniform float uProgress;',
                 'uniform float uPixelRatio;',
@@ -198,9 +256,10 @@
                 '  // Tamano con atenuacion de perspectiva (mas lejos, mas pequeno)',
                 '  gl_PointSize = aSize * (140.0 / max(0.001, -mv.z)) * uPixelRatio * (1.0 - e * 0.42);',
                 '  vColor = aColor;',
-                '  // Alpha: formado = vivo; disperso = se apaga con brillo dejado',
+                '  // Alpha: formado = vivo; disperso = se apaga con brillo dejado;',
+                '  // Los surcos (aFold bajo) se funden: leen como sombra anatomica.',
                 '  float twinkle = 0.86 + 0.14 * sin(uTime * (1.2 + aSeed) + aSeed * 91.0);',
-                '  vAlpha = (1.0 - e * 0.96) * (0.7 + 0.3 * twinkle);',
+                '  vAlpha = (1.0 - e * 0.96) * mix(0.62, 1.0, aFold) * (0.7 + 0.3 * twinkle);',
                 '  gl_Position = projectionMatrix * mv;',
                 '}'
             ].join('\n'),
