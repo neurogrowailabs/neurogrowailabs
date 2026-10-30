@@ -17,9 +17,9 @@
 
                 {{-- Titular Colosal a Peso 400 (Escultórico en 3 líneas, tracking -0.04em) --}}
                 <h1 class="dala-headline">
-                    <span class="dala-line">Unlock</span>
-                    <span class="dala-line">collective</span>
-                    <span class="dala-line">wisdom.</span>
+                    <span class="dala-line">NeuroGrow</span>
+                    <span class="dala-line">AI</span>
+                    <span class="dala-line">Labs.</span>
                 </h1>
 
                 {{-- Cuerpo de Texto Etéreo en Peso Ultra-Light (200) --}}
