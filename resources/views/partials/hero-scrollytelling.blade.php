@@ -12,17 +12,17 @@
                 {{-- Micro-etiqueta superior en Saffron Spark (#ffb829) --}}
                 <div class="dala-eyebrow">
                     <span class="dala-eyebrow-dot"></span>
-                    <span>STOP MANAGING CODE. START HARNESSING INTELLIGENCE.</span>
+                    <span>NEUROGROW AI LABS · EST. 2026</span>
                 </div>
 
-                {{-- Titular Colosal a Peso 400 (Escultórico en 3 líneas, tracking -0.04em) --}}
-                <h1 class="dala-headline">
-                    <span class="dala-line">NeuroGrow</span>
-                    <span class="dala-line">AI</span>
-                    <span class="dala-line">Labs.</span>
+                {{-- Titular Escultórico con Tipografía Editorial en Itálicas --}}
+                <h1 class="dala-headline hero-headline">
+                    <span class="dala-line"><span class="italic-word">creando</span> ECOSISTEMAS</span>
+                    <span class="dala-line">INTELIGENTES <span class="italic-word">para las</span></span>
+                    <span class="dala-line">EMPRESAS DEL MAÑANA</span>
                 </h1>
 
-                {{-- Cuerpo de Texto Etéreo en Peso Ultra-Light (200) --}}
+                {{-- Cuerpo de Texto en Inter --}}
                 <p class="dala-subheadline">
                     Conectamos arquitectura de software de alta concurrencia, inteligencia artificial certificada y diseño experimental en sistemas autónomos de misión crítica.
                 </p>

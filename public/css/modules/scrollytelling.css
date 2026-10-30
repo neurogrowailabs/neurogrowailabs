@@ -199,15 +199,17 @@
   50% { opacity: 0.35; transform: scale(0.85); }
 }
 
-/* Titular Colosal a Peso 400 (Escultórico en 3 líneas, tracking -0.04em) */
-.dala-headline {
-  font-family: var(--font-inter);
-  font-weight: 400;
-  font-size: clamp(48px, 6.2vw, 98px);
-  line-height: 0.94;
-  letter-spacing: -0.04em;
+/* Titular Escultórico con Tipografía Condensed & Editorial en Itálicas (Identidad Original) */
+.dala-headline,
+.hero-headline {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: clamp(38px, 5.2vw, 76px);
+  line-height: 0.96;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
   color: var(--dala-bone-white);
-  margin: 0 0 28px 0;
+  margin: 0 0 24px 0;
   max-width: 680px;
 }
 
@@ -215,14 +217,36 @@
   display: block;
 }
 
-/* Cuerpo de Texto en Peso Ultra-Light (200) */
+.dala-headline .italic-word,
+.hero-headline .italic-word {
+  font-family: var(--font-serif-italica);
+  font-weight: 400;
+  font-style: italic;
+  text-transform: lowercase;
+  color: var(--color-electric-iris, #8052ff);
+  letter-spacing: 0;
+  margin-right: 6px;
+  vertical-align: baseline;
+}
+
+.hero-desktop-br {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .hero-desktop-br {
+    display: none;
+  }
+}
+
+/* Cuerpo de Texto en Inter */
 .dala-subheadline {
   font-family: var(--font-inter);
-  font-weight: 200;
-  font-size: clamp(16px, 1.35vw, 19px);
+  font-weight: 300;
+  font-size: clamp(15px, 1.25vw, 18px);
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
-  margin: 0 0 36px 0;
+  color: #d1cece;
+  margin: 0 0 32px 0;
   max-width: 520px;
 }
 
@@ -462,10 +486,16 @@
     line-height: 1.4;
     max-width: 100%;
   }
-  .dala-headline {
-    font-size: clamp(34px, 8.8vw, 50px);
-    line-height: 1.02;
-    letter-spacing: -0.035em;
+  .dala-headline,
+  .hero-headline {
+    font-size: clamp(30px, 8.5vw, 46px);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+  }
+  .dala-headline .italic-word,
+  .hero-headline .italic-word {
+    font-size: 0.92em;
+    margin: 0 3px;
   }
   .dala-subheadline {
     font-size: 15px;

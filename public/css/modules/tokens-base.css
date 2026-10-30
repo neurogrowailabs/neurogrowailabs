@@ -64,11 +64,13 @@
   --shadow-backlit-inset: none;
   --shadow-node-active: none;
 
-  /* Typography */
-  --font-ppneuemontreal: 'PPNeueMontreal', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-condensed: 'PPNeueMontreal', 'Inter', system-ui, -apple-system, sans-serif;
-  --font-inter: 'PPNeueMontreal', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Typography — Identidad Editorial & Brutalista */
+  --font-condensed: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+  --font-inter: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', 'Commit Mono', monospace;
+  --font-principal: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif-italica: 'Playfair Display', Georgia, serif;
+  --font-ppneuemontreal: 'PPNeueMontreal', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Dala Radii: 24px Cards/Panels, 9999px Pills */
   --radius-buttons: 9999px;
