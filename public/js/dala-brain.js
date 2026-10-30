@@ -236,7 +236,7 @@
             // De-profundidad: el cerebro se despega HACIA la camara. La
             // perspectiva real (lo cercano grande, lo lejano chico) es lo que
             // produce la sensacion de acercamiento con volumen 3D.
-            const brainZ = isDesktop ? 3.6 : 2.4;
+            const brainZ = isDesktop ? 4.8 : 3.2;
             const depth = 10 - brainZ;
 
             // Medio frustum visible en el plano donde vive el cerebro
